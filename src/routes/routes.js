@@ -1,22 +1,32 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import Sigin from "@/pages/Sign-in.vue";
+import SigUp from "@/pages/SigUp.vue";
 
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
 import TableList from "@/pages/TableList.vue";
-import Eventos from "@/pages/Eventos.vue";
-import Categorias from "@/pages/Categorias.vue";
-import Reportes from "@/pages/Reportes.vue";
-import Roles from "@/pages/Roles.vue";
+import Eventos from "@/pages/Admin/Eventos/Eventos.vue";
+import FormEventos from "@/pages/Admin/Eventos/formEventos.vue";
+import Categorias from "@/pages/Admin/Categoria/Categorias.vue";
+import NuevaCategoria from  "@/pages/Admin/Categoria/NuevaCategoria.vue";
+
+import Reportes from "@/pages/Admin/Reportes/Reportes.vue";
+import Roles from "@/pages/Admin/Roles.vue";
+
+import Usuarios from "@/pages/Admin/Usuarios/ListaUsuarios.vue";
+import NuevoUsuario from "@/pages/Admin/Usuarios/NuevoUsuario.vue";
+
+
+
 
 
 import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
-import Sigin from "@/pages/Sign-in.vue";
-import SigUp from "@/pages/SigUp.vue";
+
 Vue.use(VueRouter);
 const routes = [
   {
@@ -54,12 +64,26 @@ const routes = [
         name: "Eventos",
         component: Eventos,
       },
-
+      
+      {
+        path: "FormEventos",
+        name: "Crear_Eventos",
+        component: FormEventos,
+      },
+      ///categorias
       {
         path: "Categorias",
         name: "Categorias",
         component: Categorias,
       },
+        //Nueva categoria
+
+        {
+          path: "NuevaCategoria",
+          name: "NuevaCategoria",
+          component: NuevaCategoria,
+        },  
+     
       
       {
         path: "Reportes",
@@ -72,8 +96,29 @@ const routes = [
         name: "Roles",
         component: Roles,
       },
-
+     
+        //usuarios
       {
+        path: "Usuarios",
+        name: "ListaUsuarios",
+        component: Usuarios,
+      },
+
+        //Agregar un nuevo usuario
+        {
+          path: "NuevoUsuario",
+          name: "NuevoUsuario",
+          component: NuevoUsuario,
+        },
+    
+
+
+
+
+
+
+
+     /* {
         path: "icons",
         name: "Icons",
         component: Icons,
@@ -95,7 +140,7 @@ const routes = [
         path: "upgrade",
         name: "Upgrade to PRO",
         component: UpgradeToPRO,
-      },
+      },*/
     ],
   },
 ];

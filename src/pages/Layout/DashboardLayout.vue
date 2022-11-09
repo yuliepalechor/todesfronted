@@ -27,10 +27,17 @@
         <p>Eventos</p>
       </sidebar-link>
 
+      <sidebar-link to="/FormEventos">
+        <md-icon>library_books</md-icon>
+        <p>Crear Evento</p>
+      </sidebar-link>
+
       <sidebar-link to="/Categorias">
         <md-icon>library_books</md-icon>
         <p>Categorias</p>
       </sidebar-link>
+
+      
 
       <sidebar-link to="/Reportes">
         <md-icon>library_books</md-icon>
@@ -42,11 +49,20 @@
         <p>Roles</p>
       </sidebar-link>
 
+      <sidebar-link to="/Usuarios">
+        <md-icon>person</md-icon>
+        <p>Usuarios</p>
+      </sidebar-link>
+
+      
+
+      
 
 
 
 
-      <sidebar-link to="/icons">
+
+      <!--sidebar-link to="/icons">
         <md-icon>bubble_chart</md-icon>
         <p>Icons</p>
       </sidebar-link>
@@ -61,7 +77,7 @@
       <sidebar-link to="/upgrade" class="active-pro">
         <md-icon>unarchive</md-icon>
         <p>Upgrade to PRO</p>
-      </sidebar-link>
+      </sidebar-link-->
     </side-bar>
 
     <div class="main-panel">
@@ -82,7 +98,7 @@
 
 <script>
 import TopNavbar from "./TopNavbar.vue";
-import ContentFooter from "./ContentFooter.vue";
+//import ContentFooter from "./ContentFooter.vue";
 import DashboardContent from "./Content.vue";
 import MobileMenu from "@/pages/Layout/MobileMenu.vue";
 import FixedPlugin from "./Extra/FixedPlugin.vue";
@@ -91,14 +107,14 @@ export default {
   components: {
     TopNavbar,
     DashboardContent,
-    ContentFooter,
+    //ContentFooter,
     MobileMenu,
     FixedPlugin,
   },
   data() {
     return {
-      sidebarBackground: "green",
-      sidebarBackgroundImage: require("@/assets/img/sidebar-2.jpg"),
+      sidebarBackground: "purple",
+      sidebarBackgroundImage: require("@/assets/img/logonue.png"),
     };
   },
 };

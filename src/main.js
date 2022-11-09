@@ -17,6 +17,14 @@ import MaterialDashboard from "./material-dashboard";
 import Chartist from "chartist";
 import axios from "axios";
 import VueAxios from "vue-axios";
+
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+
+// Import Bootstrap and BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
@@ -31,6 +39,10 @@ Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
 Vue.use(VueAxios, axios);
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
