@@ -38,13 +38,13 @@
                   <div class="md-layout-item md-small-size-100 md-size-50">
                     <md-field>
                       <label>Email</label>
-                      <md-input v-model="user.email" type="text"></md-input>
+                      <md-input v-model="user.email" type="email"></md-input>
                     </md-field>
                   </div>
                   <div class="md-layout-item md-small-size-100 md-size-100">
                     <md-field>
                       <label>Password</label>
-                      <md-input v-model="user.password" type="text"></md-input>
+                      <md-input v-model="user.password" type="password"></md-input>
                     </md-field>
                   </div>
                   <div class="md-layout-item md-small-size-100 md-size-33">

@@ -1,19 +1,38 @@
 <template>
-    <div>
-        <h1>Nueva Categoria</h1>
-        <label for="">Categorias</label>
-        <b-input type="text" v-model="form.nombre"/><br><br>
-        
-        <b-label for="">Descripcion</b-label>
-        <b-input type="text" v-model="form.descripcion"/><br>
-    
-        <b-button @click="GuardarCategoria()">REGISTRAR</b-button>
-    
-        
-    
-    
-        <!--el v-model es para  hacer la conecion con  el html con el script-->
-    </div>
+   
+
+    <form>
+      <md-card>
+        <md-card-header data-background-color="blue">
+          <h4 class="title">Categoria</h4>
+          <p class="category">Nueva Categoria</p>
+        </md-card-header>
+  
+        <md-card-content>
+          <div class="md-layout">
+            <div class="md-layout-item md-small-size-100 md-size-33">
+              <md-field>
+                <label>Categoria</label>
+                <md-input v-model="form.nombre" type="text"></md-input>
+              </md-field>
+            </div>
+           
+            
+            <div class="md-layout-item md-small-size-100 md-size-33">
+              <md-field>
+                <label>Descripcion</label>
+                <md-input v-model="form.descripcion" type="text"></md-input>
+              </md-field>
+            </div>
+            
+           
+            <div class="md-layout-item md-size-100 text-right">
+              <md-button class="md-info" @click="GuardarCategoria()" >Publicar</md-button>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+    </form>
     </template>
     
     <script>

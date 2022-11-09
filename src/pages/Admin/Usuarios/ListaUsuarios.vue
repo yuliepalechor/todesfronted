@@ -4,9 +4,9 @@
         <div
           class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
         >
-        <div>
-            <b-button variant="warning" @click="NuevoUsuario()">Registrar Usuario</b-button>
-    </div>
+        
+         <md-button class="md-info" @click="NuevoUsuario()" >Registrar Usuario </md-button>
+      
           <md-card>
             
             <md-card-header data-background-color="blue">

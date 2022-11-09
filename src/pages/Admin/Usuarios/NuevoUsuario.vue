@@ -11,32 +11,32 @@
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Identificacion</label>
-                <md-input v-model="username" type="text"></md-input>
+                <md-input v-model="form.identificacion" type="text"></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
                 <label>Nombre</label>
-                <md-input v-model="lastname" type="text"></md-input>
+                <md-input v-model="form.nombre" type="text"></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Apellidos</label>
-                <md-input v-model="emailadress" type="email"></md-input>
+                <md-input v-model="form.apellidos" type="email"></md-input>
               </md-field>
             </div>
             
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
                 <label>Email</label>
-                <md-input v-model="firstname" type="text"></md-input>
+                <md-input v-model="form.email" type="text"></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Password</label>
-                <md-input v-model="username" type="text"></md-input>
+                <md-input v-model="form.password" type="text"></md-input>
               </md-field>
             </div>
             
@@ -44,19 +44,19 @@
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Genero</label>
-                <md-input v-model="city" type="text"></md-input>
+                <md-input v-model="form.genero" type="text"></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Fecha de nacimiento</label>
-                <md-input v-model="country" type="text"></md-input>
+                <md-input v-model="form.fecha_nacimiento" type="text"></md-input>
               </md-field>
             </div>
             
             
             <div class="md-layout-item md-size-100 text-right">
-              <md-button class="md-info">Registrar</md-button>
+              <md-button class="md-info" @click="GuardarUsuario()">Registrar</md-button>
             </div>
           </div>
         </md-card-content>
@@ -64,29 +64,44 @@
     </form>
   </template>
   <script>
+  import axios from "axios"
   export default {
-    name: "edit-profile-form",
+    name: "NuevoUsuario",
     props: {
       dataBackgroundColor: {
         type: String,
         default: "",
       },
     },
-    data() {
-      return {
-        username: null,
-        disabled: null,
-        emailadress: null,
-        lastname: null,
-        firstname: null,
-        address: null,
-        city: null,
-        country: null,
-        code: null,
-        aboutme:
-          "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.",
-      };
-    },
+    data(){
+            return{
+                form:{
+                    identificacion:"",
+                    nombre:"",
+                    apellidos:"",
+                    genero:"",
+                    fecha_nacimiento:"",
+                    email:"",             
+                    password:"",
+                }
+              
+            }
+        },
+        methods:{
+          GuardarUsuario(){
+             axios.post("http://127.0.0.1:8000/api/usuario",this.form).then((data)=>
+             {console.log(data);
+                //CODIGO DE ALERTA
+                Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Registro exitoso',
+                showConfirmButton: false,
+                timer: 1500
+                })
+            });
+          }
+        }
   };
   </script>
   <style></style>

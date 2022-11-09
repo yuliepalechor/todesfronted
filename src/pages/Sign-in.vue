@@ -21,7 +21,7 @@
                         <md-input
                           class="form-control"
                           v-model="form.email"
-                          type="text"
+                          type="email"
                         ></md-input>
                       </md-field>
                     </div>
@@ -30,7 +30,7 @@
                         <span class="input-icon"
                           ><i class="fa fa-lock"></i
                         ></span>
-                        <md-input v-model="form.password" type="text"></md-input>
+                        <md-input v-model="form.password" type="password"></md-input>
                       </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-100">
@@ -39,7 +39,7 @@
                       >
                       <br/>
                       <span class="forgot-pass"
-                        ><a href="#">Forgot Username/Password?</a></span
+                        ><a href="#">¿Olvidó su nombre de usuario/contraseña?</a></span
                       >
                     </div>
                   </div>
@@ -152,7 +152,10 @@ export default {
          axios.post("http://127.0.0.1:8000/api/login", this.form).then((data) => {
          console.log(data.data.status);
             if (data.data.status == "1") {
-           this.$router.push("/dashboard");
+              if(data.data.rol[0]=="Admin")
+                 this.$router.push("/dashboard");
+              if(data.data.rol[0]=="UserComunidad")
+                 this.$router.push("/");
            }
             if (data.data.status == "0") {
                this.$router.push("/");

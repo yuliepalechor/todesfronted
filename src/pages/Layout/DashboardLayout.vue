@@ -27,11 +27,7 @@
         <p>Eventos</p>
       </sidebar-link>
 
-      <sidebar-link to="/FormEventos">
-        <md-icon>library_books</md-icon>
-        <p>Crear Evento</p>
-      </sidebar-link>
-
+      
       <sidebar-link to="/Categorias">
         <md-icon>library_books</md-icon>
         <p>Categorias</p>
