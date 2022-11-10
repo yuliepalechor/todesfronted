@@ -13,13 +13,28 @@
             <p class="category">Lista de Categorias</p>
           </md-card-header>
           <md-card-content id="tabla"> 
-            <b-table :fields="encabezado" :items="categoria">
             
-              <template v-slot:cell(eliminar)="data">
-                <button @click="EliminarCategoria(id)" class="btn btn-danger"></button>
-                <b-button @click="EliminarCategoria(data.item.id)">Eliminar</b-button>
-              </template>
-            </b-table>
+            <div>
+              <md-table v-model="categoria" :table-header-color="tableHeaderColor">
+                <md-table-row slot="md-table-row" slot-scope="{ item }">
+                  <md-table-cell md-label="id">{{ item.id }}</md-table-cell>
+                  <md-table-cell md-label="Nombre">{{ item.nombre }}</md-table-cell>
+                  <md-table-cell md-label="Descripcion">{{ item.descripcion }}</md-table-cell>
+                  <md-table-cell md-label="Editar">
+                    <md-button class="md-just-icon md-simple md-primary">
+                      <md-icon>edit</md-icon>
+                      <md-tooltip md-direction="top">Edit</md-tooltip>
+                    </md-button>
+                  </md-table-cell>
+                  <md-table-cell md-label="Eliminar">
+                    <md-button class="md-just-icon md-simple md-danger">
+                      <md-icon>close</md-icon>
+                      <md-tooltip md-direction="top">Close</md-tooltip>
+                    </md-button>
+                  </md-table-cell>
+                </md-table-row>
+              </md-table>
+            </div>
           </md-card-content>
         </md-card>
       </div>
@@ -59,7 +74,7 @@ export default {
     methods: {
 
         getcategorias() {
-            this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+            axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
                 this.categoria = response.data;
             })
         },
@@ -69,7 +84,7 @@ export default {
         },
 
         EliminarCategoria(id) {
-            this.axios.delete("http://127.0.0.1:8000/api/categoria/"+id, this.form).then((data) => {
+            axios.delete("http://127.0.0.1:8000/api/categoria/"+id, this.form).then((data) => {
                 console.log(data);
             });
         }

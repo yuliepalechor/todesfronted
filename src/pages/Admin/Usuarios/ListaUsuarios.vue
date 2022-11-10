@@ -14,23 +14,35 @@
               <p class="category">Lista de Usuarios</p>
             </md-card-header>
             <md-card-content id="tabla"> 
-                <div class="tablacontent">
-            <tr>      
-                <b-table :fields="encabezado" :items="usuario" :itemscope=elementosPorPagina >
+        
 
-                  <template v-slot:cell(editar)="data">
+          <div>
+              <md-table v-model="usuario" :table-header-color="tableHeaderColor">
+                <md-table-row slot="md-table-row" slot-scope="{ item }">
+                  <md-table-cell md-label="id">{{ item.id }}</md-table-cell>
+                  <md-table-cell md-label="dentificacion">{{ item.identificacion }}</md-table-cell>
+                  <md-table-cell md-label="nombre">{{ item.nombre }}</md-table-cell>
+                  <md-table-cell md-label="apellidos">{{ item.apellidos }}</md-table-cell>
+                  <md-table-cell md-label="genero">{{ item.genero }}</md-table-cell>
+                  <md-table-cell md-label="fecha_nacimiento">{{ item.fecha_nacimiento }}</md-table-cell>
+                  <md-table-cell md-label="email">{{ item.email }}</md-table-cell>
+                  <md-table-cell md-label="Editar">
+                    <md-button class="md-just-icon md-simple md-primary">
+                      <md-icon>edit</md-icon>
+                      <md-tooltip md-direction="top">Edit</md-tooltip>
+                    </md-button>
+                  </md-table-cell>
+                  <md-table-cell md-label="eliminar">
+                    <md-button class="md-just-icon md-simple md-danger">
+                      <md-icon>close</md-icon>
+                      <md-tooltip md-direction="top">Close</md-tooltip>
+                    </md-button>
+                  </md-table-cell>
+                </md-table-row>
+              </md-table>
+            </div>
 
-                    <b-button variant="primary" size="sm" @click="editar(data.id)">Editar</b-button>
 
-                  </template>
-
-                  <template v-slot:cell(eliminar)="data">
-                    <b-button variant="danger" size="sm" @click="EliminarPublicacion(data.id)">Eliminar</b-button>
-                  </template>
-                </b-table>
-              
-            </tr>
-          </div>
             </md-card-content>
           </md-card>
         </div>

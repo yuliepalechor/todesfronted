@@ -18,8 +18,7 @@ import Roles from "@/pages/Admin/Roles.vue";
 import Usuarios from "@/pages/Admin/Usuarios/ListaUsuarios.vue";
 import NuevoUsuario from "@/pages/Admin/Usuarios/NuevoUsuario.vue";
 
-
-
+import UsuarioComunidad from "@/pages/User/Dashboard.vue";
 
 
 import Icons from "@/pages/Icons.vue";
@@ -29,6 +28,14 @@ import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 
 Vue.use(VueRouter);
 const routes = [
+  {
+    path: "/UsuarioComunidad",
+    name: "UsuarioComunidad",
+    component: UsuarioComunidad,
+  },
+
+
+
   {
     path: "/",
     name: "SigUp",
@@ -110,6 +117,12 @@ const routes = [
           name: "NuevoUsuario",
           component: NuevoUsuario,
         },
+
+        
+        
+
+
+        
     
 
 

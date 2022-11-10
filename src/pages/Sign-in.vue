@@ -152,10 +152,14 @@ export default {
          axios.post("http://127.0.0.1:8000/api/login", this.form).then((data) => {
          console.log(data.data.status);
             if (data.data.status == "1") {
-              if(data.data.rol[0]=="Admin")
-                 this.$router.push("/dashboard");
-              if(data.data.rol[0]=="UserComunidad")
-                 this.$router.push("/");
+              if(data.data.rol[0]=="Admin"){
+                this.$router.push("/dashboard");
+              }else{
+                this.$router.push("/UsuarioComunidad");
+              }
+                
+             
+                 
            }
             if (data.data.status == "0") {
                this.$router.push("/");

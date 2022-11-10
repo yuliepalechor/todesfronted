@@ -61,4 +61,8 @@
     </script>
     
     <style>
+    .md-card.md-theme-default{
+      width: 50%;
+      
+    }
     </style>

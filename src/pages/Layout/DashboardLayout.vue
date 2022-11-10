@@ -28,6 +28,7 @@
       </sidebar-link>
 
       
+
       <sidebar-link to="/Categorias">
         <md-icon>library_books</md-icon>
         <p>Categorias</p>
@@ -35,10 +36,10 @@
 
       
 
-      <sidebar-link to="/Reportes">
+      <!-- <sidebar-link to="/Reportes">
         <md-icon>library_books</md-icon>
         <p>Reportes</p>
-      </sidebar-link>
+      </sidebar-link> -->
 
       <sidebar-link to="/Roles">
         <md-icon>person</md-icon>
@@ -49,6 +50,8 @@
         <md-icon>person</md-icon>
         <p>Usuarios</p>
       </sidebar-link>
+
+      
 
       
 
