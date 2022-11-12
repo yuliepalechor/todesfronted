@@ -9,6 +9,7 @@ import UserProfile from "@/pages/UserProfile.vue";
 import TableList from "@/pages/TableList.vue";
 import Eventos from "@/pages/Admin/Eventos/Eventos.vue";
 import FormEventos from "@/pages/Admin/Eventos/formEventos.vue";
+import EditarPEvento from "@/pages/Admin/Eventos/EditarPEvento.vue";
 import Categorias from "@/pages/Admin/Categoria/Categorias.vue";
 import NuevaCategoria from  "@/pages/Admin/Categoria/NuevaCategoria.vue";
 
@@ -66,16 +67,24 @@ const routes = [
         name: "Table List",
         component: TableList,
       },
+
+      //publicacion evento
       {
-        path: "Eventos",
+        path: "/Eventos",
         name: "Eventos",
         component: Eventos,
       },
       
       {
-        path: "FormEventos",
+        path: "/FormEventos",
         name: "Crear_Eventos",
         component: FormEventos,
+      },
+
+      {
+        path: "/EditarPEvento/:id",
+        name: "EditarPEvento",
+        component: EditarPEvento,
       },
       ///categorias
       {

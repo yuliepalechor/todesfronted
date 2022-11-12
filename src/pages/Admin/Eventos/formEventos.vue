@@ -39,7 +39,12 @@
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>estado</label>
-              <md-input v-model="form.estado" type="text"></md-input>
+              
+              <select v-model="form.estado"   class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
+                <option>Seleccione...</option>
+                <option value="activo">activo</option>
+                <option value="inactivo">inactivo</option>
+              </select>
             </md-field>
           </div>
 
@@ -102,8 +107,8 @@
 
 
   import axios from "axios";
-import Swal from "sweetalert2";
-export default {
+  import Swal from "sweetalert2";
+  export default {
   name: "Crear_Eventos",
 
   props: {
@@ -136,9 +141,8 @@ export default {
         showConfirmButton: false,
         timer: 1500,
       });
-      this.axios
-
-        .post("http://127.0.0.1:8000/api/publicacion", this.form)
+      
+      this.axios.post("http://127.0.0.1:8000/api/publicacion", this.form)
 
         .then((data) => {
           console.log(data);
