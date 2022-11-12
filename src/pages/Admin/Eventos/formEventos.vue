@@ -1,98 +1,157 @@
 <template>
-    <form>
-      <md-card>
-        <md-card-header data-background-color="blue">
-          <h4 class="title">Evento</h4>
-          <p class="category">Crear Evento</p>
-        </md-card-header>
-  
-        <md-card-content>
-          <div class="md-layout">
-            <div class="md-layout-item md-small-size-100 md-size-33">
-              <md-field>
-                <label>Nombre</label>
-                <md-input v-model="username" type="text"></md-input>
-              </md-field>
-            </div>
-            <div class="md-layout-item md-small-size-100 md-size-50">
-              <md-field>
-                <label>Tipo</label>
-                <md-input v-model="lastname" type="text"></md-input>
-              </md-field>
-            </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
-              <md-field>
-                <label>Fecha y hora</label>
-                <md-input v-model="emailadress" type="email"></md-input>
-              </md-field>
-            </div>
-            
-            <div class="md-layout-item md-small-size-100 md-size-50">
-              <md-field>
-                <label>Lugar</label>
-                <md-input v-model="firstname" type="text"></md-input>
-              </md-field>
-            </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
-              <md-field>
-                <label>Estado</label>
-                <md-input v-model="username" type="text"></md-input>
-              </md-field>
-            </div>
-            
-          
-            <div class="md-layout-item md-small-size-100 md-size-33">
-              <md-field>
-                <label>Responsable</label>
-                <md-input v-model="city" type="text"></md-input>
-              </md-field>
-            </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
-              <md-field>
-                <label>Fecha caducidad</label>
-                <md-input v-model="country" type="text"></md-input>
-              </md-field>
-            </div>
-            
-            <div class="md-layout-item md-size-100">
-              <md-field maxlength="5">
-                <label>Descripcion</label>
-                <md-textarea v-model="aboutme"></md-textarea>
-              </md-field>
-            </div>
-            <div class="md-layout-item md-size-100 text-right">
-              <md-button class="md-info" >Publicar</md-button>
-            </div>
+  <form>
+    <md-card>
+      <md-card-header data-background-color="blue">
+        <h4 class="title">Evento</h4>
+        <p class="category">Crear Evento</p>
+      </md-card-header>
+
+      <md-card-content>
+        <div class="md-layout">
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Nombre</label>
+              <md-input v-model="form.nombre" type="text"></md-input>
+            </md-field>
           </div>
-        </md-card-content>
-      </md-card>
-    </form>
-  </template>
-  <script>
-  export default {
-    name: "Crear_Eventos",
-    props: {
-      dataBackgroundColor: {
-        type: String,
-        default: "",
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>Descripcion</label>
+              <md-input v-model="form.descripcion" type="text"></md-input>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Fecha y hora</label>
+              <md-input v-model="form.fecha_y_Hora" type="datetime-local"></md-input>
+            </md-field>
+          </div>
+          
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>Lugar</label>
+              <md-input v-model="form.lugar" type="text"></md-input>
+            </md-field>
+          </div>
+
+
+
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>estado</label>
+              <md-input v-model="form.estado" type="text"></md-input>
+            </md-field>
+          </div>
+
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>Url</label>
+              <md-input v-model="form.urlExterna" type="text"></md-input>
+            </md-field>
+          </div>
+
+<!--           
+          <div class="md-layout-item md-small-size-100 md-size-50">
+                <label for="state_id" class="control-label" >State</label>
+        <select class="form-control" id="state_id" v-model="form.estado" >
+            <option value="AL">activo</option>
+            <option value="AK">inactivo</option>
+            
+        </select>                    
+    </div> 
+
+    
+                <label for="state_id" class="control-label" >State</label>
+        <select class="form-control" id="state_id" v-model="form.estado" >
+            <option value="AL">activo</option>
+            <option value="AK">inactivo</option>
+            
+        </select>                    
+    </div>  -->
+  
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Responsable</label>
+              <md-input v-model="form.responsable" type="text"></md-input>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Fecha caducidad</label>
+              <md-input v-model="form.fecha_caducidad" type="date"></md-input>
+            </md-field>
+          </div>
+
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>Tipo</label>
+              <md-input v-model="form.tipo" type="text"></md-input>
+            </md-field>
+          </div>
+          
+          
+          <div class="md-layout-item md-size-100 text-right">
+            <md-button  @click="GuardarPublicacion()" class="md-info" >Registrar</md-button>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </form>
+</template>
+<script>
+
+
+  import axios from "axios";
+import Swal from "sweetalert2";
+export default {
+  name: "Crear_Eventos",
+
+  props: {
+    dataBackgroundColor: {
+      type: String,
+      default: "",
+    },
+  },
+  data() {
+    return {
+      form: {
+        nombre: "", // aqui se inicializa lo que  hace la conexion   de html con js
+        descripcion: "",
+        fecha_y_Hora: "",
+        lugar: "",
+        estado: "",
+        urlExterna: "",
+        responsable: "",
+        fecha_caducidad: "",
+        tipo: "",
       },
+    };
+  },
+  methods: {
+    GuardarPublicacion() {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Publicacion  o evento guardado",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      this.axios
+
+        .post("http://127.0.0.1:8000/api/publicacion", this.form)
+
+        .then((data) => {
+          console.log(data);
+        });
     },
-    data() {
-      return {
-        username: null,
-        disabled: null,
-        emailadress: null,
-        lastname: null,
-        firstname: null,
-        address: null,
-        city: null,
-        country: null,
-        code: null,
-        aboutme:
-          "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.",
-      };
+
+    catch(e) {
+      console.log(e.response);
     },
-  };
-  </script>
-  <style></style>
+  },
+};
+
+
+</script>
+<style></style>
   

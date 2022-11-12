@@ -3,8 +3,8 @@
     <notifications></notifications>
 
     <side-bar
-      :sidebar-item-color="sidebarBackground"
-      :sidebar-background-image="sidebarBackgroundImage"
+      
+      
     >
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/dashboard">
@@ -17,10 +17,10 @@
         <p>Perfil</p>
       </sidebar-link>
 
-      <sidebar-link to="/table">
+      <!-- <sidebar-link to="/table">
         <md-icon>content_paste</md-icon>
         <p>Table list</p>
-      </sidebar-link>
+      </sidebar-link> -->
 
       <sidebar-link to="/Eventos">
         <md-icon>library_books</md-icon>
@@ -49,6 +49,11 @@
       <sidebar-link to="/Usuarios">
         <md-icon>person</md-icon>
         <p>Usuarios</p>
+      </sidebar-link>
+
+      <sidebar-link to="/Sigin">
+        <md-icon>close</md-icon>
+        <p>salir</p>
       </sidebar-link>
 
       
@@ -100,7 +105,7 @@ import TopNavbar from "./TopNavbar.vue";
 //import ContentFooter from "./ContentFooter.vue";
 import DashboardContent from "./Content.vue";
 import MobileMenu from "@/pages/Layout/MobileMenu.vue";
-import FixedPlugin from "./Extra/FixedPlugin.vue";
+//import FixedPlugin from "./Extra/FixedPlugin.vue";
 
 export default {
   components: {
@@ -108,13 +113,14 @@ export default {
     DashboardContent,
     //ContentFooter,
     MobileMenu,
-    FixedPlugin,
+    //FixedPlugin,
   },
   data() {
     return {
-      sidebarBackground: "purple",
-      sidebarBackgroundImage: require("@/assets/img/logonue.png"),
+      
+      
     };
   },
 };
 </script>
+

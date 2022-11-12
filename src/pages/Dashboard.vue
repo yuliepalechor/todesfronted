@@ -36,7 +36,7 @@
           :chart-options="emailsSubscriptionChart.options"
           :chart-responsive-options="emailsSubscriptionChart.responsiveOptions"
           :chart-type="'Bar'"
-          data-background-color="red"
+          data-background-color="purple"
         >
           <template slot="content">
             <h4 class="title">Noticias</h4>
@@ -59,7 +59,7 @@
           :chart-data="dataCompletedTasksChart.data"
           :chart-options="dataCompletedTasksChart.options"
           :chart-type="'Line'"
-          data-background-color="green"
+          data-background-color="blue"
         >
           <template slot="content">
             <h4 class="title">Denuncias</h4>
@@ -82,7 +82,7 @@
           :chart-data="dailySalesChart.data"
           :chart-options="dailySalesChart.options"
           :chart-type="'Line'"
-          data-background-color="blue"
+          data-background-color="purple"
         >
           <template slot="content">
             <h4 class="title">Eventos</h4>
@@ -112,7 +112,7 @@
           :chart-options="emailsSubscriptionChart.options"
           :chart-responsive-options="emailsSubscriptionChart.responsiveOptions"
           :chart-type="'Bar'"
-          data-background-color="red"
+          data-background-color="blue"
         >
           <template slot="content">
             <h4 class="title">Noticias</h4>
@@ -135,7 +135,7 @@
           :chart-data="dataCompletedTasksChart.data"
           :chart-options="dataCompletedTasksChart.options"
           :chart-type="'Line'"
-          data-background-color="green"
+          data-background-color="purple"
         >
           <template slot="content">
             <h4 class="title">Denuncias</h4>

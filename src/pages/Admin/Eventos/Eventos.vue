@@ -64,7 +64,7 @@ name: "Eventos",
         mounted(){
             this.geteventos()
 
-            
+           
             
 
         },

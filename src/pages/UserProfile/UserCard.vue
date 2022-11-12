@@ -22,7 +22,7 @@ export default {
   props: {
     cardUserImage: {
       type: String,
-      default: require("@/assets/img/faces/marc.jpg"),
+      default: require("@/assets/img/logotodess.png"),
     },
   },
   data() {

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sidebar" style="background-color:#891a89 ;"
+    class="sidebar" 
     
   >
     <div class="logo">
@@ -18,7 +18,7 @@
         {{ title }}
       </a>
     </div>
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper" >
       <slot name="content"></slot>
       <md-list class="nav">
         <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
@@ -45,21 +45,21 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Inicio TODES",
+      default: "TODES",
     },
     
     imgLogo: {
       type: String,
       default: require("@/assets/img/logotodess.png"),
     },
-    sidebarItemColor: {
-      type: String,
-      default: "green",
-      validator: (value) => {
-        let acceptedValues = ["", "purple", "blue", "green", "orange", "red"];
-        return acceptedValues.indexOf(value) !== -1;
-      },
-    },
+    // sidebarItemColor: {
+    //   type: String,
+    //   default: "green",
+    //   validator: (value) => {
+    //     let acceptedValues = ["", "purple", "blue", "green", "orange", "red"];
+    //     return acceptedValues.indexOf(value) !== -1;
+    //   },
+    // },
     sidebarLinks: {
       type: Array,
       default: () => [],
@@ -75,11 +75,11 @@ export default {
     };
   },
   computed: {
-    sidebarStyle() {
-      return {
-        backgroundImage: `url(${this.sidebarBackgroundImage})`,
-      };
-    },
+    // sidebarStyle() {
+    //   return {
+    //     backgroundImage: `url(${this.sidebarBackgroundImage})`,
+    //   };
+    // },
   },
 };
 </script>
