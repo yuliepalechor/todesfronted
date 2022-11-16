@@ -242,6 +242,8 @@
       </div>
     </div>
   </div>
+
+  <div> <h1>hola edwin</h1></div>
 </template>
 
 <script>
@@ -252,11 +254,7 @@
 height: 400px;
 }
 
-.navbar {
-  background: #891A89;
-  margin-bottom: 0;
-  min-height: 70px;
-}
+
 
 .navbar-fixed-top {
   min-height: 60px;
