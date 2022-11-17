@@ -41,10 +41,10 @@
         <p>Reportes</p>
       </sidebar-link> -->
 
-      <sidebar-link to="/Roles">
+      <!-- <sidebar-link to="/Roles">
         <md-icon>person</md-icon>
         <p>Roles</p>
-      </sidebar-link>
+      </sidebar-link> -->
 
       <sidebar-link to="/Usuarios">
         <md-icon>person</md-icon>

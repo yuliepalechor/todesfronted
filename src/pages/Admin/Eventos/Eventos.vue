@@ -11,11 +11,9 @@
             <p class="category">Lista de Eventos</p>
           </md-card-header>
           <md-card-content>
-            <!--div  class="table-responsive table">
-              <b-table class="fixed" :fields="encabezado" :items="categoria"></b-table>
-            </div-->
+           
             <div>
-              <md-table v-model="categoria" :table-header-color="tableHeaderColor" :filter="filter">
+              <md-table v-model="categoria" :table-header-color="tableHeaderColor" md-card md-sort="nombre" md-sort-order="asc">
                 <md-table-row slot="md-table-row" slot-scope="{ item }">
                   <md-table-cell md-label="Id">{{ item.id }}</md-table-cell>
                   <md-table-cell md-label="Nombre">{{ item.nombre }}</md-table-cell>
@@ -43,16 +41,22 @@
                     
                   </md-table-cell>
                 </md-table-row>
-                <md-table-pagination md-label="Páginas" 
-                    :md-size="10" 
-                    :md-page="5" 
-                    :md-total="categoria.length" 
-                    md-separator="de" 
-                    :md-page-options="[5, 10, 25, 50]" 
-                    @pagination="onPagination">
-                </md-table-pagination>
+                <md-table-pagination
+                 :md-page-size="2"
+                 :md-page-options="[1,2,3,4,5,6]"
+                 :md-update="updatePagination"
+                 :md-data="categoria"
+                 :md-paginated-data.sync="categoria" />
+                
               
               </md-table>
+
+                  <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="my-table"
+    ></b-pagination>
             </div>
           </md-card-content>
         </md-card>
@@ -65,74 +69,50 @@
 
 <script>
 
+import { OrderedTable } from "@/components";
 import Swal from 'sweetalert2'
 import axios from "axios"
-
 //import { response } from "express";
 // el axios permite  llamar  todas las  apis  que se hayan creado
 export default {
   name: "Eventos",
+  props: {
+    tableHeaderColor: {
+      type: String,
+      default: "",
+    },
+  },
   data() {
+    
     return {
-      conteo:null,
+      
       categoria: [],
-      encabezado: [
-        { key: "id", label: "Id" },
-        { key: "nombre", label: "Nombre" },
-        { key: "descripcion", label: "Descripcion" },
-        { key: "fecha_y_Hora", label: 'FECHA-HORA' },
-        { key: "lugar", label: 'Lugar' },
-        { key: "estado", label: 'Estado' },
-        { key: "urlExterna", label: 'Url' },
-        { key: "responsable", label: 'Responsable' },
-        { key: "fecha_caducidad", label: 'fecha_caducidad' },
-        { key: "tipo", label: 'Tipo' },
-
-        { key: "insertar", label: "Insertar" },
-
-        { key: "editar", label: "Editar" },
-
-        { key: "eliminar", label: "Eliminar" },
-
-      ],
-
+      
     }
+    
   },
   components: {
-
   },
   mounted() {
     this.getcategorias()
     this.EliminarPublicacion(id)
-
-
-
   },
-
   methods: {
-    onPagination(pagination) {
-      if (pagination) {
-        this.limit = pagination.size;
-        this.offset = (pagination.page - 1) * this.limit;
-      }
-
-      this.find()
-    },
+    updatePagination (page, pageSize, sort, sortOrder) {
+        console.log('pagination has updated', page, pageSize, sort, sortOrder);
+      },
     getcategorias() {
       this.axios.get("http://127.0.0.1:8000/api/publicacion").then((response) => {
         this.categoria = response.data;
       })
     },
-
     NuevaCategoria() {
       this.$router.push('/FormEventos')
     },
-
     editarpublicacion(id) {
      
       this.$router.push(`/EditarPEvento/${id}`)
     },
-
     EliminarPublicacion(id) {
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
@@ -141,7 +121,6 @@ export default {
         },
         buttonsStyling: false
       })
-
       swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -152,18 +131,12 @@ export default {
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
-
           this.axios.delete("http://127.0.0.1:8000/api/publicacion/" + id).then((response) => {
-
             this.axios.get("http://127.0.0.1:8000/api/publicacion").then((response) => {
             this.categoria = response.data;
       })
-
-
-
             this.publicacion = response.data;
             console.log(data)
-
           });
          
         } else if (
@@ -173,21 +146,8 @@ export default {
          
         }
       })
-
-
-
-
     },
-    computed:{
-      conteo(){
-        this.conteo=this.categoria.length;
-      }
-    },
-
-
+    
   }
-
-
 }
-
 </script>

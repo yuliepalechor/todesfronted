@@ -8,26 +8,26 @@
 
       <md-card-content>
         <div class="md-layout">
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
               <label>Nombre</label>
-              <md-input v-model="form.nombre" type="text"></md-input>
+              <md-input v-model="form.nombre" type="text" required></md-input>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
               <label>Descripcion</label>
               <md-input v-model="form.descripcion" type="text"></md-input>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
               <label>Fecha y hora</label>
               <md-input v-model="form.fecha_y_Hora" type="datetime-local"></md-input>
             </md-field>
           </div>
           
-          <div class="md-layout-item md-small-size-100 md-size-50">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
               <label>Lugar</label>
               <md-input v-model="form.lugar" type="text"></md-input>
@@ -36,9 +36,9 @@
 
 
 
-          <div class="md-layout-item md-small-size-100 md-size-50">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
-              <label>estado</label>
+              <label>Estado</label>
               
               <select v-model="form.estado"   class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
                 <option>Seleccione...</option>
@@ -48,57 +48,48 @@
             </md-field>
           </div>
 
-          <div class="md-layout-item md-small-size-100 md-size-50">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
               <label>Url</label>
               <md-input v-model="form.urlExterna" type="text"></md-input>
             </md-field>
           </div>
 
-<!--           
-          <div class="md-layout-item md-small-size-100 md-size-50">
-                <label for="state_id" class="control-label" >State</label>
-        <select class="form-control" id="state_id" v-model="form.estado" >
-            <option value="AL">activo</option>
-            <option value="AK">inactivo</option>
-            
-        </select>                    
-    </div> 
 
-    
-                <label for="state_id" class="control-label" >State</label>
-        <select class="form-control" id="state_id" v-model="form.estado" >
-            <option value="AL">activo</option>
-            <option value="AK">inactivo</option>
-            
-        </select>                    
-    </div>  -->
-  
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
               <label>Responsable</label>
               <md-input v-model="form.responsable" type="text"></md-input>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
               <label>Fecha caducidad</label>
               <md-input v-model="form.fecha_caducidad" type="date"></md-input>
             </md-field>
           </div>
 
-          <div class="md-layout-item md-small-size-100 md-size-50">
+          <div class="md-layout-item md-small-size-100 md-size-40">
             <md-field>
               <label>Tipo</label>
-              <md-input v-model="form.tipo" type="text"></md-input>
+             
+              <select v-model="form.tipo"  class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
+                <option>Seleccione...</option>
+                <option value="evento">Evento</option>
+                <option value="noticia">Noticia</option>
+              </select>
             </md-field>
           </div>
+                                  
+          </div> 
+  
+         
           
           
           <div class="md-layout-item md-size-100 text-right">
             <md-button  @click="GuardarPublicacion()" class="md-info" >Registrar</md-button>
           </div>
-        </div>
+        
       </md-card-content>
     </md-card>
   </form>
@@ -135,8 +126,9 @@
   methods: {
     GuardarPublicacion() {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "success",
+       
         title: "Publicacion  o evento guardado",
         showConfirmButton: false,
         timer: 1500,

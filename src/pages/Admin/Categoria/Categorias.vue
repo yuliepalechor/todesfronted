@@ -12,7 +12,9 @@
             <h4 class="title">Categorias</h4>
             <p class="category">Lista de Categorias</p>
           </md-card-header>
-          <md-card-content id="tabla"> 
+          <md-card-content id="tabla" > 
+
+           
             
             <div>
               <md-table v-model="categoria" :table-header-color="tableHeaderColor">
@@ -21,13 +23,13 @@
                   <md-table-cell md-label="Nombre">{{ item.nombre }}</md-table-cell>
                   <md-table-cell md-label="Descripcion">{{ item.descripcion }}</md-table-cell>
                   <md-table-cell md-label="Editar">
-                    <md-button class="md-just-icon md-simple md-primary">
+                    <md-button @click="editar(EditarCategoria(item.id))" class="md-just-icon md-simple md-primary">
                       <md-icon>edit</md-icon>
                       <md-tooltip md-direction="top">Edit</md-tooltip>
                     </md-button>
                   </md-table-cell>
                   <md-table-cell md-label="Eliminar">
-                    <md-button class="md-just-icon md-simple md-danger">
+                    <md-button   @click="EliminarCategoria(item.id)" class="md-just-icon md-simple md-danger">
                       <md-icon>close</md-icon>
                       <md-tooltip md-direction="top">Close</md-tooltip>
                     </md-button>
@@ -45,20 +47,22 @@
 </template>
 
 <script>
+
 import { OrderedTable } from "@/components";
 import axios from "axios";
 export default {
-    name: "Mostrarcategorias",
+    name: "Categorias",
+
+    props: {
+    tableHeaderColor: {
+      type: String,
+      default: "",
+    },
+  },
     data() {
         return {
             categoria: [],
-            encabezado: [
-                { key: "id", label: "Id" },
-                { key: "nombre", label: "Nombre" },
-                { key: "descripcion", label: "Descripcion" },
-                { key: "eliminar", label: "Eliminar" }
-
-            ],
+            
 
         }
     },
@@ -71,29 +75,49 @@ export default {
 
     },
 
-    methods: {
+   methods: {
 
-        getcategorias() {
-            axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
-                this.categoria = response.data;
-            })
-        },
+    getcategorias() {
+      this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+        this.categoria = response.data;
+      })
+    },
 
-        NuevaCategoria() {
-            this.$router.push('NuevaCategoria')
-        },
+    NuevaCategoria() {
 
-        EliminarCategoria(id) {
-            axios.delete("http://127.0.0.1:8000/api/categoria/"+id, this.form).then((data) => {
-                console.log(data);
-            });
-        }
+      this.$router.push(`NuevaCategoria`)
+    },
 
-    }
+    EditarCategoria(id) {
+
+      this.$router.push(`EditarCategoria/${id}`)
+    },
+
+    GuardarCategoria() {
+      this.axios.post("http://127.0.0.1:8000/api/categoria", this.cate).then((data) => {
+        console.log(data);
+
+        this.$router.push('/Categoria');
+      });
+    },
+
+    EliminarCategoria(id) {
+      this.axios.delete("http://127.0.0.1:8000/api/categoria/" + id, this.form).then((data) => {
+        console.log(data);
+      });
+
+    },
+
+
+
+
+}
 }
 
 </script>
 
 <style>
-
+.tabla1{
+  background-color: rgb(37, 202, 139);
+}
 </style>

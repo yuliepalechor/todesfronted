@@ -28,7 +28,7 @@
                   <md-table-cell md-label="email">{{ item.email }}</md-table-cell>
                   <md-table-cell md-label="Editar">
                     <md-button class="md-just-icon md-simple md-primary">
-                      <md-icon>edit</md-icon>
+                      <md-icon @click="EditarUsuario()">edit</md-icon>
                       <md-tooltip md-direction="top">Edit</md-tooltip>
                     </md-button>
                   </md-table-cell>
@@ -79,7 +79,7 @@ export default {
   },
   mounted() {
     this.getusuarios()
-    this.elementosPorPagina()
+   
   },
   methods: {
     getusuarios() {
@@ -90,16 +90,15 @@ export default {
     NuevoUsuario() {
       this.$router.push("/NuevoUsuario")
     },
-    totalPagina() {
-      return Math.ceil(this.encabezado.length / this.elementosPorPagina)
-    }
+
+    EditarUsuario() {
+      this.$router.push("/EditarUsuario/$")
+    },
+    
   }
 }
 </script>
     
 <style>
-.tablacontent{
-  margin: auto;
-  margin-left: 180px;
-}
+
 </style>

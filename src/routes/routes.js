@@ -12,12 +12,14 @@ import FormEventos from "@/pages/Admin/Eventos/formEventos.vue";
 import EditarPEvento from "@/pages/Admin/Eventos/EditarPEvento.vue";
 import Categorias from "@/pages/Admin/Categoria/Categorias.vue";
 import NuevaCategoria from  "@/pages/Admin/Categoria/NuevaCategoria.vue";
+import EditarCategoria from  "@/pages/Admin/Categoria/EditarCategoria.vue";
 
 import Reportes from "@/pages/Admin/Reportes/Reportes.vue";
 import Roles from "@/pages/Admin/Roles.vue";
 
 import Usuarios from "@/pages/Admin/Usuarios/ListaUsuarios.vue";
 import NuevoUsuario from "@/pages/Admin/Usuarios/NuevoUsuario.vue";
+import EditarUsuario from "@/pages/Admin/Usuarios/EditarUsuario.vue";
 
 import UsuarioComunidad from "@/pages/User/Dashboard.vue";
 
@@ -88,17 +90,23 @@ const routes = [
       },
       ///categorias
       {
-        path: "Categorias",
+        path: "/Categorias",
         name: "Categorias",
         component: Categorias,
       },
         //Nueva categoria
 
         {
-          path: "NuevaCategoria",
+          path: "/NuevaCategoria",
           name: "NuevaCategoria",
           component: NuevaCategoria,
         },  
+       
+        {
+          path: "/EditarCategoria/:id",
+          name: "Editar Categoria",
+          component: EditarCategoria,
+        }, 
      
       
       {
@@ -125,6 +133,12 @@ const routes = [
           path: "NuevoUsuario",
           name: "NuevoUsuario",
           component: NuevoUsuario,
+        },
+
+        {
+          path: "/EditarUsuario",
+          name: "EditarUsuario",
+          component: EditarUsuario,
         },
 
         
