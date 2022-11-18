@@ -22,12 +22,13 @@
     "vue-github-buttons": "3.1.0",
     "vue-material": "^1.0.0-beta-15",
     "vue-router": "3.5.2",
+    "vue-slick-carousel": "^1.0.6",
     "vue-social-sharing": "3.0.9"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.5.15",
-    "@vue/cli-plugin-router": "4.5.15",
-    "@vue/cli-service": "4.5.15",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-router": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "es6-promise": "4.2.8",
     "prettier": "2.6.0",
     "sass": "1.49.9",

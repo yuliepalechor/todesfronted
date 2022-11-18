@@ -116,7 +116,7 @@
             <div class="span6">
               <img src="" alt="project 9" />
             </div>
-            <div class="span6">
+            <div v-for="publicacion in publicacion":key="publicacion.id" class="span6">
               <div class="project-description">
                 <div class="project-title clearfix">
                   <h3>Publicacion</h3>
@@ -125,7 +125,7 @@
                   </span>
                 </div>
                 <div class="project-info">
-                  <div><span>Nombre</span>publicacion 9</div>
+                  <div><span>Nombre {{publicacion.nombre}}</span>publicacion 9</div>
                   <div><span>Fecha</span>July 2022</div>
                   <div><span>Direccion</span>puente</div>
                   <div><span>Ver publicacion</span>
@@ -245,6 +245,24 @@
 </template>
 
 <script>
+import axios from "axios";
+export default  {
+  data(){
+    return{
+     publicacion:null
+    }
+
+  },
+  computed(){
+  },
+    mounted() {
+      axios.get('http://127.0.0.1:8000/api/publicacion').then((response)=>{
+        console.log(response);
+        this.publicacion=response.data;
+      })
+
+    }
+  }
 
 </script>
 <style>
