@@ -1,14 +1,14 @@
 <template>
-  
+
   <div>
-    
+
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-         
-            <!-- This is website logo -->
-            <img src="../../assets/img/logonue.png" width="80px" height="80px" alt="Logo" />
-          
+
+          <!-- This is website logo -->
+          <img src="../../assets/img/logonue.png" width="80px" height="80px" alt="Logo" />
+
           <!-- Navigation button, visible on small resolution -->
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <i class="icon-menu"></i>
@@ -37,18 +37,18 @@
         <!-- mask elemet use for masking background image -->
         <div class="mask"></div>
         <!-- All slides centred in container element -->
-        <div class="container"  >
-          
-       
+        <div class="container">
+
+
           <div class="da-slide">
-            <b-img :src= "require('../../assets/img/fondo.png')" width="80px" height="80px" alt="Logo" />
-            
-            
+            <b-img :src="require('../../assets/img/fondo.png')" width="80px" height="80px" alt="Logo" />
+
+
           </div>
-          
-  
-          
-         
+
+
+
+
           <div class="da-arrows">
             <span class="da-arrows-prev"></span>
             <span class="da-arrows-next"></span>
@@ -57,16 +57,16 @@
         </div>
       </div>
     </div>
-    
+
     <!-- End home section -->
     <!-- Service section start -->
     <div style="background-color:#891A89" class="section primary-section" id="service">
 
-      <div class="container" >
+      <div class="container">
 
         <!-- Start title section -->
         <div class="title">
-         
+
           <h1>
             <font style="vertical-align: inherit;">
               <font style="vertical-align: inherit;">Lo que hacemos?</font>
@@ -84,8 +84,8 @@
         <!--Simple description for section goes here. -->
 
       </div>
-      
-        <div class="a1">
+
+      <div class="a1">
         <div class="span4">
           <div class="centered service">
             <div class="circle-border zoom-in">
@@ -95,28 +95,28 @@
             <p>Nosotros estamos orgullosos de lo que somos.</p>
           </div>
         </div>
-      
 
 
-        
-        
-        
+
+
+
+
       </div>
     </div>
     <!-- Service section end -->
     <!-- Portfolio section start -->
-    <div class="section secondary-section" id="portfolio"  style="background-color:#F8F9F9">
+    <div class="section secondary-section" id="portfolio" style="background-color:#F8F9F9">
       <div class="triangle"></div>
       <div class="container">
-       
+
         <!-- Start details for portfolio project 1 -->
         <div id="single-project">
-          
-          <div id="slidingDiv8" class="toggleDiv row-fluid single-project">
+          <VueSlickCarousel v-bind="settings" class="carrusel">
+            <div id="slidingDiv8" class="toggleDiv row-fluid single-project">
             <div class="span6">
               <img src="" alt="project 9" />
             </div>
-            <div class="span6">
+            <div v-for="publicacion in publicacion" :key="publicacion.id" class="span6">
               <div class="project-description">
                 <div class="project-title clearfix">
                   <h3>Publicacion</h3>
@@ -125,7 +125,7 @@
                   </span>
                 </div>
                 <div class="project-info">
-                  <div><span>Nombre</span>publicacion 9</div>
+                  <div><span>Nombre {{ publicacion.nombre }}</span>publicacion 9</div>
                   <div><span>Fecha</span>July 2022</div>
                   <div><span>Direccion</span>puente</div>
                   <div><span>Ver publicacion</span>
@@ -133,11 +133,21 @@
                   </div>
                 </div>
                 <p>
-                
+
                 </p>
               </div>
             </div>
+
+            
           </div>
+
+
+
+            
+          </VueSlickCarousel>
+          
+
+          
           <!-- End details for portfolio project 9 -->
           <ul id="portfolio-grid" class="thumbnails row">
             <li class="span4 mix web">
@@ -245,11 +255,54 @@
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
+import axios from "axios"
+export default {
+  data() {
+    return {
+      publicacion: null,
+
+      settings: {
+        "dots": true,
+        "focusOnSelect": true,
+        "infinite": true,
+        "speed": 500,
+        "slidesToShow": 3,
+        "slidesToScroll": 3,
+        "touchThreshold": 5
+      },
+    }
+  },
+      computed(){
+
+    },
+    components: {
+      VueSlickCarousel
+    },
+
+
+    mounted(){
+      axios.get('http://127.0.0.1:8000/api/publicacion').then((response) => {
+        console.log(response);
+        this.publicacion = response.data;
+      })
+    }
+  
+}
 </script>
 <style>
-.da-slide{
-height: 400px;
+.da-slide {
+  height: 400px;
+}
+
+.carrusel {
+  width: 700px;
+  height: 300px;
+  
 }
 
 .navbar {
@@ -263,6 +316,7 @@ height: 400px;
   height: 60px;
   padding-top: 0;
 }
+
 /* .titlevisual{
   height: 300px;
   width: 100vh;
@@ -273,7 +327,7 @@ height: 400px;
 .title {
   height: 100%;
   width: 100%;
-  float:inline-start;
+  float: inline-start;
   align-items: center;
 
 }
@@ -344,7 +398,7 @@ height: 400px;
 .navbar .btn-navbar:hover,
 .navbar .btn-navbar {
   border-radius: 0;
- 
+
   color: #000;
 }
 
@@ -637,11 +691,11 @@ height: 400px;
 }
 
 .primary-section {
-  background:#00ADB5;
+  background: #00ADB5;
 }
 
 .primary-section .triangle {
-  border-top: 40px solid  #00ADB5;
+  border-top: 40px solid #00ADB5;
 }
 
 .primary-section .title {
@@ -723,7 +777,7 @@ height: 400px;
   margin-bottom: 30px;
   background: #181A1C;
   padding: 20%;
-  float:left;
+  float: left;
 }
 
 .single-project img {

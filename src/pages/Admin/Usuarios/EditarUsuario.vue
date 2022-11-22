@@ -30,33 +30,32 @@
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
                 <label>Email</label>
-                <md-input v-model="form.email" type="text"></md-input>
+                <md-input v-model="form.email" type="email"></md-input>
               </md-field>
             </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
-              <md-field>
-                <label>Password</label>
-                <md-input v-model="form.password" type="text"></md-input>
-              </md-field>
-            </div>
+            
             
           
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Genero</label>
-                <md-input v-model="form.genero" type="text"></md-input>
+                <select v-model="form.genero"  class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
+                <option>Seleccione...</option>
+                <option value="masculino">masculino</option>
+                <option value="femenino">femenino</option>
+              </select>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Fecha de nacimiento</label>
-                <md-input v-model="form.fecha_nacimiento" type="text"></md-input>
+                <md-input v-model="form.fecha_nacimiento" type="date"></md-input>
               </md-field>
             </div>
             
             
             <div class="md-layout-item md-size-100 text-right">
-              <md-button class="md-info" @click="GuardarUsuario()">Registrar</md-button>
+              <md-button class="md-info" @click="Actualizarinformacion()">Registrar</md-button>
             </div>
           </div>
         </md-card-content>
@@ -82,27 +81,48 @@
                     apellidos:"",
                     genero:"",
                     fecha_nacimiento:"",
-                    email:"",             
-                    password:"",
+                    email:"",    
+                        
+                   
                 }
               
             }
         },
-        methods:{
-          GuardarUsuario(){
-             axios.post("http://127.0.0.1:8000/api/usuario",this.form).then((data)=>
-             {console.log(data);
-                //CODIGO DE ALERTA
-                Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Registro exitoso',
-                showConfirmButton: false,
-                timer: 1500
-                })
-            });
-          }
-        }
+        mounted(){
+        this.mostrar()
+    },
+    methods: {
+        mostrar(){
+            this.axios
+          .get("http://127.0.0.1:8000/api/usuario/"+this.$route.params.id)
+          .then((data) => {
+            this.form.identificacion=data.data[0].identificacion;
+            this.form.nombre=data.data[0].nombre;
+            this.form.apellidos=data.data[0].apellidos;
+           
+            this.form.genero=data.data[0].genero;
+            this.form.fecha_nacimiento=data.data[0].fecha_nacimiento;
+            this.form.email=data.data[0].email;
+           
+           });
+        },
+
+
+        
+      Actualizarinformacion() {
+        this.axios
+          .put("http://127.0.0.1:8000/api/usuario/"+this.$route.params.id,this.form )
+          .then((data) => {
+            this.$router.push("/Usuarios")
+          });
+      },
+
+      
+  
+      catch(e) {
+        console.log(e.response);
+      },
+    },
   };
   </script>
   <style></style>

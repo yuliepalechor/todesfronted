@@ -121,7 +121,7 @@ const routes = [
         component: Roles,
       },
      
-        //usuarios
+        //usuarios lista
       {
         path: "Usuarios",
         name: "ListaUsuarios",
@@ -134,9 +134,9 @@ const routes = [
           name: "NuevoUsuario",
           component: NuevoUsuario,
         },
-
+          //editar usuario
         {
-          path: "/EditarUsuario",
+          path: "/EditarUsuario/:id",
           name: "EditarUsuario",
           component: EditarUsuario,
         },

@@ -30,13 +30,13 @@
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
                 <label>Email</label>
-                <md-input v-model="form.email" type="text"></md-input>
+                <md-input v-model="form.email" type="email"></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Password</label>
-                <md-input v-model="form.password" type="text"></md-input>
+                <md-input v-model="form.password" type="password"></md-input>
               </md-field>
             </div>
             
@@ -44,13 +44,17 @@
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Genero</label>
-                <md-input v-model="form.genero" type="text"></md-input>
+                <select v-model="form.genero"  class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
+                <option>Seleccione...</option>
+                <option value="masculino">masculino</option>
+                <option value="femenino">femenino</option>
+              </select>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Fecha de nacimiento</label>
-                <md-input v-model="form.fecha_nacimiento" type="text"></md-input>
+                <md-input v-model="form.fecha_nacimiento" type="date"></md-input>
               </md-field>
             </div>
             

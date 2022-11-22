@@ -52,7 +52,7 @@ export default {
     methods:{
       GuardarCategoria(){
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Categoria Guardada",
           showConfirmButton: false,

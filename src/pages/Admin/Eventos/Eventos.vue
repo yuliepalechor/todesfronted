@@ -12,8 +12,8 @@
           </md-card-header>
           <md-card-content>
            
-            <div>
-              <md-table v-model="categoria" :table-header-color="tableHeaderColor" md-card md-sort="nombre" md-sort-order="asc">
+            <div >
+              <!-- <md-table v-model="categoria" :table-header-color="tableHeaderColor" md-card md-sort="nombre" md-sort-order="asc">
                 <md-table-row slot="md-table-row" slot-scope="{ item }">
                   <md-table-cell md-label="Id">{{ item.id }}</md-table-cell>
                   <md-table-cell md-label="Nombre">{{ item.nombre }}</md-table-cell>
@@ -41,22 +41,41 @@
                     
                   </md-table-cell>
                 </md-table-row>
-                <md-table-pagination
-                 :md-page-size="2"
-                 :md-page-options="[1,2,3,4,5,6]"
-                 :md-update="updatePagination"
-                 :md-data="categoria"
-                 :md-paginated-data.sync="categoria" />
+                
                 
               
-              </md-table>
+              </md-table> -->
+              <b-form-input v-model="filter" type="search" placeholder="Buscar...">
+
+               </b-form-input>
+              <b-table  :filter="filter" id:="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="categoria">
+                
+
+                <template v-slot:cell(Editar)="row">
+                  <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
+                      <md-icon>edit</md-icon>
+                      <md-tooltip md-direction="top">Edit</md-tooltip>
+                    </md-button>
+
+
+                </template>
+                <template v-slot:cell(Eliminar)="row">
+                  <md-button @click="EliminarPublicacion(row.item.id)" class="md-just-icon md-simple md-danger">
+                      <md-icon>close</md-icon>
+                      <md-tooltip md-direction="top">Close</md-tooltip>
+                    </md-button>
+                </template>
+            
+  
+               </b-table>              
+              
 
                   <b-pagination
-      v-model="currentPage"
-      :total-rows="rows"
-      :per-page="perPage"
-      aria-controls="my-table"
-    ></b-pagination>
+                  v-model="currentPage"
+               :total-rows="rows"
+                :per-page="perpage"
+                aria-controls="tablaEventos"
+               ></b-pagination>
             </div>
           </md-card-content>
         </md-card>
@@ -87,6 +106,24 @@ export default {
     return {
       
       categoria: [],
+      filter: null,
+      perpage:10,
+      currentPage:1,
+       encabezado: [
+                { key: "id", label: "Id"  },
+                { key: "nombre", label: "Nombre" },
+                { key: "descripcion", label: "Descripcion" },
+                { key: "fecha_y_Hora", label: 'FECHA-HORA' },
+                { key: "lugar", label: 'Lugar' },
+                { key: "estado", label: 'Estado' },
+                { key: "urlExterna", label: 'Url' },
+                { key: "responsable", label: 'Responsable' },
+                { key: "fecha_caducidad", label: 'fecha_caducidad' },
+                { key: "tipo", label: 'Tipo' },
+                { key: "Editar", label: "Editar" },
+                { key: "Eliminar", label: "Eliminar" },
+
+            ],
       
     }
     
@@ -96,6 +133,13 @@ export default {
   mounted() {
     this.getcategorias()
     this.EliminarPublicacion(id)
+  },
+
+  computed: {
+    rows() {
+      return this.categoria.length
+
+    }
   },
   methods: {
     updatePagination (page, pageSize, sort, sortOrder) {
@@ -122,12 +166,12 @@ export default {
         buttonsStyling: false
       })
       swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Seguro desea eliminar el evento?',
+        text: "Esta accion no tiene reversa!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
+        confirmButtonText: 'Si, eliminar!',
+        cancelButtonText: 'No, cancelar!',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
@@ -151,3 +195,10 @@ export default {
   }
 }
 </script>
+<style>
+.eventostable{
+  display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+</style>

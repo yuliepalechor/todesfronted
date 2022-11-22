@@ -38,9 +38,10 @@
   
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
-                <label>Estado</label>
+                <!-- <label>Estado</label> -->
                 <select v-model="form.estado"   class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
                 <option>Seleccione...</option>
+                <option value="activo">activo</option>
                 <option value="activo">activo</option>
                 <option value="inactivo">inactivo</option>
               </select>

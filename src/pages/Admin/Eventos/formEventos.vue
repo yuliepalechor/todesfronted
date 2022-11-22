@@ -80,6 +80,17 @@
               </select>
             </md-field>
           </div>
+
+
+          <div class="md-layout-item md-small-size-100 md-size-40" >
+            <md-field>
+              <label>Foto</label>
+              <md-input v-model="form.fecha_caducidad" type="file" accept="application/img" @change=""></md-input>
+            </md-field>
+          </div>
+          
+
+          
                                   
           </div> 
   
@@ -87,7 +98,8 @@
           
           
           <div class="md-layout-item md-size-100 text-right">
-            <md-button  @click="GuardarPublicacion()" class="md-info" >Registrar</md-button>
+            <md-button  @click="GuardarPublicacion()"   class="md-info" >Registrar</md-button>
+            <!-- <md-button   @click="Guardarimagen()" class="md-info" >Registrar</md-button> -->
           </div>
         
       </md-card-content>
@@ -111,6 +123,7 @@
   data() {
     return {
       form: {
+        ruta:null,
         nombre: "", // aqui se inicializa lo que  hace la conexion   de html con js
         descripcion: "",
         fecha_y_Hora: "",
@@ -124,6 +137,20 @@
     };
   },
   methods: {
+ imagenObtenidaMethodo(e){
+  let file=e.target.file[0]
+  this.FormData.ruta=file
+ },
+
+ Guardarimagen(){
+  let datosacambiar=new FormData();
+  datosacambiar.append("ruta",this.FormData.ruta)
+  alert("westa guardando");
+  axios.post("http://127.0.0.1:8000/api/archivoevento",this.datosacambiar).then(response=>{
+    console.log(response);
+  })
+ },
+
     GuardarPublicacion() {
       Swal.fire({
         position: "center",
