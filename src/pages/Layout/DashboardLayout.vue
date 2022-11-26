@@ -24,7 +24,7 @@
 
       <sidebar-link to="/Eventos">
         <md-icon>library_books</md-icon>
-        <p>Eventos</p>
+        <p>Publicaciones</p>
       </sidebar-link>
 
       
@@ -48,7 +48,7 @@
 
       <sidebar-link to="/Usuarios">
         <md-icon>person</md-icon>
-        <p>Usuarios</p>
+        <p>Usuarios-Rol</p>
       </sidebar-link>
 
       <sidebar-link to="/Sigin">

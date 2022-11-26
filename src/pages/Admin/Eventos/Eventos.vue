@@ -4,11 +4,12 @@
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
       >
-      <md-button class="md-info" @click="insertar(NuevaCategoria())" >Nuevo Evento</md-button>
+      
+      <md-button class="md-info" @click="insertar(NuevaCategoria())" >Nueva Publicacion</md-button>
         <md-card>
           <md-card-header data-background-color="blue">
-            <h4 class="title">Eventos</h4>
-            <p class="category">Lista de Eventos</p>
+            <h4 class="title">Publicaciones</h4>
+            <p class="category">Lista de Publicaciones</p>
           </md-card-header>
           <md-card-content>
            
@@ -64,6 +65,13 @@
                       <md-icon>close</md-icon>
                       <md-tooltip md-direction="top">Close</md-tooltip>
                     </md-button>
+                </template>
+          
+                <template v-slot:cell(insertar)="row">
+                  
+                    <button  @click="Detalle(DetalleCategoria(row.item.id))" type="button" class="btn btn-primary">+</button>
+                      
+                    
                 </template>
             
   
@@ -122,6 +130,7 @@ export default {
                 { key: "tipo", label: 'Tipo' },
                 { key: "Editar", label: "Editar" },
                 { key: "Eliminar", label: "Eliminar" },
+                { key: "insertar", label: "+" },
 
             ],
       
@@ -156,6 +165,10 @@ export default {
     editarpublicacion(id) {
      
       this.$router.push(`/EditarPEvento/${id}`)
+    },
+
+    DetalleCategoria(id) {
+      this.$router.push(`/DetalleCategoria/${id}`)
     },
     EliminarPublicacion(id) {
       const swalWithBootstrapButtons = Swal.mixin({

@@ -145,7 +145,7 @@
  Guardarimagen(){
   let datosacambiar=new FormData();
   datosacambiar.append("ruta",this.FormData.ruta)
-  alert("westa guardando");
+  alert("esta guardando");
   axios.post("http://127.0.0.1:8000/api/archivoevento",this.datosacambiar).then(response=>{
     console.log(response);
   })

@@ -13,6 +13,7 @@ import EditarPEvento from "@/pages/Admin/Eventos/EditarPEvento.vue";
 import Categorias from "@/pages/Admin/Categoria/Categorias.vue";
 import NuevaCategoria from  "@/pages/Admin/Categoria/NuevaCategoria.vue";
 import EditarCategoria from  "@/pages/Admin/Categoria/EditarCategoria.vue";
+import DetalleCategoria from  "@/pages/Admin/Categoria/DetalleCategoria";
 
 import Reportes from "@/pages/Admin/Reportes/Reportes.vue";
 import Roles from "@/pages/Admin/Roles.vue";
@@ -101,11 +102,17 @@ const routes = [
           name: "NuevaCategoria",
           component: NuevaCategoria,
         },  
-       
+       //editar categoria
         {
           path: "/EditarCategoria/:id",
           name: "Editar Categoria",
           component: EditarCategoria,
+        }, 
+        //detallecategorria
+        {
+          path: "/DetalleCategoria/:id",
+          name: "DetalleCategoria",
+          component: DetalleCategoria,
         }, 
      
       

@@ -101,7 +101,7 @@ export default {
       currentPage: 1,
 
       encabezado: [
-        { key: "id", label: "Id" },
+        { key: "id", label: "Id", },
         { key: "nombre", label: "Nombre" },
         { key: "descripcion", label: "Descripcion" },
 
@@ -152,7 +152,7 @@ export default {
       this.axios.post("http://127.0.0.1:8000/api/categoria", this.cate).then((data) => {
         console.log(data);
 
-        this.$router.push('/Categoria');
+        this.$router.push('/Categorias');
       });
     },
 
