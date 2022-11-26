@@ -141,7 +141,7 @@
     <transition name="fade">
       <div class="modal1" v-if="showModal">
         <h1>HOLA</h1>
-        <p>Contenido del modal</p>
+        <p>Contenido del modal</p>        
         <button @click="showModal = false">Cerrar el Modal </button>
       </div>
 
