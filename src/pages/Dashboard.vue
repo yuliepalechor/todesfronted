@@ -21,7 +21,21 @@
           </template>
 
           <template slot="footer">
-            <div class="stats">
+            <div id ="app">
+              <transition name="fade">
+                <div class="modal-overlay" v-if="showModal"></div>
+
+  </transition>
+  <transition name="fade">
+    <div class="modal1" v-if="showModal">
+    <h1>Titulo</h1>
+    <p>Ta complicado wey :'c </p>
+    <button @click="showModal = false">Cerrar el Modal </button>
+    </div>
+  </transition>
+
+  <button @click="showModal = true">Abrir el modal </button>
+
               <md-icon>access_time</md-icon>
               updated 4 minutes ago
             </div>
@@ -62,7 +76,8 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Denuncias</h4>
+            <h4 class="title">Incidencias</h4>
+        
             <p class="category">Last Campaign Performance</p>
           </template>
 
@@ -295,6 +310,7 @@ import {
 } from "@/components";
 
 export default {
+  name : 'App',
   components: {
     StatsCard,
     ChartCard,
@@ -304,6 +320,7 @@ export default {
   },
   data() {
     return {
+      showModal : false,
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],
@@ -394,3 +411,73 @@ export default {
   },
 };
 </script>
+<style>
+* {
+  margin:0;
+  padding: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+
+}
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+button{
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 15px;
+
+
+  display: block;
+  padding: 10px 15px;
+  background-image: linear-gradient(to right rgb(36, 122, 115),rgb(15, 201, 191));
+  color: black;
+  font-size: 11px;
+  font-weight: bold;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+}
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.4);
+
+}
+button:hover{
+  box-shadow: 6px 6px rgba(0, 0, 0, 0.8);
+}
+
+
+.modal1{
+  height: 50%;
+  width: 30%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background:grey;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+  z-index:101
+
+
+
+}
+
+fade-enter {
+
+}
+
+
+
+</style>
