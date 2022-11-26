@@ -1,72 +1,28 @@
 <template>
-  
+
   <div>
-    
+
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-         
-            <!-- This is website logo -->
-            <img src="../../assets/img/logonue.png" width="80px" height="80px" alt="Logo" />
-          
-          <!-- Navigation button, visible on small resolution -->
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <i class="icon-menu"></i>
-          </button>
-          <!-- Main navigation -->
-          <div class="nav-collapse collapse pull-right">
-            <ul class="nav" id="top-navigation">
-              <li class="active"><a href="#home">Home</a></li>
-              <li><a href="#service">Services</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#clients">Clients</a></li>
-              <li><a href="#price">Price</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <!-- End main navigation -->
+          <img src="../../assets/img/logonue.png" width="80px" height="80px" alt="Logo" />
+
         </div>
       </div>
     </div>
     <!-- Start home section -->
-    <div id="home">
-      <!-- Start cSlider -->
-      <div id="da-slider" class="da-slider">
-        <div class="triangle"></div>
-        <!-- mask elemet use for masking background image -->
-        <div class="mask"></div>
-        <!-- All slides centred in container element -->
-        <div class="container"  >
-          
-       
-          <div class="da-slide">
-            <b-img :src= "require('../../assets/img/fondo.png')" width="80px" height="80px" alt="Logo" />
-            
-            
-          </div>
-          
-  
-          
-         
-          <div class="da-arrows">
-            <span class="da-arrows-prev"></span>
-            <span class="da-arrows-next"></span>
-          </div>
-          <!-- End cSlide navigation arrows -->
-        </div>
-      </div>
-    </div>
     
+    <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
+
     <!-- End home section -->
     <!-- Service section start -->
     <div style="background-color:#891A89" class="section primary-section" id="service">
 
-      <div class="container" >
+      <div class="container">
 
         <!-- Start title section -->
         <div class="title">
-         
+
           <h1>
             <font style="vertical-align: inherit;">
               <font style="vertical-align: inherit;">Lo que hacemos?</font>
@@ -81,11 +37,12 @@
           </p>
 
         </div>
+
         <!--Simple description for section goes here. -->
 
       </div>
-      
-        <div class="a1">
+
+      <div class="a1">
         <div class="span4">
           <div class="centered service">
             <div class="circle-border zoom-in">
@@ -95,144 +52,75 @@
             <p>Nosotros estamos orgullosos de lo que somos.</p>
           </div>
         </div>
-      
-
-
-        
-        
-        
       </div>
+
     </div>
+
+
     <!-- Service section end -->
     <!-- Portfolio section start -->
-    <div class="section secondary-section" id="portfolio"  style="background-color:#F8F9F9">
-      <div class="triangle"></div>
-      <div class="container">
-       
-        <!-- Start details for portfolio project 1 -->
-        <div id="single-project">
-          
-          <div id="slidingDiv8" class="toggleDiv row-fluid single-project">
-            <div class="span6">
-              <img src="" alt="project 9" />
-            </div>
-            <div class="span6">
-              <div class="project-description">
-                <div class="project-title clearfix">
-                  <h3>Publicacion</h3>
-                  <span class="show_hide close">
-                    <i class="icon-cancel"></i>
-                  </span>
-                </div>
-                <div class="project-info">
-                  <div><span>Nombre</span>publicacion 9</div>
-                  <div><span>Fecha</span>July 2022</div>
-                  <div><span>Direccion</span>puente</div>
-                  <div><span>Ver publicacion</span>
-                    <a href="" class="btn btn-primary">Ir</a>
-                  </div>
-                </div>
-                <p>
-                
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- End details for portfolio project 9 -->
-          <ul id="portfolio-grid" class="thumbnails row">
-            <li class="span4 mix web">
-              <div class="thumbnail">
-                <img src="images/Portfolio01.png" alt="project 1" />
-                <a href="#single-project" class="more show_hide" rel="#slidingDiv"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-            <li class="span4 mix photo">
-              <div class="thumbnail">
-                <img src="images/Portfolio02.png" alt="project 2" />
-                <a href="#single-project" class="show_hide more" rel="#slidingDiv1"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-            <li class="span4 mix identity">
-              <div class="thumbnail">
-                <img src="images/Portfolio03.png" alt="project 3" />
-                <a href="#single-project" class="more show_hide" rel="#slidingDiv2"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-            <li class="span4 mix web">
-              <div class="thumbnail">
-                <img src="images/Portfolio04.png" alt="project 4" />
-                <a href="#single-project" class="show_hide more" rel="#slidingDiv3"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-            <li class="span4 mix photo">
-              <div class="thumbnail">
-                <img src="images/Portfolio05.png" alt="project 5" />
-                <a href="#single-project" class="show_hide more" rel="#slidingDiv4"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-            <li class="span4 mix identity">
-              <div class="thumbnail">
-                <img src="images/Portfolio06.png" alt="project 6" />
-                <a href="#single-project" class="show_hide more" rel="#slidingDiv5"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-            <li class="span4 mix web">
-              <div class="thumbnail">
-                <img src="images/Portfolio07.png" alt="project 7" />
-                <a href="#single-project" class="show_hide more" rel="#slidingDiv6"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-            <li class="span4 mix photo">
-              <div class="thumbnail">
-                <img src="images/Portfolio08.png" alt="project 8" />
-                <a href="#single-project" class="show_hide more" rel="#slidingDiv7"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-            <li class="span4 mix identity">
-              <div class="thumbnail">
-                <img src="images/Portfolio09.png" alt="project 9" />
-                <a href="#single-project" class="show_hide more" rel="#slidingDiv8"><i class="icon-plus"></i></a>
-                <h3>Thumbnail label</h3>
-                <p>Thumbnail caption...</p>
-                <div class="mask"></div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="row-fluid">
-          <div class="span12">
+    <div class="section secondary-section" style="background-color:#F8F9F9">
+      <div class="triangle">
 
 
-            <ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-0147907188440311"
-              data-ad-slot="6370604185" data-ad-format="auto"></ins>
-
-          </div>
-        </div>
       </div>
+
+      <!-- TRAE TODOS EN GENERAL 1 -->
+
+      <VueSlickCarousel v-bind="settings" class="carrusel">
+
+        <div v-for="publicacion in publicacion" :key="publicacion.id">
+          <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
+            style="max-width: 10rem;" class="mb-2">
+            <b-card-text>
+              <H3> {{ publicacion.nombre }}</H3>
+            </b-card-text>
+
+            <b-card-text>
+              {{ publicacion.tipo }}
+            </b-card-text>
+           
+            <button @click="showModal = true">Ir a publicacion </button>
+
+          </b-card>
+          
+
+        </div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+
+      </VueSlickCarousel>
+
+      <h1> noticias</h1>
+      <br>
+      <!-- TRAE SOLO NOTICIAS 1 -->
+      <VueSlickCarousel v-bind="propiedades" class="carrusel">
+
+        <div v-for="noticias in noticias" :key="noticias.id">
+          <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
+            style="max-width: 10rem;" class="mb-2">
+            <b-card-text>
+              <H3> {{ noticias.nombre }}</H3>
+            </b-card-text>
+
+            <b-card-text>
+              {{ noticias.tipo }}
+            </b-card-text>
+
+            <button @click="showModal = true">Ir a publicacion </button>
+          </b-card>
+        </div>
+
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+
+      </VueSlickCarousel>
+      <!-- TRAE SOLO EVENTOS 1 -->
+
     </div>
     <!-- Portfolio section end -->
     <!-- About us section start -->
@@ -241,26 +129,183 @@
       <div class="container">
       </div>
     </div>
-  </div>
 
-  <div> <h1>hola edwin</h1></div>
+    <!-- *********************************** MODAL ********************************* -->
+    <div id="app">
+
+    <transition name="fade">
+      <div class="modal-overlay" v-if="showModal" ></div>
+
+    </transition>
+
+    <transition name="fade">
+      <div class="modal1" v-if="showModal">
+        <h1>HOLA</h1>
+        <p>Contenido del modal</p>
+        <button @click="showModal = false">Cerrar el Modal </button>
+      </div>
+
+    </transition>
+   
+    </div>
+  </div>
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
+import axios from "axios"
+/** modal */
+
+export default {
+  name: 'App',
+
+  data() {
+    return {
+      publicacion: null,
+      noticias: null,
+      showModal: false,
+
+      settings: {
+        "dots": true,
+        "focusOnSelect": true,
+        "infinite": true,
+        "speed": 200,
+        "slidesToShow": 3,
+        "slidesToScroll": 3,
+        "touchThreshold": 5
+      },
+      propiedades: {
+        "dots": true,
+        "focusOnSelect": true,
+        "infinite": true,
+        "speed": 200,
+        "slidesToShow": 3,
+        "slidesToScroll": 3,
+        "touchThreshold": 5
+      },
+    }
+
+  },
+
+  computed() {
+
+  },
+
+  components: {
+    VueSlickCarousel
+  },
+  /**/
+
+  mounted() {
+    axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
+        console.log(response);
+        this.noticias = response.data;
+      });
+      axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
+        console.log(response);
+        this.publicacion = response.data;
+      });
+   
+  },
+
+  
+
+}
 </script>
 <style>
-.da-slide{
-height: 400px;
+/**EMERGENTE */
+
+
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 15px;
+
+  display: block;
+  padding: 10px 15px;
+  background-image: linear-gradient(to right rgb(145, 5, 5), #00ADB5);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(212, 194, 194, 0.4);
 
+}
+
+button:hover {
+  box-shadow: 6px 6px rgba(0, 0, 0, 0.8);
+}
+
+.modal1 {
+  height: 50%;
+  width: 30%;
+  position:absolute;
+  top: 30%;
+  left: 40%;
+  transform: translate(1%, 1%);
+  background: rgb(74, 130, 142);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+  z-index: 101
+}
+
+/** EMERGENTE */
+
+.slick-slider[data-v-3d1a4f76] {
+  position: relative;
+  display: block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+
+}
+
+.da-slide {
+  height: 100px;
+}
+
+.carrusel {
+  width: 100%;
+  height: 500px;
+
+}
+
+.navbar {
+  background: #891A89;
+  margin-bottom: 0;
+  min-height: 70px;
+}
 
 .navbar-fixed-top {
   min-height: 60px;
   height: 60px;
   padding-top: 0;
 }
+
 /* .titlevisual{
   height: 300px;
   width: 100vh;
@@ -271,11 +316,10 @@ height: 400px;
 .title {
   height: 100%;
   width: 100%;
-  float:inline-start;
+  float: inline-start;
   align-items: center;
 
 }
-
 
 
 .navbar-inner {
@@ -342,7 +386,7 @@ height: 400px;
 .navbar .btn-navbar:hover,
 .navbar .btn-navbar {
   border-radius: 0;
- 
+
   color: #000;
 }
 
@@ -410,17 +454,6 @@ height: 400px;
 .invisible {
   display: none;
   visibility: visible;
-}
-
-.triangle {
-  margin: 0 auto;
-  text-align: center;
-  width: 0;
-  height: 0;
-  border-top: 30px solid #891A89;
-  border-left: 585px outset transparent;
-  border-right: 585px outset transparent;
-  position: relative;
 }
 
 /*
@@ -622,12 +655,6 @@ height: 400px;
   margin-bottom: 30px;
 }
 
-.section .title h1 {
-  font-weight: normal;
-  margin-bottom: 20px;
-  padding: 0;
-}
-
 .section .title>p {
   font-size: 20px;
   color: #FFF;
@@ -635,15 +662,16 @@ height: 400px;
 }
 
 .primary-section {
-  background:#00ADB5;
+  margin-top: 5px;
+  background: #00ADB5;
 }
 
 .primary-section .triangle {
-  border-top: 40px solid  #00ADB5;
+  border-top: 40px solid #00ADB5;
 }
 
 .primary-section .title {
-  border-bottom: 1px solid #FFF;
+  border-bottom: 1px solid rgb(216, 212, 212);
 }
 
 .primary-section,
@@ -652,9 +680,6 @@ height: 400px;
   color: #00ADB5;
 }
 
-.primary-section h1 {
-  color: #FFF;
-}
 
 .secondary-section {
   background: #891A89;
@@ -670,347 +695,12 @@ height: 400px;
 }
 
 /* Third section use bacground image */
-.third-section {
-  padding-bottom: 70px;
-  background: #181A1C url() no-repeat center;
-  border-top: 6px solid #FECE1A;
-}
 
 .third-section .container {
   padding-top: 20px;
   position: relative;
 }
 
-.third-section .title {
-  border-bottom: 1px solid #A1AAB7;
-  color: #FECE1A;
-}
-
-.sub-section {
-  margin-top: 30px;
-}
-
-.sub-section .title {
-  padding: 0;
-}
-
-/*******
-3.1 Services  
-***************************************/
-
-
-
-.service h2 {
-  padding-top: 5px;
-}
-
-.service p {
-  padding: 0px 50px;
-
-}
-
-.service img {
-  width: 150px;
-  height: 150px;
-}
-
-/*
-3.2 Portfolio
-***************************************/
-.single-project {
-  margin-bottom: 30px;
-  background: #181A1C;
-  padding: 20%;
-  float:left;
-}
-
-.single-project img {
-  width: 100%;
-}
-
-.project-description {
-  padding-right: 20px;
-}
-
-.project-description p {
-  padding-left: 0;
-}
-
-.project-title {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #00ADB5;
-}
-
-.project-title h3 {
-  float: left;
-  margin-top: 0;
-  padding: 0;
-  width: 80%;
-}
-
-.project-title .close {
-  color: #FECE1A;
-  margin-top: 10px;
-}
-
-.project-info span,
-.project-title h3 {
-  color: #00ADB5;
-}
-
-.project-info {
-  font-weight: 100;
-  padding: 10px 0;
-  color: #8cc472;
-}
-
-.project-info span {
-  width: 80px;
-  display: inline-block;
-}
-
-.project-info div {
-  margin-bottom: 5px;
-}
-
-.close {
-  float: right;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-}
-
-#portfolio-grid .mix {
-  opacity: 0;
-  display: none;
-}
-
-/*
-3.3 About
-******************************************************************/
-.team .thumbnail {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  padding: 10px;
-  border: 1px solid #fff;
-}
-
-.team .thumbnail:hover .social {
-  z-index: 5;
-}
-
-.team .thumbnail:hover .social a {
-  color: #fff;
-}
-
-.team .thumbnail .mask {
-  background: #FECE1A;
-}
-
-.team .thumbnail .mask h2 {
-  margin-top: 20%;
-}
-
-.team .thumbnail .mask,
-.team .thumbnail .mask h3,
-.team .thumbnail .mask p,
-.team .thumbnail:hover h3,
-.team .thumbnail:hover .social a:hover {
-  color: #181A17;
-}
-
-.about-text {
-  margin-top: 30px;
-}
-
-.about-text p {
-  padding: 0;
-  font-size: 16px;
-}
-
-/*********************************************************************
-                        SKILLS BAR
-*********************************************************************/
-.skills {
-  list-style-type: none;
-  position: relative;
-  margin: 0px;
-}
-
-.skills li {
-  margin-bottom: 30px;
-  background: #FFF;
-  height: 40px;
-  padding: 1px;
-}
-
-.skills li h3 {
-  position: relative;
-  font-size: 15px;
-  padding: 0;
-  margin: 0;
-  left: 10px;
-  z-index: 1;
-  color: #181A1C;
-}
-
-.skills li .bar {
-  height: 40px;
-  position: absolute;
-  background-color: #FECE1A;
-}
-
-/*
-3.4 Clients
-**********************************************************************/
-.client-slider img {
-  border: 1px solid white;
-}
-
-.client-slider img:hover {
-  background-color: #FECE1A;
-}
-
-.client-nav {
-  list-style: none;
-  margin-top: 10px;
-}
-
-.client-nav li {
-  float: left;
-  display: block;
-  margin-left: 10px;
-}
-
-.client-nav li a {
-  display: inherit;
-  padding: 5px;
-  background: #FECE1A;
-  border-radius: 3px;
-  width: 20px;
-  height: 20px;
-}
-
-.client-nav li a:hover {
-  background: #181A1C;
-}
-
-.testimonial p {
-  color: #181A1C;
-  background: #FECE1A;
-  padding: 15px;
-  margin: 0;
-}
-
-.testimonial .arrow {
-  margin-left: 10px;
-  width: 0;
-  border-top: 10px solid #FECE1A;
-  border-left: 20px outset transparent;
-  border-right: 20px outset transparent;
-}
-
-.testimonial .whopic {
-  display: inline-block;
-}
-
-.testimonial .whopic img {
-  margin-top: 10px;
-  width: 50px;
-  height: 50px;
-  float: left;
-}
-
-.testimonial .whopic strong {
-  float: left;
-  margin-top: 10px;
-  padding-left: 10px;
-}
-
-.testimonial .whopic small {
-  display: block;
-  font-size: 12px;
-
-}
-
-.testimonial-text {
-  display: block;
-  font-size: 22px;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 30px;
-  width: 70%;
-  line-height: 1.3em;
-}
-
-/*
-3.5 Price table
-******************************************************************/
-.price-table {
-  margin-top: 70px;
-  margin-bottom: 20px;
-}
-
-.price-column {
-  background-color: white;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  padding-bottom: 20px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.price-column h3 {
-  background-color: #181A1C;
-  text-transform: uppercase;
-  text-align: center;
-  color: #FECE1A;
-  padding: 40px 0px;
-  font-size: 36px;
-  margin-top: 0px;
-  -moz-border-radius: 0px;
-  -webkit-border-radius: 10px 10px 0px 0px;
-  border-radius: 10px 10px 0px 0px;
-}
-
-.price-column .list {
-  list-style: none;
-  margin: 20px 50px;
-}
-
-.price-column .list li {
-  font-weight: lighter;
-  color: #747C89;
-  font-size: 20px;
-  border-bottom: 1px solid #747C89;
-  padding: 25px 0px;
-}
-
-.price-column .list li.price {
-  text-align: center;
-  font-size: 31px;
-  background-color: white;
-  color: #747C89;
-  margin-top: 25px;
-}
-
-.price-text {
-  margin: 30px 0 20px;
-  font-size: 20px;
-  color: #181A1C;
-  font-weight: normal;
-}
-
-/*
-3.6 Newsletter
-********************************************************************/
-.newsletter,
-.newsletter h2 {
-  color: #D7DDDE;
-}
 
 .newsletter .title h2 {
   text-align: left;
@@ -1316,4 +1006,5 @@ height: 400px;
   }
 }
 </style>
+
 
