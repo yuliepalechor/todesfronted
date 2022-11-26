@@ -7,6 +7,8 @@
         <md-button class="md-info" @click="insertar(NuevaCategoria())"
           >Nuevo Evento</md-button
         >
+
+      
         <md-card>
           <md-card-header data-background-color="blue">
             <h4 class="title">Eventos</h4>
@@ -62,6 +64,17 @@
                   <md-table-cell md-label="Eliminar">
                     <md-button
                       @click="EliminarPublicacion(item.id)"
+                      class="md-just-icon md-simple md-danger"
+                    >
+                      <md-icon>close</md-icon>
+                      <md-tooltip md-direction="top">Close</md-tooltip>
+                    </md-button>
+                  </md-table-cell>
+
+
+                  <md-table-cell md-label="Seleccionar">
+                    <md-button
+                       @click="insertar(SeleccionarCategoria(item.id))"
                       class="md-just-icon md-simple md-danger"
                     >
                       <md-icon>close</md-icon>
@@ -129,6 +142,10 @@ export default {
     },
     NuevaCategoria() {
       this.$router.push("/FormEventos");
+    },
+
+    SeleccionarCategoria(id) {
+      this.$router.push(`Detalle/${id}`)
     },
     editarpublicacion(id) {
       this.$router.push(`/EditarPEvento/${id}`);

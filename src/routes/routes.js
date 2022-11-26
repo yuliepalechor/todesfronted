@@ -20,7 +20,7 @@ import Roles from "@/pages/Admin/Roles.vue";
 import Usuarios from "@/pages/Admin/Usuarios/ListaUsuarios.vue";
 import NuevoUsuario from "@/pages/Admin/Usuarios/NuevoUsuario.vue";
 import EditarUsuario from "@/pages/Admin/Usuarios/EditarUsuario.vue";
-
+import Detalle from "@/pages/Admin/Detalle/Detalle";
 import UsuarioComunidad from "@/pages/User/Dashboard.vue";
 
 
@@ -48,6 +48,12 @@ const routes = [
     path: "/Sigin",
     name: "Sigin",
     component: Sigin,
+  },
+
+  {
+    path: "/Detalle",
+    name: "Detalle",
+    component: Detalle,
   },
   {
     path: "/",
