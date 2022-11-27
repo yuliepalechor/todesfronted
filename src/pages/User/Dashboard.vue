@@ -1,18 +1,15 @@
 <template>
-
   <div>
-
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <img src="../../assets/img/logonue.png" width="80px" height="80px" alt="Logo" />
-
+          <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
         </div>
       </div>
     </div>
     <!-- Start home section -->
     
-    <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
+    <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo"/>
 
     <!-- End home section -->
     <!-- Service section start -->
@@ -141,7 +138,6 @@
     <transition name="fade">
       <div class="modal1" v-if="showModal">
         <h1>HOLA</h1>
-        <p>Contenido del modal</p>        
         <button @click="showModal = false">Cerrar el Modal </button>
       </div>
 
@@ -458,7 +454,7 @@ button:hover {
 
 /*
 2.1 Animations
-**********/
+**********
 .zoom-in {
   -webkit-transform: scale(1, 1);
   -moz-transform: scale(1, 1);
@@ -1005,6 +1001,7 @@ button:hover {
     margin-top: 30px;
   }
 }
+
 </style>
 
 

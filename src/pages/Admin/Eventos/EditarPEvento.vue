@@ -38,8 +38,13 @@
   
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
-                <label>estado</label>
-                <md-input v-model="form.estado" type="text"></md-input>
+                <!-- <label>Estado</label> -->
+                <select v-model="form.estado"   class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
+                <option>Seleccione...</option>
+                <option value="activo">activo</option>
+                <option value="activo">activo</option>
+                <option value="inactivo">inactivo</option>
+              </select>
               </md-field>
             </div>
   
@@ -50,25 +55,8 @@
               </md-field>
             </div>
   
-  <!--           
-            <div class="md-layout-item md-small-size-100 md-size-50">
-                  <label for="state_id" class="control-label" >State</label>
-          <select class="form-control" id="state_id" v-model="form.estado" >
-              <option value="AL">activo</option>
-              <option value="AK">inactivo</option>
-              
-          </select>                    
-      </div> 
   
-      
-                  <label for="state_id" class="control-label" >State</label>
-          <select class="form-control" id="state_id" v-model="form.estado" >
-              <option value="AL">activo</option>
-              <option value="AK">inactivo</option>
-              
-          </select>                    
-      </div>  -->
-    
+  
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Responsable</label>
@@ -85,7 +73,11 @@
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
                 <label>Tipo</label>
-                <md-input v-model="form.tipo" type="text"></md-input>
+                <select v-model="form.tipo"  class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
+                <option>Seleccione...</option>
+                <option value="evento">Evento</option>
+                <option value="noticia">Noticia</option>
+              </select>
               </md-field>
             </div>
             
@@ -101,7 +93,7 @@
   <script>
   import axios from "axios";
   export default {
-    name: "Nuevapublicacionevento",
+    name: "EditarPEvento",
     data() {
       return {
         form: {
