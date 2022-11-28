@@ -67,12 +67,19 @@
                     </md-button>
                 </template>
           
-                <template v-slot:cell(insertar)="row">
+                <template v-slot:cell(ejemplo)="row">
                   
-                    <button  @click="Detalle(DetalleCategoria(row.item.id))" type="button" class="btn btn-primary">+</button>
+                    <button  @click="ejemplo(row.item.id)" type="button" class="btn btn-primary">+</button>
                       
-                    
+                
                 </template>
+
+                <template v-slot:cell(example)="row">
+                  
+                  <button  @click="example(row.item.id)" type="button" class="btn btn-primary">+</button>
+                    
+              
+              </template>
             
   
                </b-table>              
@@ -130,8 +137,8 @@ export default {
                 { key: "tipo", label: 'Tipo' },
                 { key: "Editar", label: "Editar" },
                 { key: "Eliminar", label: "Eliminar" },
-                { key: "insertar", label: "+" },
-
+                { key: "ejemplo", label: "+" },
+                { key: "example", label: "-" },
             ],
       
     }
@@ -162,13 +169,30 @@ export default {
     NuevaCategoria() {
       this.$router.push('/FormEventos')
     },
+
+
+    example(id) {
+  
+  this.$router.push( `/DetalleCategoria/${id}`)
+ 
+},
+
     editarpublicacion(id) {
      
       this.$router.push(`/EditarPEvento/${id}`)
     },
 
+
+    ejemplo(id) {
+  
+     this.$router.push(`/DetalleCategoria/${id}`)
+   },
+
+
+
+
     DetalleCategoria(id) {
-      this.$router.push(`/DetalleCategoria/${id}`)
+      this.$router.push({name:'DetalleCategoria',params :{id:id}})
     },
     EliminarPublicacion(id) {
       const swalWithBootstrapButtons = Swal.mixin({

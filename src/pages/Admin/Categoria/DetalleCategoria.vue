@@ -7,30 +7,27 @@
 
       </md-card-header>
       <md-card-content>
-        <table striped hover responsive class="mt-4">
+        <table striped hover responsive class="mt-4" >
           <thead>
+            <b-button variant="danger" size="sm" @click="NuevaCategoria()">Nuevo</b-button>
+             
             <tr class="text">
               <th>ID</th>
               <th>Prioridad</th>
-              <!--<th>Publicacion</th>-->
               <th>Categoria</th>
               <th>Descripcion de la Categoria</th>
-              <th>Nueva Categoria</th>
+           
             </tr>
 
 
           </thead>
           <tbody>
             <tr v-for="detalle in detalles" :key="detalle.id">
-              <td v-text="detalle.id_detalle"></td>
-              <!---<td v-text="detalle.Prioridad_detallle"></td>-->
-              
-              <td v-text="detalle.nombre_publicacion"></td>
+              <td v-text="detalle.id_detalle"></td> 
+              <td v-text="detalle.Prioridad_detallle"></td>
               <td v-text="detalle.Nombresdecategorias"></td>
               <td v-text="detalle.Descripciodecategorias"></td>
-              <td>
-                <b-button variant="danger" size="sm" @click="NuevaCategoria()">Nuevo</b-button>
-              </td>
+              
             </tr>
           </tbody>
 
@@ -64,11 +61,14 @@ export default {
 
 
     NuevaCategoria() {
-      this.$router.push("/Categorias");
-
+      alert(this.$route.params.id);
+      
+      this.$router.push(`/Categoriasdetalles/${this.$router.params.id}`);
+      this.$router.push({name:'DetalleCategoria',params :{id:id}})
+      
     },
     mostrar() {
-      alert(thi.$route.params.id);
+      alert(this.$route.params.id);
       this.axios
         .get(
           "http://127.0.0.1:8000/api/detalle_categoria/" + this.$route.params.id

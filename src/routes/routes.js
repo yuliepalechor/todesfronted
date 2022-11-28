@@ -11,6 +11,7 @@ import Eventos from "@/pages/Admin/Eventos/Eventos.vue";
 import FormEventos from "@/pages/Admin/Eventos/formEventos.vue";
 import EditarPEvento from "@/pages/Admin/Eventos/EditarPEvento.vue";
 import Categorias from "@/pages/Admin/Categoria/Categorias.vue";
+import Categoriasdetalles from "@/pages/Admin/Categoria/Categoriasdetalles.vue";
 import NuevaCategoria from  "@/pages/Admin/Categoria/NuevaCategoria.vue";
 import EditarCategoria from  "@/pages/Admin/Categoria/EditarCategoria.vue";
 import DetalleCategoria from  "@/pages/Admin/Categoria/DetalleCategoria";
@@ -21,7 +22,7 @@ import Roles from "@/pages/Admin/Roles.vue";
 import Usuarios from "@/pages/Admin/Usuarios/ListaUsuarios.vue";
 import NuevoUsuario from "@/pages/Admin/Usuarios/NuevoUsuario.vue";
 import EditarUsuario from "@/pages/Admin/Usuarios/EditarUsuario.vue";
-
+import Archivo from "@/pages/Admin/Archivo";
 import UsuarioComunidad from "@/pages/User/Dashboard.vue";
 
 
@@ -84,6 +85,9 @@ const routes = [
         component: FormEventos,
       },
 
+    
+
+
       {
         path: "/EditarPEvento/:id",
         name: "EditarPEvento",
@@ -91,14 +95,24 @@ const routes = [
       },
       ///categorias
       {
-        path: "/Categorias",
+        path: "/Categorias/",
         name: "Categorias",
         component: Categorias,
       },
+
+  
+
+      {
+        path: "/Categoriasdetalles/:id",
+        name: "Categoriasdetalles",
+        component: Categoriasdetalles,
+      },
+
+
         //Nueva categoria
 
         {
-          path: "/NuevaCategoria",
+          path: "/NuevaCategoria/",
           name: "NuevaCategoria",
           component: NuevaCategoria,
         },  
@@ -149,7 +163,13 @@ const routes = [
         },
 
         
-        
+        // crear un nuevoarchivo 
+
+        {
+          path: "Archivo",
+          name: "Archivo",
+          component: Archivo,
+        },
 
 
         
