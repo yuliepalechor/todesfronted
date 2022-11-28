@@ -26,7 +26,7 @@
                   <div class="md-layout-item md-small-size-100 md-size-33">
                     <md-field>
                       <label>Nombre</label>
-                      <md-input v-model="user.nombre" type="email"></md-input>
+                      <md-input v-model="user.nombre" type="text"></md-input>
                     </md-field>
                   </div>
                   <div class="md-layout-item md-small-size-100 md-size-50">
@@ -50,13 +50,18 @@
                   <div class="md-layout-item md-small-size-100 md-size-33">
                     <md-field>
                       <label>Genero</label>
-                      <md-input v-model="user.genero" type="text"></md-input>
+                      <select v-model="user.genero" class="form-control selectpicker" data-style="btn btn-link"
+                        id="exampleFormControlSelect2">
+                        <option>Seleccione...</option>
+                        <option value="masculino">masculino</option>
+                        <option value="femenino">femenino</option>
+                      </select>
                     </md-field>
                   </div>
                   <div class="md-layout-item md-small-size-100 md-size-33">
                     <md-field>
                       <label>Fecha Nacimiento</label>
-                      <md-input v-model="user.fecha_nacimiento" type="text"></md-input>
+                      <md-input v-model="user.fecha_nacimiento" type="date"></md-input>
                     </md-field>
                   </div>
                   <div class="md-layout-item md-size-100 text-right">

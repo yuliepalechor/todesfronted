@@ -10,7 +10,7 @@
   
         <md-card-content>
           <div class="md-layout">
-            <div class="md-layout-item md-small-size-100 md-size-50">
+            <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Categoria</label>
                 <md-input v-model="form.nombre" type="text"></md-input>
@@ -18,7 +18,7 @@
             </div>
            
             
-            <div class="md-layout-item md-small-size-100 md-size-50">
+            <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Descripcion</label>
                 <md-input v-model="form.descripcion" type="text"></md-input>
@@ -27,7 +27,7 @@
             
            
             <div class="md-layout-item md-size-100 text-right">
-              <md-button class="md-info" @click="GuardarCategoria()" >Publicar</md-button>
+              <md-button class="md-info" @click="ActualizarCategoria()" >Publicar</md-button>
             </div>
           </div>
         </md-card-content>
@@ -37,9 +37,8 @@
     
 <script>
 import axios from "axios"
-import Swal from "sweetalert2";
 export default {
-    name:"NuevaCategoria",
+    name:"EditarCategoria",
     data(){
         return{
             form:{
@@ -49,34 +48,45 @@ export default {
           
         }
     },
-    methods:{
-      GuardarCategoria(){
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Categoria Guardada",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-         this.axios.post("http://127.0.0.1:8000/api/categoria",this.form).then((data)=>
-         {console.log(data);
-        });
-      },
+    mounted() {
+        this.mostrar()
+    },
+    methods: {
+        mostrar() {
+            this.axios
+                .get("http://127.0.0.1:8000/api/categoria/" + this.$route.params.id)
+                .then((data) => {
+                    this.form.nombre = data.data[0].nombre;
+                    this.form.descripcion = data.data[0].descripcion;
 
-    
-    }
+                });
+        },
+
+
+        ActualizarCategoria() {
+            this.axios
+                .put("http://127.0.0.1:8000/api/categoria/" + this.$route.params.id, this.form)
+                .then((data) => {
+                    this.$router.push("/Categorias")
+                });
+        },
+
+
+
+        catch(e) {
+            console.log(e.response);
+        },
+    },
 }
 </script>
     
 <style>
-    .formulario{
-      width: 70%;
-      padding-right: 10px;
-      padding-left: 100px;
-     
-    
-      
-    }
-      
-    
-    </style>
+.formulario {
+  width: 70%;
+  padding-right: 10px;
+  padding-left: 100px;
+
+
+
+}
+</style>

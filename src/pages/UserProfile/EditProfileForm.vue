@@ -54,14 +54,9 @@
             </md-field>
           </div>
           
-          <div class="md-layout-item md-size-100">
-            <md-field maxlength="5">
-              <label>About Me</label>
-              <md-textarea v-model="aboutme"></md-textarea>
-            </md-field>
-          </div>
+          
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-info">Update Profile</md-button>
+            <md-button class="md-info">Actualizar Perfil</md-button>
           </div>
         </div>
       </md-card-content>
