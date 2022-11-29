@@ -282,6 +282,7 @@
         </nav-tabs-card> -->
       </div>
     </div>
+    
   </div>
 </template>
 
