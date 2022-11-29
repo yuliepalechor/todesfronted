@@ -11,7 +11,7 @@
       </div>
     </div>
     <!-- Start home section -->
-    
+
     <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
 
     <!-- End home section -->
@@ -65,7 +65,7 @@
 
       </div>
 
-      <!-- TRAE TODOS EN GENERAL 1 -->
+      <!--************************** CARRUSEL TRAE SOLO EVENTOS *******************************  -->
 
       <VueSlickCarousel v-bind="settings" class="carrusel">
 
@@ -79,47 +79,62 @@
             <b-card-text>
               {{ publicacion.tipo }}
             </b-card-text>
-           
-            <button @click="showModal = true">Ir a publicacion </button>
+
+            <button @click="show = true" v-on:click="mostrarinformacion(publicacion.id)">Ir a publicacion </button>
 
           </b-card>
-          
+
 
         </div>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
 
       </VueSlickCarousel>
 
       <h1> noticias</h1>
       <br>
-      <!-- TRAE SOLO NOTICIAS 1 -->
+
+      <!-- ************************** FIN CARRUSEL QUE TRAE SOLO EVENTOS *********************** -->
+
+      <!--************************** CARRUSEL TRAE SOLO NOTICIAS *******************************  -->
+
       <VueSlickCarousel v-bind="propiedades" class="carrusel">
 
         <div v-for="noticias in noticias" :key="noticias.id">
           <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
             style="max-width: 10rem;" class="mb-2">
             <b-card-text>
-              <H3> {{ noticias.nombre }}</H3>
+              <H3> {{ noticias.id }}</H3>
             </b-card-text>
 
             <b-card-text>
               {{ noticias.tipo }}
+
             </b-card-text>
 
-            <button @click="showModal = true">Ir a publicacion </button>
+            <b-card-text>
+              <h3>{{ noticias.nombre }}</h3>
+            </b-card-text>
+
+
+            <button v-b-modal="'informacion'" v-on:click="mostrarinformacion(noticias.id,)">Ir a publicacion </button>
+            <!-- traemos  
+              en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
+              para este caso el id de la noticia -->
+
           </b-card>
+
         </div>
 
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
 
       </VueSlickCarousel>
-      <!-- TRAE SOLO EVENTOS 1 -->
+      <!--********************** FIN CARRUSEL QUE TRAE SOLO NOTICIAS *******************************  -->
 
     </div>
     <!-- Portfolio section end -->
@@ -131,27 +146,32 @@
     </div>
 
     <!-- *********************************** MODAL ********************************* -->
-    <div id="app">
 
-    <transition name="fade">
-      <div class="modal-overlay" v-if="showModal" ></div>
+    <div>
+      <b-modal v-model="show" id="informacion">
+        <template #modal-header class="modal-header">
+          <h5>INFORMACION</h5>
+        </template>
+        <b-container fluid>
 
-    </transition>
+          
+          <input type="text" v-model="idrecibido" />
+         
+        </b-container>
 
-    <transition name="fade">
-      <div class="modal1" v-if="showModal">
-        <h1>HOLA</h1>
+        <b-container fluid>
 
-        <p>Contenido del modal</p>        
+        </b-container>
 
-        <p>Contenido del modal</p>
+        <template #modal-footer="{ close }" style="text-align: right;">
+          <div class="w-100">
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+          </div>
 
-        <button @click="showModal = false">Cerrar el Modal </button>
-      </div>
-
-    </transition>
-   
+        </template>
+      </b-modal>
     </div>
+    <!-- *********************************** FIN MODAL ********************************* -->
   </div>
 </template>
 
@@ -169,6 +189,20 @@ export default {
 
   data() {
     return {
+      idrecibido: null, /* variablr para traer id de publicacion */
+      npublicacion: null, /* variablr para traer nombre publicacion */
+      /*descripcionp: null, /* variablr para traer la descripcion publicacion */
+      /*direccionp: null, /* variablr para traer direccion de la publicacion */
+     /* estadop: null, /* variablr para traer el estado de publicacion */
+      /*encargadop: null, /* variablr para traer el encargado de publicacion */ 
+      show: false,
+      variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+      headerBgVariant: '#9c27b0',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'warning',
+      footerTextVariant: 'dark',
       publicacion: null,
       noticias: null,
       showModal: false,
@@ -206,24 +240,42 @@ export default {
 
   mounted() {
     axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
-        console.log(response);
-        this.noticias = response.data;
-      });
-      axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
-        console.log(response);
-        this.publicacion = response.data;
-      });
-   
+      console.log(response);
+      this.noticias = response.data;
+    });
+
+    axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
+      console.log(response);
+      this.publicacion = response.data;
+    });
+
+  },
+  methods: {
+    mostrarinformacion(id) {
+      return this.idrecibido = id;
+    },
+/** 
+    mostrarinformacion(nombre_publicacion) {
+      return this.npublicacion = nombre_publicacion;
+    },*/
   },
 
-  
 
 }
 </script>
 <style>
 /**EMERGENTE */
 
+.modal-header {
+  background-color: #891A89;
+  color: white;
+}
 
+.bcerrar {
+  position: relative;
+  top: 75%;
+  left: 35%;
+}
 
 button {
   border: none;
@@ -256,13 +308,13 @@ button:hover {
 }
 
 .modal1 {
-  height: 50%;
-  width: 30%;
-  position:absolute;
+  height: 40%;
+  width: 60%;
+  position: absolute;
   top: 30%;
-  left: 40%;
+  left: 20%;
   transform: translate(1%, 1%);
-  background: rgb(74, 130, 142);
+  background: #9c27b0;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
