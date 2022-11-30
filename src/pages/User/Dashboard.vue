@@ -69,7 +69,7 @@
 
       <VueSlickCarousel v-bind="settings" class="carrusel">
 
-        <div v-for="publicacion in publicacion" :key="publicacion.id">
+        <div v-for="publicacion in publicacion" :key="publicacion">
           <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
             style="max-width: 10rem;" class="mb-2">
             <b-card-text>
@@ -79,8 +79,8 @@
 
             </b-card-text>
 
-
-            <button @click="show = true" v-on:click="mostrarinformacion(publicacion.id)">Ir a publicacion </button>
+            <button v-b-modal="'informacion'" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button>
+            <!-- <button @click="show = true" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button> -->
 
           </b-card>
 
@@ -102,7 +102,7 @@
 
       <VueSlickCarousel v-bind="propiedades" class="carrusel">
 
-        <div v-for="noticias in noticias" :key="(noticias.id)">
+        <div v-for="noticias in noticias" :key="(noticias)">
           <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
             style="max-width: 10rem;" class="mb-2">
             <b-card-text>
@@ -112,8 +112,8 @@
 
             </b-card-text>
 
-            <button v-b-modal="'informacion'" v-on:click="mostrarinformacion(noticias.id)">Ir a
-              publicacion </button>
+            <button v-b-modal="'informacion'" v-on:click="mostrarnombre(noticias)">Ir a publicacion </button>
+              
             <!-- traemos  
               en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
               para este caso el id de la noticia -->
@@ -151,8 +151,13 @@
             <b-col sm="3">
               <label for="numero p">Publicacion N°:</label>
             </b-col>
-            <b-col sm="9">
-              <b-form-input id="input-none" :state="null" v-model="idrecibido"></b-form-input>
+
+            <b-col sm="9"> 
+              <b-form-input id="input-none" :state="null" v-model="idrecibido" ></b-form-input>                            
+            </b-col>
+
+            <b-col sm="9">               
+              <b-form-input id="input-none" :state="null" v-model="npublicacion" ></b-form-input>             
             </b-col>
           </b-row>
 
@@ -164,7 +169,7 @@
       id="textarea-state"
       v-model="text"
       :state="(text.length <= 250)"
-      placeholder="maximo 250 caracteres"
+      placeholder="escriba su comentario maximo 250 caracteres"
       rows="3"
     ></b-form-textarea>
   </div>
@@ -238,7 +243,9 @@ export default {
   },
 
   computed() {
-
+  noticias.id,
+  noticias.nombre_publicacion,
+  noticias.tipo
   },
 
   components: {
