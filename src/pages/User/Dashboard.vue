@@ -9,7 +9,7 @@
     </div>
     <!-- Start home section -->
 
-    <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo"/>
+    <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200"  alt="Logo"/> </center>
 
     <!-- End home section -->
     <!-- Service section start -->
