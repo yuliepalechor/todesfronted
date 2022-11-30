@@ -1,18 +1,15 @@
 <template>
-
   <div>
-
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <img src="../../assets/img/logonue.png" width="80px" height="80px" alt="Logo" />
-
+          <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
         </div>
       </div>
     </div>
     <!-- Start home section -->
 
-    <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
+    <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo"/>
 
     <!-- End home section -->
     <!-- Service section start -->
@@ -141,6 +138,8 @@
 
     <!-- *********************************** MODAL ********************************* -->
 
+    <!-- *********************************** MODAL ********************************* -->
+
     <div>
       <b-modal v-model="show" id="informacion">
         <template #modal-header class="modal-header">
@@ -184,6 +183,38 @@
       </b-modal>
     </div>
     <!-- *********************************** FIN MODAL ********************************* -->
+
+ <!-- *********************************** 
+    <div>
+      <b-modal v-model="show" id="informacion">
+        <template #modal-header class="modal-header">
+          <h5>INFORMACION</h5>
+        </template>
+        <b-container fluid>
+          <b-row class="my-1">
+            <b-col sm="3">
+              <label for="numero p">Publicacion N°:</label>
+            </b-col>
+
+          
+          <input type="text" v-model="idrecibido" />
+        </b-row>
+        </b-container>
+
+        <b-container fluid>
+
+        </b-container>
+
+        <template #modal-footer="{ close }" style="text-align: right;">
+          <div class="w-100">
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+          </div>
+
+        </template>
+      </b-modal>
+    </div>
+     ********************************* -->
+    
   </div>
 </template>
 
@@ -533,7 +564,7 @@ button:hover {
 
 /*
 2.1 Animations
-**********/
+**********
 .zoom-in {
   -webkit-transform: scale(1, 1);
   -moz-transform: scale(1, 1);
@@ -1080,7 +1111,6 @@ button:hover {
     margin-top: 30px;
   }
 }
-
 </style>
 
 
