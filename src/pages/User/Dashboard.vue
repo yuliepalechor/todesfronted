@@ -73,12 +73,12 @@
           <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
             style="max-width: 10rem;" class="mb-2">
             <b-card-text>
-              <H3> {{ publicacion.nombre }}</H3>
+              <H6> Publicacion N°: </H6> {{ publicacion.id }}
+              <h6> Nombre:</h6>{{ publicacion.nombre_publicacion }}
+              <H6> Tipo de publicacion: </H6> {{ publicacion.tipo }}
+
             </b-card-text>
 
-            <b-card-text>
-              {{ publicacion.tipo }}
-            </b-card-text>
 
             <button @click="show = true" v-on:click="mostrarinformacion(publicacion.id)">Ir a publicacion </button>
 
@@ -102,24 +102,18 @@
 
       <VueSlickCarousel v-bind="propiedades" class="carrusel">
 
-        <div v-for="noticias in noticias" :key="noticias.id">
+        <div v-for="noticias in noticias" :key="(noticias.id)">
           <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
             style="max-width: 10rem;" class="mb-2">
             <b-card-text>
-              <H3> {{ noticias.id }}</H3>
-            </b-card-text>
-
-            <b-card-text>
-              {{ noticias.tipo }}
+              <H6> Publicacion N°: </H6> {{ noticias.id }}
+              <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
+              <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
 
             </b-card-text>
 
-            <b-card-text>
-              <h3>{{ noticias.nombre }}</h3>
-            </b-card-text>
-
-
-            <button v-b-modal="'informacion'" v-on:click="mostrarinformacion(noticias.id,)">Ir a publicacion </button>
+            <button v-b-modal="'informacion'" v-on:click="mostrarinformacion(noticias.id)">Ir a
+              publicacion </button>
             <!-- traemos  
               en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
               para este caso el id de la noticia -->
@@ -153,22 +147,35 @@
           <h5>INFORMACION</h5>
         </template>
         <b-container fluid>
+          <b-row class="my-1">
+            <b-col sm="3">
+              <label for="numero p">Publicacion N°:</label>
+            </b-col>
+            <b-col sm="9">
+              <b-form-input id="input-none" :state="null" v-model="idrecibido"></b-form-input>
+            </b-col>
+          </b-row>
 
           
-          <input type="text" v-model="idrecibido" />
-         
-        </b-container>
-
-        <b-container fluid>
-
-        </b-container>
-
+          </b-container>
+        <!-- ******** area de comentario ******** -->
+        <div>
+    <b-form-textarea
+      id="textarea-state"
+      v-model="text"
+      :state="(text.length <= 250)"
+      placeholder="maximo 250 caracteres"
+      rows="3"
+    ></b-form-textarea>
+  </div>
+  <!-- ******** area de comentario ******** -->
         <template #modal-footer="{ close }" style="text-align: right;">
           <div class="w-100">
             <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
           </div>
-
+          
         </template>
+        
       </b-modal>
     </div>
     <!-- *********************************** FIN MODAL ********************************* -->
@@ -189,12 +196,13 @@ export default {
 
   data() {
     return {
+      text:'',
       idrecibido: null, /* variablr para traer id de publicacion */
       npublicacion: null, /* variablr para traer nombre publicacion */
       /*descripcionp: null, /* variablr para traer la descripcion publicacion */
       /*direccionp: null, /* variablr para traer direccion de la publicacion */
-     /* estadop: null, /* variablr para traer el estado de publicacion */
-      /*encargadop: null, /* variablr para traer el encargado de publicacion */ 
+      /* estadop: null, /* variablr para traer el estado de publicacion */
+      /*encargadop: null, /* variablr para traer el encargado de publicacion */
       show: false,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       headerBgVariant: '#9c27b0',
@@ -254,10 +262,14 @@ export default {
     mostrarinformacion(id) {
       return this.idrecibido = id;
     },
-/** 
-    mostrarinformacion(nombre_publicacion) {
+
+    mostrarnombre(nombre_publicacion) {
       return this.npublicacion = nombre_publicacion;
-    },*/
+    },
+    mostrarnombre(tipo) {
+      return this.npublicacion = tipo;
+    },
+
   },
 
 
