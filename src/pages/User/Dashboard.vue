@@ -149,15 +149,14 @@
           <b-row class="my-1">
             <b-col sm="3">
               <label for="numero p">Publicacion N°:</label>
+              <label for="numero p">Nombre Publicacion: </label>
             </b-col>
-
+            
             <b-col sm="9"> 
-              <b-form-input id="input-none" :state="null" v-model="idrecibido" ></b-form-input>                            
+              <p for="numero p">{{evento.id}}</p>
+              <p for="numero p">{{evento.nombre_publicacion}}</p>
             </b-col>
 
-            <b-col sm="9">               
-              <b-form-input id="input-none" :state="null" v-model="npublicacion" ></b-form-input>             
-            </b-col>
           </b-row>
 
           
@@ -169,7 +168,9 @@
       v-model="text"
       :state="(text.length <= 250)"
       placeholder="escriba su comentario maximo 250 caracteres"
-      rows="3"
+      rows="6"
+      maxlength = "250"
+      
     ></b-form-textarea>
   </div>
   <!-- ******** area de comentario ******** -->
@@ -197,7 +198,7 @@
             </b-col>
 
           
-          <input type="text" v-model="idrecibido" />
+          <input type="text" v-model="evento" />
         </b-row>
         </b-container>
 
@@ -233,7 +234,7 @@ export default {
   data() {
     return {
       text:'',
-      idrecibido: null, /* variablr para traer id de publicacion */
+      evento: {}, /* variablr para guardar el OBJETO Evento de publicacion seleccionada */
       npublicacion: null, /* variablr para traer nombre publicacion */
       /*descripcionp: null, /* variablr para traer la descripcion publicacion */
       /*direccionp: null, /* variablr para traer direccion de la publicacion */
@@ -297,8 +298,8 @@ export default {
 
   },
   methods: {
-    mostrarinformacion(id) {
-      return this.idrecibido = id;
+    mostrarinformacion(objeto) {
+      return this.evento = objeto;
     },
 
     mostrarnombre(nombre_publicacion) {
