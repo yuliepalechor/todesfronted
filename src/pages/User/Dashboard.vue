@@ -109,7 +109,7 @@
 
             </b-card-text>
 
-            <button v-b-modal="'informacion'" v-on:click="mostrarnombre(noticias)">Ir a publicacion </button>
+            <button v-b-modal="'informacion2'" v-on:click="mostrarinformacion2(noticias)">Ir a publicacion </button>
               
             <!-- traemos  
               en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
@@ -136,25 +136,98 @@
       </div>
     </div>
 
-    <!-- *********************************** MODAL ********************************* -->
+    <!-- *********************************** MODAL 1 ********************************* -->
 
-    <!-- *********************************** MODAL ********************************* -->
+    <!-- *********************************** MODAL 2 ********************************* -->
 
-    <div>
-      <b-modal v-model="show" id="informacion">
-        <template #modal-header class="modal-header">
+    <div >
+      <b-modal v-model="show" id="informacion" >
+        <template #modal-header class="modal-header" >
           <h5>INFORMACION</h5>
         </template>
         <b-container fluid>
+          <b-img v-bind="imagen" src="https://picsum.photos/600/300/?image=25" rounded="circle"></b-img>
           <b-row class="my-1">
             <b-col sm="3">
-              <label for="numero p">Publicacion N°:</label>
-              <label for="numero p">Nombre Publicacion: </label>
+              <label for="numero p">Publicacion N°:</label> <br>
+              <label for="numero p">Nombre: </label> <br>
+              <label for="numero p">descripcion:</label> <br>
+              <label for="numero p">lugar: </label> <br>
+              <label for="numero p">responsable:</label> <br>
+              <label for="numero p">estado: </label> <br>
+              <label for="numero p">Tipo:</label> <br>
+              <label for="numero p">archivo: </label>
             </b-col>
             
             <b-col sm="9"> 
               <p for="numero p">{{evento.id}}</p>
               <p for="numero p">{{evento.nombre_publicacion}}</p>
+              <p for="numero p">{{evento.descripcion_publicacion}}</p>
+              <p for="numero p">{{evento.lugar}}</p>
+              <p for="numero p">{{evento.responsable}}</p>
+              <p for="numero p">{{evento.estado}}</p>
+              <p for="numero p">{{evento.tipo}}</p>
+              <p for="numero p">{{evento.ruta_archivo}}</p>
+            </b-col>
+
+          </b-row>
+
+          
+          </b-container>
+        <!-- ******** area de comentario ******** -->
+        <div>
+    <b-form-textarea
+      id="textarea-state"
+      v-model="text"
+      :state="(text.length <= 250)"
+      placeholder="escriba su comentario maximo 250 caracteres"
+      rows="6"
+      maxlength = "250"
+      
+    ></b-form-textarea>
+  </div>
+  <!-- ******** area de comentario ******** -->
+        <template #modal-footer="{ close }" style="text-align: right;">
+          <div class="w-100">
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+          </div>
+          
+        </template>
+        
+      </b-modal>
+    </div>
+    <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
+
+ <!-- *********************************** MODAL NOTICIAS********************************* -->
+
+ <div>
+      <b-modal v-model="show" id="informacion2">
+        <template #modal-header class="modal-header">
+          <h5>INFORMACION</h5>
+        </template>
+        <b-container fluid>
+          <b-img v-bind="imagen" src="https://picsum.photos/600/300/?image=25" rounded="circle"></b-img>
+          <b-row class="my-1">
+            <b-col sm="3">
+              <label for="numero p">Publicacion N°:</label> <br>
+              <label for="numero p">Nombre: </label> <br>
+              <label for="numero p">descripcion:</label> <br>
+              <label for="numero p">lugar: </label> <br>
+              <label for="numero p">responsable:</label> <br>
+              <label for="numero p">estado: </label> <br>
+              <label for="numero p">Tipo:</label> <br>
+              <label for="numero p">archivo: </label>
+            </b-col>
+            
+            <b-col sm="9"> 
+              <p for="numero p">{{noticia.id}}</p>
+              <p for="numero p">{{noticia.nombre_publicacion}}</p>
+              <p for="numero p">{{noticia.descripcion_publicacion}}</p>
+              <p for="numero p">{{noticia.lugar}}</p>
+              <p for="numero p">{{noticia.responsable}}</p>
+              <p for="numero p">{{noticia.estado}}</p>
+              <p for="numero p">{{noticia.tipo}}</p>
+              <p for="numero p">{{noticia.ruta_archivo}}</p>
             </b-col>
 
           </b-row>
@@ -184,37 +257,6 @@
       </b-modal>
     </div>
     <!-- *********************************** FIN MODAL ********************************* -->
-
- <!-- *********************************** 
-    <div>
-      <b-modal v-model="show" id="informacion">
-        <template #modal-header class="modal-header">
-          <h5>INFORMACION</h5>
-        </template>
-        <b-container fluid>
-          <b-row class="my-1">
-            <b-col sm="3">
-              <label for="numero p">Publicacion N°:</label>
-            </b-col>
-
-          
-          <input type="text" v-model="evento" />
-        </b-row>
-        </b-container>
-
-        <b-container fluid>
-
-        </b-container>
-
-        <template #modal-footer="{ close }" style="text-align: right;">
-          <div class="w-100">
-            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
-          </div>
-
-        </template>
-      </b-modal>
-    </div>
-     ********************************* -->
     
   </div>
 </template>
@@ -233,9 +275,10 @@ export default {
 
   data() {
     return {
+      imagen: { blank: true, blankColor: '#777', width: 75, height: 75, class: 'm1' },
       text:'',
       evento: {}, /* variablr para guardar el OBJETO Evento de publicacion seleccionada */
-      npublicacion: null, /* variablr para traer nombre publicacion */
+      noticia: {}, /* variablr para traer nombre publicacion */
       /*descripcionp: null, /* variablr para traer la descripcion publicacion */
       /*direccionp: null, /* variablr para traer direccion de la publicacion */
       /* estadop: null, /* variablr para traer el estado de publicacion */
@@ -275,9 +318,7 @@ export default {
   },
 
   computed() {
-  noticias.id,
-  noticias.nombre_publicacion,
-  noticias.tipo
+  
   },
 
   components: {
@@ -302,12 +343,10 @@ export default {
       return this.evento = objeto;
     },
 
-    mostrarnombre(nombre_publicacion) {
-      return this.npublicacion = nombre_publicacion;
+    mostrarinformacion2(objeto2) {
+      return this.noticia = objeto2;
     },
-    mostrarnombre(tipo) {
-      return this.npublicacion = tipo;
-    },
+   
 
   },
 
