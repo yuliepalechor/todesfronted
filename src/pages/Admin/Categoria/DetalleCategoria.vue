@@ -9,8 +9,8 @@
       <md-card-content>
         <table striped hover responsive class="mt-4" >
           <thead>
-            <b-button variant="danger" size="sm" @click="NuevaCategoria()">Nuevo</b-button>
-            <b-button @click="show=true" variant="primary">Show Modal</b-button>
+            <!--<b-button variant="danger" size="sm" @click="NuevaCategoria()">Nuevo</b-button>-->
+            <b-button @click="show=true" variant="primary">ASignar Nueva Categoria</b-button>
             <tr class="text">
               <th>ID</th>
               <th>Prioridad</th>
@@ -24,7 +24,7 @@
           <tbody>
             <tr v-for="detalle in detalles" :key="detalle.id">
               <td v-text="detalle.id_detalle"></td> 
-              <td v-text="detalle.Prioridad_detallle"></td>
+             
               <td v-text="detalle.Nombresdecategorias"></td>
               <td v-text="detalle.Descripciodecategorias"></td>
               
@@ -58,7 +58,7 @@
   <tr v-for="detalle in detalles" :key="detalle.id">
   <td v-text="detalle.id_detalle"></td>
   <!---<td v-text="detalle.Prioridad_detallle"></td>-->
-  <td v-text="detalle.nombre_publicacion"></td>
+  <td v-text="detalle.Prioridad_detallle"></td>
   <td v-text="detalle.Nombresdecategorias"></td>
   <td v-text="detalle.Descripciodecategorias"></td>
   <td>

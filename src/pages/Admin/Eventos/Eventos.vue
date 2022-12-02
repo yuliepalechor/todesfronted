@@ -70,7 +70,9 @@
                 <template v-slot:cell(ejemplo)="row">
                   
                     <button  @click="ejemplo(row.item.id)" type="button" class="btn btn-primary">+</button>
-                      
+                    <b-button @click="show=true" variant="primary">Show Modal</b-button>
+           
+          
                 
                 </template>
 
@@ -98,14 +100,62 @@
 
       
     </div>
+
+    <div>
+        <b-modal size="xl" v-model="show" title="Modal Variants">
+          <b-container fluid>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Prioridad</th>
+                  <!--<th>Publicacion</th>-->
+                  <th>Categoria</th>
+                  <th>Descripcion de la Categoria</th>
+                  <th>Nueva Categoria</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="detalle in detalles" :key="detalle.id">
+                  <td v-text="detalle.id_detalle"></td>
+                  <!---<td v-text="detalle.Prioridad_detallle"></td>-->
+                  <td v-text="detalle.Prioridad_detallle"></td>
+                  <td v-text="detalle.Nombresdecategorias"></td>
+                  <td v-text="detalle.Descripciodecategorias"></td>
+                  <td>
+                    <b-button
+                      variant="danger"
+                      size="sm"
+                      @click="AsignarCategoria(detalle.id_detalle)"
+                      >Nuevo</b-button
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </b-container>
+
+          <template #modal-footer>
+            <div class="w-100">
+              <b-button
+                variant="primary"
+                size="sm"
+                class="float-right"
+                @click="show = false"
+              >
+                Close
+              </b-button>
+            </div>
+          </template>
+        </b-modal>
+      </div>
   </div>
 </template>
 
 <script>
-
 import { OrderedTable } from "@/components";
-import Swal from 'sweetalert2'
-import axios from "axios"
+import Swal from "sweetalert2";
+import axios from "axios";
 //import { response } from "express";
 // el axios permite  llamar  todas las  apis  que se hayan creado
 export default {
@@ -117,125 +167,121 @@ export default {
     },
   },
   data() {
-    
     return {
-      
+
+      show: false,
+
+      detalles: null,
       categoria: [],
       filter: null,
-      perpage:10,
-      currentPage:1,
-       encabezado: [
-                { key: "id", label: "Id"  },
-                { key: "nombre", label: "Nombre" },
-                { key: "descripcion", label: "Descripcion" },
-                { key: "fecha_y_Hora", label: 'FECHA-HORA' },
-                { key: "lugar", label: 'Lugar' },
-                { key: "estado", label: 'Estado' },
-                { key: "urlExterna", label: 'Url' },
-                { key: "responsable", label: 'Responsable' },
-                { key: "fecha_caducidad", label: 'fecha_caducidad' },
-                { key: "tipo", label: 'Tipo' },
-                { key: "Editar", label: "Editar" },
-                { key: "Eliminar", label: "Eliminar" },
-                { key: "ejemplo", label: "+" },
-                { key: "example", label: "-" },
-            ],
-      
-    }
-    
+      perpage: 10,
+      currentPage: 1,
+      encabezado: [
+        { key: "id", label: "Id" },
+        { key: "nombre", label: "Nombre" },
+        { key: "descripcion", label: "Descripcion" },
+        { key: "fecha_y_Hora", label: "FECHA-HORA" },
+        { key: "lugar", label: "Lugar" },
+        { key: "estado", label: "Estado" },
+        { key: "urlExterna", label: "Url" },
+        { key: "responsable", label: "Responsable" },
+        { key: "fecha_caducidad", label: "fecha_caducidad" },
+        { key: "tipo", label: "Tipo" },
+        { key: "Editar", label: "Editar" },
+        { key: "Eliminar", label: "Eliminar" },
+        { key: "ejemplo", label: "+" },
+        { key: "example", label: "-" },
+      ],
+    };
   },
-  components: {
-  },
+  components: {},
   mounted() {
-    this.getcategorias()
-    this.EliminarPublicacion(id)
+    this.getcategorias();
+    this.EliminarPublicacion(id);
   },
 
   computed: {
     rows() {
-      return this.categoria.length
-
-    }
+      return this.categoria.length;
+    },
   },
   methods: {
-    updatePagination (page, pageSize, sort, sortOrder) {
-        console.log('pagination has updated', page, pageSize, sort, sortOrder);
-      },
+    updatePagination(page, pageSize, sort, sortOrder) {
+      console.log("pagination has updated", page, pageSize, sort, sortOrder);
+    },
     getcategorias() {
-      this.axios.get("http://127.0.0.1:8000/api/publicacion").then((response) => {
-        this.categoria = response.data;
-      })
+      this.axios
+        .get("http://127.0.0.1:8000/api/publicacion")
+        .then((response) => {
+          this.categoria = response.data;
+        });
     },
     NuevaCategoria() {
-      this.$router.push('/FormEventos')
+      this.$router.push("/FormEventos");
     },
-
 
     example(id) {
-  
-  this.$router.push( `/DetalleCategoria/${id}`)
- 
-},
-
-    editarpublicacion(id) {
-     
-      this.$router.push(`/EditarPEvento/${id}`)
+      this.$router.push(`/DetalleCategoria/${id}`);
     },
 
+    editarpublicacion(id) {
+      this.$router.push(`/EditarPEvento/${id}`);
+    },
 
     ejemplo(id) {
-  
-     this.$router.push(`/DetalleCategoria/${id}`)
-   },
-
-
-
+      this.$router.push(`/DetalleCategoria/${id}`);
+    },
 
     DetalleCategoria(id) {
-      this.$router.push({name:'DetalleCategoria',params :{id:id}})
+      this.$router.push({ name: "DetalleCategoria", params: { id: id } });
     },
     EliminarPublicacion(id) {
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
         },
-        buttonsStyling: false
-      })
-      swalWithBootstrapButtons.fire({
-        title: 'Seguro desea eliminar el evento?',
-        text: "Esta accion no tiene reversa!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'No, cancelar!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.axios.delete("http://127.0.0.1:8000/api/publicacion/" + id).then((response) => {
-            this.axios.get("http://127.0.0.1:8000/api/publicacion").then((response) => {
-            this.categoria = response.data;
-      })
-            this.publicacion = response.data;
-            console.log(data)
-          });
-         
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-         
-        }
-      })
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Seguro desea eliminar el evento?",
+          text: "Esta accion no tiene reversa!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Si, eliminar!",
+          cancelButtonText: "No, cancelar!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.axios
+              .delete("http://127.0.0.1:8000/api/publicacion/" + id)
+              .then((response) => {
+                this.axios
+                  .get("http://127.0.0.1:8000/api/publicacion")
+                  .then((response) => {
+                    this.categoria = response.data;
+                  });
+                this.publicacion = response.data;
+                console.log(data);
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+          }
+        });
     },
+
     
-  }
-}
+  },
+};
 </script>
 <style>
-.eventostable{
+.eventostable {
   display: table-header-group;
-    vertical-align: middle;
-    border-color: inherit;
+  vertical-align: middle;
+  border-color: inherit;
 }
 </style>
