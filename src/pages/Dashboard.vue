@@ -11,7 +11,7 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Eventos</h4>
+            <h4 class="title">Ubicacion de incidencias</h4>
             <p class="category">
               <span class="text-success"
                 ><i class="fas fa-long-arrow-alt-up"></i> 55%
@@ -22,11 +22,13 @@
 
           <template slot="footer">
             <div class="stats">
-              <md-button @click="show=true" class="md-icon-button" disabled>
-        <md-icon>add</md-icon>
-      </md-button>
+              <md-icon>access_time</md-icon>
               updated 4 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
+            
           </template>
         </chart-card>
       </div>
@@ -41,7 +43,7 @@
           data-background-color="purple"
         >
           <template slot="content">
-            <h4 class="title">Noticias</h4>
+            <h4 class="title">Incidencias por fecha</h4>
             <p class="category">Last Campaign Performance</p>
           </template>
 
@@ -49,6 +51,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               updated 10 days ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -72,6 +77,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               campaign sent 26 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -100,6 +108,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               updated 4 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -117,7 +128,7 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Noticias</h4>
+            <h4 class="title">Publicaciones recientes</h4>
             <p class="category">Last Campaign Performance</p>
           </template>
 
@@ -125,6 +136,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               updated 10 days ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -148,6 +162,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               campaign sent 26 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -284,12 +301,11 @@
         </nav-tabs-card> -->
       </div>
     </div>
-    ///inicializando modal
     <div>
-    
+   
     <b-modal
       v-model="show"
-      title="Modal Variants"
+      title="Publicaciones recientes"
       :header-bg-variant="headerBgVariant"
       :header-text-variant="headerTextVariant"
       :body-bg-variant="bodyBgVariant"
@@ -298,64 +314,14 @@
       :footer-text-variant="footerTextVariant"
     >
       <b-container fluid>
-        <b-row class="mb-1 text-center">
-          <b-col cols="3"></b-col>
-          <b-col>Background</b-col>
-          <b-col>Text</b-col>
-        </b-row>
-
-        <b-row class="mb-1">
-          <b-col cols="3">Header</b-col>
-          <b-col>
-            <b-form-select
-              v-model="headerBgVariant"
-              :options="variants"
-            ></b-form-select>
-          </b-col>
-          <b-col>
-            <b-form-select
-              v-model="headerTextVariant"
-              :options="variants"
-            ></b-form-select>
-          </b-col>
-        </b-row>
-
-        <b-row class="mb-1">
-          <b-col cols="3">Body</b-col>
-          <b-col>
-            <b-form-select
-              v-model="bodyBgVariant"
-              :options="variants"
-            ></b-form-select>
-          </b-col>
-          <b-col>
-            <b-form-select
-              v-model="bodyTextVariant"
-              :options="variants"
-            ></b-form-select>
-          </b-col>
-        </b-row>
-
-        <b-row>
-          <b-col cols="3">Footer</b-col>
-          <b-col>
-            <b-form-select
-              v-model="footerBgVariant"
-              :options="variants"
-            ></b-form-select>
-          </b-col>
-          <b-col>
-            <b-form-select
-              v-model="footerTextVariant"
-              :options="variants"
-            ></b-form-select>
-          </b-col>
-        </b-row>
+    <select>
+      
+    </select>
       </b-container>
 
       <template #modal-footer>
         <div class="w-100">
-          <p class="float-left">Modal Footer Content</p>
+          
           <b-button
             variant="primary"
             size="sm"
@@ -398,7 +364,6 @@ export default {
         bodyTextVariant: 'dark',
         footerBgVariant: 'warning',
         footerTextVariant: 'dark',
-
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],

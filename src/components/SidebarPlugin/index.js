@@ -1,6 +1,7 @@
 import Sidebar from "./SideBar.vue";
 import SidebarLink from "./SidebarLink.vue";
 import Navbar from "./Navbar.vue";
+import Navbarusuario from "./UserNarvar.vue";
 const SidebarStore = {
   showSidebar: false,
   displaySidebar(value) {
@@ -26,7 +27,9 @@ const SidebarPlugin = {
     Vue.component("side-bar", Sidebar);
     Vue.component("sidebar-link", SidebarLink);
     Vue.component("navbar", Navbar);
+    Vue.component("navbarusuario", Navbarusuario);
   },
 };
+
 
 export default SidebarPlugin;

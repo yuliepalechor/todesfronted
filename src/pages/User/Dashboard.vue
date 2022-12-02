@@ -1,15 +1,19 @@
 <template>
 
   <div>
-
-    <div class="navbar">
+    <navbarusuario></navbarusuario>
+    <!-- <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <img src="../../assets/img/logonue.png" width="80px" height="80px" alt="Logo" />
-
+          <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
         </div>
+        
       </div>
-    </div>
+    </div> -->
+    
+      
+      
+    
     <!-- Start home section -->
     
     <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
@@ -22,7 +26,7 @@
 
         <!-- Start title section -->
         <div class="title">
-
+      {{usernombre}}
           <h1>
             <font style="vertical-align: inherit;">
               <font style="vertical-align: inherit;">Lo que hacemos?</font>
@@ -157,6 +161,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
+
 import axios from "axios"
 /** modal */
 
@@ -165,6 +170,10 @@ export default {
 
   data() {
     return {
+      usuarionombre:null,
+      usuarioapellido:null,
+      usuarioemail:null,
+
       publicacion: null,
       noticias: null,
       showModal: false,
@@ -201,6 +210,9 @@ export default {
   /**/
 
   mounted() {
+    this.usuarionombre=sessionStorage.getItem("username")
+    this.usuarioapellido=sessionStorage.getItem("userapellido")
+
     axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
         console.log(response);
         this.noticias = response.data;

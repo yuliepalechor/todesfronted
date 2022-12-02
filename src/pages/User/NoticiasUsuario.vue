@@ -1,0 +1,3 @@
+<template>
+    <navbarusuario></navbarusuario>
+</template>

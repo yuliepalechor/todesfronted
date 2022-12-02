@@ -4,6 +4,7 @@ import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 import Sigin from "@/pages/Sign-in.vue";
 import SigUp from "@/pages/SigUp.vue";
 
+
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
 import TableList from "@/pages/TableList.vue";
@@ -23,6 +24,8 @@ import NuevoUsuario from "@/pages/Admin/Usuarios/NuevoUsuario.vue";
 import EditarUsuario from "@/pages/Admin/Usuarios/EditarUsuario.vue";
 
 import UsuarioComunidad from "@/pages/User/Dashboard.vue";
+import EventosUsuario from "@/pages/User/EventosUsuario.vue";
+import NoticiasUsuario from "@/pages/User/NoticiasUsuario.vue";
 
 
 import Icons from "@/pages/Icons.vue";
@@ -37,6 +40,18 @@ const routes = [
     name: "UsuarioComunidad",
     component: UsuarioComunidad,
   },
+    //eventos usuarios
+    {
+      path: "/EventosUsuario",
+      name: "EventosUsuario",
+      component: EventosUsuario,
+    },
+            //noticias de usuarios
+    {
+      path: "/NoticiasUsuario",
+      name: "NoticiasUsuario",
+      component: NoticiasUsuario,
+    },
 
 
 
@@ -147,6 +162,9 @@ const routes = [
           name: "EditarUsuario",
           component: EditarUsuario,
         },
+          
+
+
 
         
         
