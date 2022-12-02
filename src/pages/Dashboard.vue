@@ -115,7 +115,7 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Noticias</h4>
+            <h4 class="title">Usuarios con mayor numero de incidencias</h4>
             <p class="category">Last Campaign Performance</p>
           </template>
 
