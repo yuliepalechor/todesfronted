@@ -9,6 +9,7 @@
             <md-card id="cardcont" >
               <md-card-header style="background-color: #00adb5;text-align: center;">
                 <h4 class="title">LOGEO</h4>
+                
                 <p class="category">Digite Email y Contraseña</p>
               </md-card-header>
               <md-card-content>
@@ -141,6 +142,9 @@ export default {
   },
   data() {
     return {
+      usuarionombre:null,
+      usuarioapellido:null,
+      usuarioemail:null,
 		form:{
       email: null,
       password: null,
@@ -153,6 +157,15 @@ export default {
           .then((data) => {
          console.log(data.data.status);
             if (data.data.status == "1") {
+         /**     this.$session.set("userid", data.data.id[0]);
+              this.$session.set("username", data.data.name[0]);
+              this.$session.set("token", data.data.access_token[0]);>*/ 
+              sessionStorage.setItem("userid", data.data.id), /**con storage  */
+              sessionStorage.setItem("username", data.data.name),
+              sessionStorage.setItem("apellido", data.data.apellido),
+              sessionStorage.setItem("email", data.data.email),
+              sessionStorage.setItem("token", data.data.access_token)
+
               if(data.data.rol[0]=="Admin"){
                 this.$router.push("/dashboard");
               }else{

@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="navbar">
+     
       <div class="navbar-inner">
         <div class="container">
           <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
@@ -14,15 +15,17 @@
     <!-- End home section -->
     <!-- Service section start -->
     <div style="background-color:#891A89" class="section primary-section" id="service">
-
+      
       <div class="container">
 
         <!-- Start title section -->
         <div class="title">
-
+         
           <h1>
+            
             <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Lo que hacemos?</font>
+              <font style="vertical-align: inherit;">Lo que hacemos?{{usuarionombre}} </font>
+              {{usuarioapellido}}
             </font>
           </h1>
           <!-- Section's title goes here -->
@@ -141,33 +144,34 @@
     <!-- *********************************** MODAL 2 ********************************* -->
 
     <div >
-      <b-modal v-model="show" id="informacion" >
+      <b-modal v-model="show1" id="informacion" >
         <template #modal-header class="modal-header" >
           <h5>INFORMACION</h5>
         </template>
         <b-container fluid>
-          <b-img v-bind="imagen" src="https://picsum.photos/600/300/?image=25" rounded="circle"></b-img>
+          <b-img v-bind="imagen1" src="../../assets/img/lgtbf.jpg" rounded="circle"></b-img>
           <b-row class="my-1">
             <b-col sm="3">
-              <label for="numero p">Publicacion N°:</label> <br>
-              <label for="numero p">Nombre: </label> <br>
-              <label for="numero p">descripcion:</label> <br>
-              <label for="numero p">lugar: </label> <br>
-              <label for="numero p">responsable:</label> <br>
-              <label for="numero p">estado: </label> <br>
-              <label for="numero p">Tipo:</label> <br>
-              <label for="numero p">archivo: </label>
+             
+              <label for="nombre p">Nombre: </label> <br>              
+              <label for="lugar p">lugar: </label> <br>
+              <label for="resp p">responsable:</label> <br>
+              <label for="estado p">estado: </label> <br>
+              <label for="tipo p">Tipo:</label> <br>
+              <label for="desc p">descripcion:</label> <br>
+              
             </b-col>
             
-            <b-col sm="9"> 
-              <p for="numero p">{{evento.id}}</p>
-              <p for="numero p">{{evento.nombre_publicacion}}</p>
-              <p for="numero p">{{evento.descripcion_publicacion}}</p>
+            <b-col sm="9">    
+              
+              <p for="numero p">{{evento.nombre_publicacion}}</p>    
+
               <p for="numero p">{{evento.lugar}}</p>
               <p for="numero p">{{evento.responsable}}</p>
               <p for="numero p">{{evento.estado}}</p>
               <p for="numero p">{{evento.tipo}}</p>
-              <p for="numero p">{{evento.ruta_archivo}}</p>
+              <p for="numero p">{{evento.descripcion_publicacion}}</p>
+              
             </b-col>
 
           </b-row>
@@ -201,33 +205,34 @@
  <!-- *********************************** MODAL NOTICIAS********************************* -->
 
  <div>
-      <b-modal v-model="show" id="informacion2">
+      <b-modal v-model="show2" id="informacion2">
         <template #modal-header class="modal-header">
           <h5>INFORMACION</h5>
         </template>
         <b-container fluid>
-          <b-img v-bind="imagen" src="https://picsum.photos/600/300/?image=25" rounded="circle"></b-img>
+          <b-img v-bind="imagen2" src="../../assets/img/fondo.png" rounded="circle"></b-img>
           <b-row class="my-1">
             <b-col sm="3">
-              <label for="numero p">Publicacion N°:</label> <br>
-              <label for="numero p">Nombre: </label> <br>
-              <label for="numero p">descripcion:</label> <br>
-              <label for="numero p">lugar: </label> <br>
-              <label for="numero p">responsable:</label> <br>
-              <label for="numero p">estado: </label> <br>
-              <label for="numero p">Tipo:</label> <br>
-              <label for="numero p">archivo: </label>
+              
+              <label for="numero p">Nombre: </label>            
+              <label for="numero p">lugar: </label>
+              <label for="numero p">responsable:</label>
+              <label for="numero p">estado: </label>
+              <label for="numero p">Tipo:</label>
+              <label for="numero p">descripcion:</label>
+              
             </b-col>
             
             <b-col sm="9"> 
-              <p for="numero p">{{noticia.id}}</p>
-              <p for="numero p">{{noticia.nombre_publicacion}}</p>
-              <p for="numero p">{{noticia.descripcion_publicacion}}</p>
+             
+              <p for="numero p">{{noticia.nombre_publicacion}}</p> 
+
               <p for="numero p">{{noticia.lugar}}</p>
               <p for="numero p">{{noticia.responsable}}</p>
               <p for="numero p">{{noticia.estado}}</p>
               <p for="numero p">{{noticia.tipo}}</p>
-              <p for="numero p">{{noticia.ruta_archivo}}</p>
+              <p for="numero p">{{noticia.descripcion_publicacion}}</p>
+            
             </b-col>
 
           </b-row>
@@ -275,7 +280,10 @@ export default {
 
   data() {
     return {
-      imagen: { blank: true, blankColor: '#777', width: 75, height: 75, class: 'm1' },
+      usuarionombre:null,
+      usuarioapellido:null,
+      imagen1: {/* blankColor: '#777',*/ width: 75, height: 75, class: 'm1' },
+      imagen2: {blankColor: '#777', width: 75, height: 75, class: 'm1' },
       text:'',
       evento: {}, /* variablr para guardar el OBJETO Evento de publicacion seleccionada */
       noticia: {}, /* variablr para traer nombre publicacion */
@@ -283,7 +291,8 @@ export default {
       /*direccionp: null, /* variablr para traer direccion de la publicacion */
       /* estadop: null, /* variablr para traer el estado de publicacion */
       /*encargadop: null, /* variablr para traer el encargado de publicacion */
-      show: false,
+      show1: false,
+      show2: false,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       headerBgVariant: '#9c27b0',
       headerTextVariant: 'light',
@@ -327,14 +336,17 @@ export default {
   /**/
 
   mounted() {
-    axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
-      console.log(response);
-      this.noticias = response.data;
-    });
 
+    this.usuarionombre=sessionStorage.getItem("username")
+    this.usuarioapellio=sessionStorage.getItem('apellido')
     axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
       console.log(response);
       this.publicacion = response.data;
+    });
+
+    axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
+      console.log(response);
+      this.noticias = response.data;
     });
 
   },
