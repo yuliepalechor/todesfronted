@@ -14,38 +14,7 @@
           <md-card-content>
            
             <div >
-              <!-- <md-table v-model="categoria" :table-header-color="tableHeaderColor" md-card md-sort="nombre" md-sort-order="asc">
-                <md-table-row slot="md-table-row" slot-scope="{ item }">
-                  <md-table-cell md-label="Id">{{ item.id }}</md-table-cell>
-                  <md-table-cell md-label="Nombre">{{ item.nombre }}</md-table-cell>
-                  <md-table-cell md-label="Descripcion">{{ item.descripcion }}</md-table-cell>
-                  <md-table-cell md-label="Fecha y Hora">{{ item.fecha_y_Hora }}</md-table-cell>
-                  <md-table-cell md-label="Lugar">{{ item.lugar }}</md-table-cell>
-                  <md-table-cell md-label="Estado">{{ item.estado }}</md-table-cell>
-                  <md-table-cell md-label="Url Externa">{{ item.urlExterna}}</md-table-cell>
-                  <md-table-cell md-label="Responsable">{{ item.responsable }}</md-table-cell>
-                  <md-table-cell md-label="Fecha Caducidad">{{ item.fecha_caducidad }}</md-table-cell>
-                  <md-table-cell md-label="Tipo">{{ item.tipo }}</md-table-cell>
-
-                  <md-table-cell md-label="Editar">
-                    <md-button  @click="editar(editarpublicacion(item.id))" class="md-just-icon md-simple md-primary">
-                      <md-icon>edit</md-icon>
-                      <md-tooltip md-direction="top">Edit</md-tooltip>
-                    </md-button>
-                  </md-table-cell>
-
-                  <md-table-cell md-label="Eliminar">
-                    <md-button @click="EliminarPublicacion(item.id)" class="md-just-icon md-simple md-danger">
-                      <md-icon>close</md-icon>
-                      <md-tooltip md-direction="top">Close</md-tooltip>
-                    </md-button>
-                    
-                  </md-table-cell>
-                </md-table-row>
-                
-                
               
-              </md-table> -->
               <b-form-input v-model="filter" type="search" placeholder="Buscar...">
 
                </b-form-input>
@@ -53,7 +22,7 @@
                 
 
                 <template v-slot:cell(Editar)="row">
-                  <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
+        	          <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
                       <md-icon>edit</md-icon>
                       <md-tooltip md-direction="top">Edit</md-tooltip>
                     </md-button>
@@ -69,21 +38,13 @@
           
                 <template v-slot:cell(ejemplo)="row">
                   
-                    <button  @click="ejemplo(row.item.id)" type="button" class="btn btn-primary">+</button>
-                    <b-button @click="show=true" variant="primary">Show Modal</b-button>
+                    
+                    <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
            
           
                 
                 </template>
 
-                <template v-slot:cell(example)="row">
-                  
-                  <button  @click="example(row.item.id)" type="button" class="btn btn-primary">+</button>
-                    
-              
-              </template>
-            
-  
                </b-table>              
               
 
@@ -102,7 +63,7 @@
     </div>
 
     <div>
-        <b-modal size="xl" v-model="show" title="Modal Variants">
+        <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
           <b-container fluid>
             <table class="table table-bordered table-striped">
               <thead>
@@ -112,38 +73,29 @@
                   <!--<th>Publicacion</th>-->
                   <th>Categoria</th>
                   <th>Descripcion de la Categoria</th>
-                  <th>Nueva Categoria</th>
+           
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="detalle in detalles" :key="detalle.id">
-                  <td v-text="detalle.id_detalle"></td>
-                  <!---<td v-text="detalle.Prioridad_detallle"></td>-->
-                  <td v-text="detalle.Prioridad_detallle"></td>
-                  <td v-text="detalle.Nombresdecategorias"></td>
-                  <td v-text="detalle.Descripciodecategorias"></td>
-                  <td>
-                    <b-button
-                      variant="danger"
-                      size="sm"
-                      @click="AsignarCategoria(detalle.id_detalle)"
-                      >Nuevo</b-button
-                    >
-                  </td>
+                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id_detalle">
+                  <td v-text="categoriaasig.id_detalle"></td>
+                  <td v-text="categoriaasig.Prioridad_detallle"></td>
+                  <td v-text="categoriaasig.Nombresdecategorias"></td>
+                  <td v-text="categoriaasig.Descripciodecategorias"></td>
+            
                 </tr>
               </tbody>
             </table>
           </b-container>
-
-          <template #modal-footer>
+              <template #modal-footer>
             <div class="w-100">
               <b-button
                 variant="primary"
                 size="sm"
                 class="float-right"
                 @click="show = false"
-              >
-                Close
+              >Nuevo
+                
               </b-button>
             </div>
           </template>
@@ -168,11 +120,11 @@ export default {
   },
   data() {
     return {
-
       show: false,
 
       detalles: null,
       categoria: [],
+      categoriaasig: [],
       filter: null,
       perpage: 10,
       currentPage: 1,
@@ -189,8 +141,7 @@ export default {
         { key: "tipo", label: "Tipo" },
         { key: "Editar", label: "Editar" },
         { key: "Eliminar", label: "Eliminar" },
-        { key: "ejemplo", label: "+" },
-        { key: "example", label: "-" },
+        { key: "ejemplo", label: "Ver Categorias" },
       ],
     };
   },
@@ -206,6 +157,13 @@ export default {
     },
   },
   methods: {
+    listaasignacion(id) {
+      this.axios
+        .get("http://127.0.0.1:8000/api/detalle_categoria/" + id)
+        .then((response) => {
+          this.categoriaasig = response.data;
+        });
+    },
     updatePagination(page, pageSize, sort, sortOrder) {
       console.log("pagination has updated", page, pageSize, sort, sortOrder);
     },
@@ -273,8 +231,6 @@ export default {
           }
         });
     },
-
-    
   },
 };
 </script>
