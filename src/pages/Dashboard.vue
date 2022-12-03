@@ -11,23 +11,62 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Eventos</h4>
+            <h4 class="title">Ubicacion de incidencia</h4>
             <p class="category">
               <span class="text-success"
                 ><i class="fas fa-long-arrow-alt-up"></i> 55%
               </span>
-              increase in today sales.
+              <div>
+      
+
+    <b-modal
+      v-model="show"
+      title="Ubicacion de incidencia"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
+      :body-bg-variant="bodyBgVariant"
+      :body-text-variant="bodyTextVariant"
+      :footer-bg-variant="footerBgVariant"
+      :footer-text-variant="footerTextVariant"
+    >
+      <b-container fluid>
+      
+      </b-container>
+
+      <template #modal-footer>
+        <div class="w-100">
+         
+          <b-button
+            variant="primary"
+            size="sm"
+            class="float-right"
+            @click="show=false"
+          >
+            Close
+          </b-button>
+        </div>
+      </template>
+    </b-modal>
+  </div>
             </p>
           </template>
+          
 
+         
           <template slot="footer">
             <div class="stats">
               <md-icon>access_time</md-icon>
-              updated 4 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+              <md-icon>menu</md-icon>
+              </md-button>
             </div>
           </template>
+          
         </chart-card>
       </div>
+
+
+      
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
       >
@@ -145,7 +184,9 @@
           <template slot="footer">
             <div class="stats">
               <md-icon>access_time</md-icon>
-              campaign sent 26 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+              <md-icon>menu</md-icon>
+              </md-button>
             </div>
           </template>
         </chart-card>
@@ -282,6 +323,8 @@
         </nav-tabs-card> -->
       </div>
     </div>
+    
+
   </div>
 </template>
 
@@ -304,6 +347,7 @@ export default {
   },
   data() {
     return {
+      show:false,
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],
