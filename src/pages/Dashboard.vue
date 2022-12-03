@@ -22,7 +22,9 @@
 
           <template slot="footer">
             <div class="stats">
-              <md-icon>access_time</md-icon>
+              <md-button @click="show=true" class="md-icon-button" disabled>
+        <md-icon>add</md-icon>
+      </md-button>
               updated 4 minutes ago
             </div>
           </template>
@@ -305,6 +307,15 @@ export default {
   },
   data() {
     return {
+      show: false,
+        variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+        headerBgVariant: 'dark',
+        headerTextVariant: 'light',
+        bodyBgVariant: 'light',
+        bodyTextVariant: 'dark',
+        footerBgVariant: 'warning',
+        footerTextVariant: 'dark',
+
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],
