@@ -90,15 +90,16 @@
               <template #modal-footer>
             <div class="w-100">
               <b-button
+              v-b-modal="'asignaciones'"
+              @click="listaasignacion(row.item.id)" 
                 variant="primary"
                 size="sm"
                 class="float-right"
-                @click="show = false"
+               
               >Nuevo
                 
               </b-button>
-              <b-button v-b-modal="'asignaciones'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
-           
+              
           
                       
 
@@ -117,11 +118,34 @@
              
               </thead>
               <tbody>
-           
+           <template>
+            <div class="about">
+              <input type="text" class="bg-gray-300 px-4 py-2" v-model="state">
+            </div>
+           </template>
               </tbody>
             </table>
           </b-container>
-            
+          <template #modal-footer>
+            <div class="w-100">
+              <b-button
+              v-b-modal="'asignaciones'"
+              @click="listaasignacion(row.item.id)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+               
+              >Cancelar
+                
+              </b-button>
+              
+          
+                      
+
+              
+            </div>
+
+          </template>
         </b-modal>
       </div>
   </div>
@@ -143,6 +167,9 @@ export default {
   },
   data() {
     return {
+
+
+      state:'',
       show: false,
 
       detalles: null,
