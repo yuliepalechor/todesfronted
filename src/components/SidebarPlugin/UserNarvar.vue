@@ -1,37 +1,57 @@
 <template>
    <div>
-    
-    <template>
-    <div class="navbar">
+
+    <div clas="navbar">
       
-  <b-navbar toggleable="lg" type="dark" variant="info">
-    <b-navbar-brand href="#">TODES</b-navbar-brand>
+      <b-navbar toggleable="lg" type="dark">
+        <div class="navbar-inner">
+          <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
+        </div>
+        
+        <b-navbar-brand href="#">TODES</b-navbar-brand >
+       
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      
+        <div class="item">
+          <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <li class="nav-item">
+                  <router-link style="color:#ffff" class="nav-link me-2" to="/EventosUsuario"><i class="fas fa-key opacity-6 text-dark me-1"></i>
+                   Eventos</router-link>
+                 
+                </li>
 
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+            <li class="nav-item">
+                  <router-link style="color:#ffff" class="nav-link me-2" to="/NoticiasUsuario"><i class="fas fa-key opacity-6 text-dark me-1"></i>
+                    Noticias</router-link>
+                 
+                </li>
 
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <b-nav-item href="#">Eventos</b-nav-item>
-        <b-nav-item href="#">Noticias</b-nav-item>
-        <b-nav-item href="#">Incidencias</b-nav-item>
+            <b-nav-item href="#">Incidencias</b-nav-item>
+    
+          </b-navbar-nav>
+    
+          <b-navbar-nav class="ml-auto">
+            <b-nav-item-dropdown right>
+              <template #button-content>
+                <em>Usuario</em>
+              </template>
+     
+             <b-dropdown-item href="#">Perfil</b-dropdown-item>
+              <b-dropdown-item href="#">Salir</b-dropdown-item>
+            </b-nav-item-dropdown>
+          </b-navbar-nav>
+        </b-collapse>
+        </div>
+        
+      </b-navbar>
+    </div>
+    
+    
 
-      </b-navbar-nav>
-
-      <b-navbar-nav class="ml-auto">
-        <b-nav-item-dropdown right>
-          <template #button-content>
-            <em>Usuario</em>
-          </template>
- 
-         <b-dropdown-item href="#">Perfil</b-dropdown-item>
-          <b-dropdown-item href="#">Salir</b-dropdown-item>
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
 </div>
-</template>
-   </div>
+
+   
 </template>
 <style>
 
@@ -57,4 +77,8 @@
   width: 120px;
   height: 40px;
 }
+
+
+
+
 </style>
