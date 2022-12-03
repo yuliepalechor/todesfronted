@@ -1,31 +1,35 @@
 <template>
   <div>
     <div class="navbar">
-     
+      
+
       <div class="navbar-inner">
         <div class="container">
           <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
-        </div>
-      </div>
+        </div>        
+      </div>   
+      {{ usuarionombre }}  
+      {{ usuarioapellido }}
     </div>
+    
     <!-- Start home section -->
 
-    <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200"  alt="Logo"/> </center>
+    <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" /> </center>
 
     <!-- End home section -->
     <!-- Service section start -->
     <div style="background-color:#891A89" class="section primary-section" id="service">
-      
+
       <div class="container">
 
         <!-- Start title section -->
         <div class="title">
-         
+
           <h1>
-            
+
             <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Lo que hacemos?{{usuarionombre}} </font>
-              {{usuarioapellido}}
+              <font style="vertical-align: inherit;">Lo que hacemos? </font>
+              
             </font>
           </h1>
           <!-- Section's title goes here -->
@@ -64,22 +68,26 @@
 
 
       </div>
-
+      <br>
+      <center>
+        <h1> EVENTOS</h1>
+      </center>
       <!--************************** CARRUSEL TRAE SOLO EVENTOS *******************************  -->
 
-      <VueSlickCarousel v-bind="settings" class="carrusel">
+      <VueSlickCarousel v-bind="traeventos" class="carrusel">
 
-        <div v-for="publicacion in publicacion" :key="publicacion">
+        <div v-for="publieventos in publieventos" :key="publieventos">
           <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
             style="max-width: 10rem;" class="mb-2">
             <b-card-text>
-              <H6> Publicacion N°: </H6> {{ publicacion.id }}
-              <h6> Nombre:</h6>{{ publicacion.nombre_publicacion }}
-              <H6> Tipo de publicacion: </H6> {{ publicacion.tipo }}
+              <H6> Publicacion N°: </H6> {{ publieventos.id }}
+              <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
+              <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
 
             </b-card-text>
 
-            <button v-b-modal="'informacion'" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button>
+            <button v-b-modal="'informacioneventos'" v-on:click="mostrareventos(publieventos)">Ir a publicacion
+            </button>
             <!-- <button @click="show = true" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button> -->
 
           </b-card>
@@ -92,15 +100,18 @@
         <div></div>
 
       </VueSlickCarousel>
+      <br> <br>
 
-      <h1> noticias</h1>
+      <center>
+        <h1> NOTICIAS</h1>
+      </center>
       <br>
 
       <!-- ************************** FIN CARRUSEL QUE TRAE SOLO EVENTOS *********************** -->
 
       <!--************************** CARRUSEL TRAE SOLO NOTICIAS *******************************  -->
 
-      <VueSlickCarousel v-bind="propiedades" class="carrusel">
+      <VueSlickCarousel v-bind="traenoticias" class="carrusel">
 
         <div v-for="noticias in noticias" :key="(noticias)">
           <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
@@ -112,8 +123,8 @@
 
             </b-card-text>
 
-            <button v-b-modal="'informacion2'" v-on:click="mostrarinformacion2(noticias)">Ir a publicacion </button>
-              
+            <button v-b-modal="'informacionnoticias'" v-on:click="mostrarnoticias(noticias)">Ir a publicacion </button>
+
             <!-- traemos  
               en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
               para este caso el id de la noticia -->
@@ -143,126 +154,108 @@
 
     <!-- *********************************** MODAL 2 ********************************* -->
 
-    <div >
-      <b-modal v-model="show1" id="informacion" >
-        <template #modal-header class="modal-header" >
-          <h5>INFORMACION</h5>
-        </template>
-        <b-container fluid>
-          <b-img v-bind="imagen1" src="../../assets/img/lgtbf.jpg" rounded="circle"></b-img>
-          <b-row class="my-1">
-            <b-col sm="3">
-             
-              <label for="nombre p">Nombre: </label> <br>              
-              <label for="lugar p">lugar: </label> <br>
-              <label for="resp p">responsable:</label> <br>
-              <label for="estado p">estado: </label> <br>
-              <label for="tipo p">Tipo:</label> <br>
-              <label for="desc p">descripcion:</label> <br>
-              
-            </b-col>
-            
-            <b-col sm="9">    
-              
-              <p for="numero p">{{evento.nombre_publicacion}}</p>    
-
-              <p for="numero p">{{evento.lugar}}</p>
-              <p for="numero p">{{evento.responsable}}</p>
-              <p for="numero p">{{evento.estado}}</p>
-              <p for="numero p">{{evento.tipo}}</p>
-              <p for="numero p">{{evento.descripcion_publicacion}}</p>
-              
-            </b-col>
-
-          </b-row>
-
-          
-          </b-container>
-        <!-- ******** area de comentario ******** -->
-        <div>
-    <b-form-textarea
-      id="textarea-state"
-      v-model="text"
-      :state="(text.length <= 250)"
-      placeholder="escriba su comentario maximo 250 caracteres"
-      rows="6"
-      maxlength = "250"
-      
-    ></b-form-textarea>
-  </div>
-  <!-- ******** area de comentario ******** -->
-        <template #modal-footer="{ close }" style="text-align: right;">
-          <div class="w-100">
-            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
-          </div>
-          
-        </template>
-        
-      </b-modal>
-    </div>
-    <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
-
- <!-- *********************************** MODAL NOTICIAS********************************* -->
-
- <div>
-      <b-modal v-model="show2" id="informacion2">
+    <div>
+      <b-modal v-model="show1" id="informacioneventos">
         <template #modal-header class="modal-header">
           <h5>INFORMACION</h5>
         </template>
         <b-container fluid>
-          <b-img v-bind="imagen2" src="../../assets/img/fondo.png" rounded="circle"></b-img>
-          <b-row class="my-1">
-            <b-col sm="3">
-              
-              <label for="numero p">Nombre: </label>            
-              <label for="numero p">lugar: </label>
-              <label for="numero p">responsable:</label>
-              <label for="numero p">estado: </label>
-              <label for="numero p">Tipo:</label>
-              <label for="numero p">descripcion:</label>
-              
-            </b-col>
-            
-            <b-col sm="9"> 
-             
-              <p for="numero p">{{noticia.nombre_publicacion}}</p> 
+          <img class="img" :src="cardUserImage" />
+          <!--<b-img v-bind="imagen1" src="../../assets/img/lgtbf.jpg" rounded="circle"></b-img>-->
+          <b-row class="my-2">
+            <!--<b-col sm="3">-->
 
-              <p for="numero p">{{noticia.lugar}}</p>
-              <p for="numero p">{{noticia.responsable}}</p>
-              <p for="numero p">{{noticia.estado}}</p>
-              <p for="numero p">{{noticia.tipo}}</p>
-              <p for="numero p">{{noticia.descripcion_publicacion}}</p>
-            
-            </b-col>
+              <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>              
+              <label for="lugar p">lugar: <p for="numero p">{{ evento.lugar }}</p>   </label>                        
+              <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>               
+              <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>              
+              <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>               
+              <label for="desc p">descripcion: <p for="numero p">{{ evento.descripcion_publicacion }}</p></label>
+              
+
+           <!-- </b-col>-->
+            <!--
+
+            <b-col sm="9">
+            </b-col> -->
 
           </b-row>
 
-          
-          </b-container>
+
+        </b-container>
         <!-- ******** area de comentario ******** -->
         <div>
-    <b-form-textarea
-      id="textarea-state"
-      v-model="text"
-      :state="(text.length <= 250)"
-      placeholder="escriba su comentario maximo 250 caracteres"
-      rows="6"
-      maxlength = "250"
-      
-    ></b-form-textarea>
-  </div>
-  <!-- ******** area de comentario ******** -->
+          <b-form-textarea id="textarea-state" v-model="text" :state="(text.length <= 250)"
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250"></b-form-textarea>
+        </div>
+        <!-- ******** area de comentario ******** -->
         <template #modal-footer="{ close }" style="text-align: right;">
           <div class="w-100">
             <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
           </div>
-          
+
         </template>
+
+      </b-modal>
+    </div>
+    <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
+
+    <!-- *********************************** MODAL NOTICIAS********************************* -->
+
+    <div>
+      <b-modal v-model="show2" id="informacionnoticias">
         
+        <template #modal-header class="modal-header">
+          <h5>INFORMACION</h5>
+          <b-img v-bind="mainProps" src="../../assets/img/logotodess.png" rounded="circle"></b-img> 
+        </template>
+        <b-container fluid>
+          <img class="img" :src="cardUserImage" />
+          
+          <b-row class="my-1">
+          <!--  <b-col sm="3">-->
+
+              <label for="nombre_P">Nombre:  <p for="nombre-P">{{ noticia.nombre_publicacion }}</p></label>
+              <label for="lugar">lugar:  <p for="lugar">{{ noticia.lugar }}</p></label>
+              <label for="responsable">responsable:  <p for="responsable">{{ noticia.responsable }}</p></label>
+              <label for="estado">estado:  <p for="estado">{{ noticia.estado }}</p> </label>
+              <label for="tiop">Tipo: <p for="tipo">{{ noticia.tipo }}</p></label>
+              <label for="descripcion">descripcion:  <p for="descripcion">{{ noticia.descripcion_publicacion }}</p></label>
+             
+
+            <!--</b-col>-->
+          <!--  <b-col sm="9">
+
+              
+             
+
+            </b-col>-->
+
+          </b-row>
+
+
+        </b-container>
+        <!-- ******** area de comentario ******** -->
+        <div>
+          <b-form-textarea id="textarea-state" v-model="text" :state="(text.length <= 250)"
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+          </b-form-textarea>
+          <center><b-button pill variant="primary">Guardar Comentario</b-button></center>
+               
+            
+        </div>
+        <!-- ******** area de comentario ******** -->
+        <template #modal-footer="{ close }" style="text-align: right;">
+          <div class="w-100">
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+          </div>
+
+        </template>
+
       </b-modal>
     </div>
     <!-- *********************************** FIN MODAL ********************************* -->
-    
+
   </div>
 </template>
 
@@ -277,14 +270,20 @@ import axios from "axios"
 
 export default {
   name: 'App',
+  props: {
+    cardUserImage: {
+      type: String,
+      default: require("@/assets/img/logotodess.png"),
+    },
+  },
 
   data() {
     return {
-      usuarionombre:null,
-      usuarioapellido:null,
+      usuarionombre: null,
+      usuarioapellido: null,
       imagen1: {/* blankColor: '#777',*/ width: 75, height: 75, class: 'm1' },
-      imagen2: {blankColor: '#777', width: 75, height: 75, class: 'm1' },
-      text:'',
+      imagen2: { blankColor: '#777', width: 75, height: 75, class: 'm1' },
+      text: '',
       evento: {}, /* variablr para guardar el OBJETO Evento de publicacion seleccionada */
       noticia: {}, /* variablr para traer nombre publicacion */
       /*descripcionp: null, /* variablr para traer la descripcion publicacion */
@@ -300,11 +299,11 @@ export default {
       bodyTextVariant: 'dark',
       footerBgVariant: 'warning',
       footerTextVariant: 'dark',
-      publicacion: null,
+      publieventos: null,
       noticias: null,
       showModal: false,
 
-      settings: {
+      traeventos: {
         "dots": true,
         "focusOnSelect": true,
         "infinite": true,
@@ -313,7 +312,7 @@ export default {
         "slidesToScroll": 3,
         "touchThreshold": 5
       },
-      propiedades: {
+      traenoticias: {
         "dots": true,
         "focusOnSelect": true,
         "infinite": true,
@@ -327,7 +326,7 @@ export default {
   },
 
   computed() {
-  
+
   },
 
   components: {
@@ -337,11 +336,11 @@ export default {
 
   mounted() {
 
-    this.usuarionombre=sessionStorage.getItem("username")
-    this.usuarioapellio=sessionStorage.getItem('apellido')
+    this.usuarionombre = sessionStorage.getItem("username")
+    this.usuarioapellido = sessionStorage.getItem("apellido")
     axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
       console.log(response);
-      this.publicacion = response.data;
+      this.publieventos = response.data;
     });
 
     axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
@@ -351,14 +350,14 @@ export default {
 
   },
   methods: {
-    mostrarinformacion(objeto) {
+    mostrareventos(objeto) {
       return this.evento = objeto;
     },
 
-    mostrarinformacion2(objeto2) {
+    mostrarnoticias(objeto2) {
       return this.noticia = objeto2;
     },
-   
+
 
   },
 
@@ -366,6 +365,10 @@ export default {
 }
 </script>
 <style>
+
+.img{
+  width: 10%;
+}
 /**EMERGENTE */
 
 .modal-header {
@@ -424,6 +427,13 @@ button:hover {
 }
 
 /** EMERGENTE */
+
+.my-2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 100%;
+}
 
 .slick-slider[data-v-3d1a4f76] {
   position: relative;
