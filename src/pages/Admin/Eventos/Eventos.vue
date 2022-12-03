@@ -97,8 +97,31 @@
               >Nuevo
                 
               </b-button>
+              <b-button v-b-modal="'asignaciones'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
+           
+          
+                      
+
+              
             </div>
+
           </template>
+        </b-modal>
+
+
+
+        <b-modal size="xl" id="asignaciones" title="Categorias">
+          <b-container fluid>
+            <table class="table table-bordered table-striped">
+              <thead>
+             
+              </thead>
+              <tbody>
+           
+              </tbody>
+            </table>
+          </b-container>
+            
         </b-modal>
       </div>
   </div>

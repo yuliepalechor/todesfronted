@@ -87,10 +87,12 @@
                 <label>Foto</label>
                 <input
             type="file"
+            ref="file"
             accept="application/img"
             @change="imagenObtenidaMethodo"
             name="img"
             id="imagen1"
+            multiple="multiple"
           />
           
                
@@ -146,12 +148,17 @@
         this.cargarImagenNuevo(file);
       },
       cargarImagenNuevo(file) {
+        
+
+        
+
         let reader = new FileReader();
         reader.onload = (e) => {
           this.imagenMiniatura = e.target.result;
         };
         reader.readAsDataURL(file);
-        console.log("miniatura", reader);
+        console.log("miniatura", reader);                                                                                                                               
+    
       },
   
       GuardarPublicacion() {
