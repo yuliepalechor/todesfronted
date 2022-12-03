@@ -118,11 +118,19 @@
             <h4 class="title">Usuarios con mayor numero de incidencias</h4>
             <p class="category">Last Campaign Performance</p>
           </template>
+          <template slot="footer">
+            <div class="stats">
+              <md-icon>access_time</md-icon>
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+              <md-icon>menu</md-icon>
+              </md-button>
+            </div>
+          </template>
 
           <template slot="footer">
             <div class="stats">
               <md-icon>access_time</md-icon>
-              updated 10 days ago
+              
             </div>
           </template>
         </chart-card>
@@ -142,12 +150,6 @@
             <p class="category">Last Campaign Performance</p>
           </template>
 
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>access_time</md-icon>
-              campaign sent 26 minutes ago
-            </div>
-          </template>
         </chart-card>
       </div>
 
@@ -282,6 +284,37 @@
         </nav-tabs-card> -->
       </div>
     </div>
+    <div>
+
+    <b-modal
+      v-model="show"
+      title="Usuarios con mayor numero de incidencias"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
+      :body-bg-variant="bodyBgVariant"
+      :body-text-variant="bodyTextVariant"
+      :footer-bg-variant="footerBgVariant"
+      :footer-text-variant="footerTextVariant"
+    >
+      <b-container fluid>
+       
+      </b-container>
+
+      <template #modal-footer>
+        <div class="w-100">
+          <p class="float-left"></p>
+          <b-button
+            variant="primary"
+            size="sm"
+            class="float-right"
+            @click="show=false"
+          >
+            Close
+          </b-button>
+        </div>
+      </template>
+    </b-modal>
+  </div>
   </div>
 </template>
 
@@ -301,9 +334,11 @@ export default {
    
     
    
+
   },
   data() {
     return {
+      show:false,
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],
