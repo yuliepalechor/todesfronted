@@ -186,11 +186,13 @@
         <!-- ******** area de comentario ******** -->
         <div>
           <b-form-textarea id="textarea-state" v-model="text" :state="(text.length <= 250)"
-            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250"></b-form-textarea>
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250"></b-form-textarea><br>
+            <center><b-button pill variant="primary">Guardar Comentario</b-button></center>
         </div>
         <!-- ******** area de comentario ******** -->
         <template #modal-footer="{ close }" style="text-align: right;">
           <div class="w-100">
+            
             <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
           </div>
 
@@ -207,7 +209,8 @@
         
         <template #modal-header class="modal-header">
           <h5>INFORMACION</h5>
-          <b-img v-bind="mainProps" src="../../assets/img/logotodess.png" rounded="circle"></b-img> 
+          
+         
         </template>
         <b-container fluid>
           <img class="img" :src="cardUserImage" />
@@ -237,9 +240,15 @@
         </b-container>
         <!-- ******** area de comentario ******** -->
         <div>
-          <b-form-textarea id="textarea-state" v-model="text" :state="(text.length <= 250)"
+          <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
+            <option value="Me gusta">Me gusta</option>
+            <option value="No me gusta">No me gusta</option>
+            
+          </select>
+          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
             placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
           </b-form-textarea>
+          
           <center><b-button pill variant="primary">Guardar Comentario</b-button></center>
                
             
@@ -264,11 +273,13 @@ import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import VueLikeDislikeButtons from "vue-like-dislike-buttons";
 
 import axios from "axios"
 /** modal */
 
 export default {
+
   name: 'App',
   props: {
     cardUserImage: {
@@ -279,8 +290,13 @@ export default {
 
   data() {
     return {
+      formulariocomentario:{
+        comentario:null,
+        clasificasion:null,
+      },
       usuarionombre: null,
       usuarioapellido: null,
+      id_usuario:null,
       imagen1: {/* blankColor: '#777',*/ width: 75, height: 75, class: 'm1' },
       imagen2: { blankColor: '#777', width: 75, height: 75, class: 'm1' },
       text: '',
@@ -330,12 +346,13 @@ export default {
   },
 
   components: {
-    VueSlickCarousel
+    VueSlickCarousel,
+    VueLikeDislikeButtons
   },
   /**/
 
   mounted() {
-
+    this.id_usuario = sessionStorage.getItem("id")
     this.usuarionombre = sessionStorage.getItem("username")
     this.usuarioapellido = sessionStorage.getItem("apellido")
     axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
@@ -350,6 +367,12 @@ export default {
 
   },
   methods: {
+    guardarcomentario(idpublic){
+      axios.post('http://127.0.0.1:8000/api/comentarios',formulariocomentario).then((response) => {
+      console.log(response);
+      
+    });
+    },
     mostrareventos(objeto) {
       return this.evento = objeto;
     },
