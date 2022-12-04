@@ -5,8 +5,7 @@
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
       >
       
-      <md-button class="md-info" @click="insertar(NuevaCategoria())" >Nueva Publicacion</md-button>
-        <md-card>
+          <md-card>
           <md-card-header data-background-color="blue">
             <h4 class="title">Publicaciones</h4>
             <p class="category">Lista de Publicaciones</p>
@@ -79,9 +78,8 @@
               <tbody>
                 <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id_detalle">
                   <td v-text="categoriaasig.id_detalle"></td>
-                  <td v-text="categoriaasig.Prioridad_detallle"></td>
                   <td v-text="categoriaasig.Nombresdecategorias"></td>
-                  <td v-text="categoriaasig.Descripciodecategorias"></td>
+                 
             
                 </tr>
               </tbody>
@@ -118,11 +116,92 @@
              
               </thead>
               <tbody>
-           <template>
-            <div class="about">
-              <input type="text" class="bg-gray-300 px-4 py-2" v-model="state">
+          
+                <template>
+  <div class="content">
+    <div class="md-layout">
+      <div class="md-layout-item md-medium-size-100 md-xl-size-10 md-size-100">
+        <md-button class="md-info" @click="NuevaCategoria()">Nueva Categoria </md-button>
+
+
+        <md-card>
+          <md-card-header data-background-color="blue">
+            <h4 class="title">Categorias</h4>
+            <p class="category">Lista de Categorias</p>
+          </md-card-header>
+          <md-card-content id="tabla">
+
+            <div>
+
+              <!-- <md-table v-model="categoria" :table-header-color="tableHeaderColor">
+                <md-table-row slot="md-table-row" slot-scope="{ item }">
+                  <md-table-cell md-label="id">{{ item.id }}</md-table-cell>
+                  <md-table-cell md-label="Nombre">{{ item.nombre }}</md-table-cell>
+                  <md-table-cell md-label="Descripcion">{{ item.descripcion }}</md-table-cell>
+                  <md-table-cell md-label="Editar">
+                    <md-button @click="editar(EditarCategoria(item.id))" class="md-just-icon md-simple md-primary">
+                      <md-icon>edit</md-icon>
+                      <md-tooltip md-direction="top">Edit</md-tooltip>
+                    </md-button>
+                  </md-table-cell>
+                  <md-table-cell md-label="Eliminar">
+                    <md-button   @click="EliminarCategoria(item.id)" class="md-just-icon md-simple md-danger">
+                      <md-icon>close</md-icon>
+                      <md-tooltip md-direction="top">Close</md-tooltip>
+                    </md-button>
+                  </md-table-cell>
+                </md-table-row>
+              </md-table> -->
+              <b-form-input v-model="filter" type="search" placeholder="Buscar...">
+
+              </b-form-input>
+              <b-table :filter="filter" id:="tablaCategorias" :per-page="perpage" :current-page="currentPage" striped
+                hover responsive class="mt-4" :fields="encabezado" :items="categoria">
+
+                <template v-slot:cell(Editar)="row">
+                  <md-button @click="editar(EditarCategoria(row.item.id))" class="md-just-icon md-simple md-primary">
+                    <md-icon>edit</md-icon>
+                    <md-tooltip md-direction="top">Edit</md-tooltip>
+                  </md-button>
+
+
+                </template>
+                <template v-slot:cell(Eliminar)="row">
+                  <md-button @click="EliminarCategoria(row.item.id)" class="md-just-icon md-simple md-danger">
+                    <md-icon>close</md-icon>
+                    <md-tooltip md-direction="top">Close</md-tooltip>
+                  </md-button>
+                </template>
+
+                <template v-slot:cell(Asignar)="row">
+                  <md-button @click="AsignarCategoria(row.item.id)" class="md-just-icon md-simple md-danger">
+                    <md-icon>+</md-icon>
+                    <md-tooltip md-direction="top">Asignar</md-tooltip>
+                  </md-button>
+                </template>
+
+
+
+
+              </b-table>
+              <b-pagination 
+              v-model="currentPage"
+               :total-rows="rows"
+                :per-page="perpage"
+                aria-controls="tablaCategorias">
+
+              </b-pagination>
+
             </div>
-           </template>
+          </md-card-content>
+        </md-card>
+      </div>
+
+
+    </div>
+  </div>
+</template>
+
               </tbody>
             </table>
           </b-container>
@@ -181,17 +260,7 @@ export default {
       encabezado: [
         { key: "id", label: "Id" },
         { key: "nombre", label: "Nombre" },
-        { key: "descripcion", label: "Descripcion" },
-        { key: "fecha_y_Hora", label: "FECHA-HORA" },
-        { key: "lugar", label: "Lugar" },
-        { key: "estado", label: "Estado" },
-        { key: "urlExterna", label: "Url" },
-        { key: "responsable", label: "Responsable" },
-        { key: "fecha_caducidad", label: "fecha_caducidad" },
-        { key: "tipo", label: "Tipo" },
-        { key: "Editar", label: "Editar" },
-        { key: "Eliminar", label: "Eliminar" },
-        { key: "ejemplo", label: "Ver Categorias" },
+      
       ],
     };
   },
