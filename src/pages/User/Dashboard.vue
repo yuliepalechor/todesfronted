@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <div class="navbar">
+    <div class="navbar">
 
 
       <div class="navbar-inner">
@@ -9,11 +9,13 @@
         </div>
       </div>
 
-      
+      <!--<div>       
+      <img class="img-circle" src="../../assets/img/todeslogoo.png"  />      
+    </div>-->
 
       {{ usuarionombre }}
       {{ usuarioapellido }}
-    </div> --><navbarusuario></navbarusuario>
+    </div>
 
     <!-- Start home section -->
 

@@ -54,16 +54,7 @@
           <b-container fluid>
             <table class="table table-bordered table-striped">
               <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Prioridad</th>
-                  <th>Categoria</th>
-                  <th>Descripcion de la Categoria</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
-                   <b-button
+                <b-button
                v-b-modal="'asignacionnueva'"
                @click="getcategorias(categoriaasig.id_publicacion)" 
                 variant="primary"
@@ -71,11 +62,30 @@
                 class="float-right"
               >+
               </b-button>
+                <tr>
+                  <th>ID</th>
+                  <th>Prioridad</th>
+                  <th>Categoria</th>
+                  <th>Descripcion de la Categoria</th>
+                  <th>Lista de Categorias</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
+            
                   <td v-text="categoriaasig.id_detalle"></td>
                   <td v-text="categoriaasig.Prioridad_detallle"></td>
                   <td v-text="categoriaasig.Nombresdecategorias"></td>
                   <td v-text="categoriaasig.Descripciodecategorias"></td>
-                  <td v-text="categoriaasig.id_publicacion"></td>
+                  <!--<td v-text="categoriaasig.id_publicacion"></td>-->
+                  <b-button
+               v-b-modal="'asignacionnueva'"
+               @click="getcategorias(categoriaasig.id_publicacion)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >+
+              </b-button>
                 </tr>
               </tbody>
             </table>
@@ -94,7 +104,7 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>nombressss</th>
+                  <th>nombre de la categoria</th>
                   <th>Accion</th>
                 </tr>
               </thead>
@@ -301,4 +311,5 @@ export default {
   border-color: inherit;
 }
 </style>
+
 
