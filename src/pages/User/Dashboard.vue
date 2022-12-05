@@ -174,7 +174,7 @@
           <h5>INFORMACION</h5>
         </template>
         <b-container fluid>
-          <img class="img" :src="cardUserImage" />
+      
           <!--<b-img v-bind="imagen1" src="../../assets/img/lgtbf.jpg" rounded="circle"></b-img>-->
           <b-row class="my-2">
             <!--<b-col sm="3">-->
@@ -239,7 +239,7 @@
 
         </template>
         <b-container fluid>
-          <img class="img" :src="cardUserImage" />
+        
 
           <b-row class="my-1">
             <label for="nombre_P">Nombre: <p for="nombre-P">{{ noticia.nombre_publicacion }}</p></label>
@@ -404,10 +404,7 @@ export default {
 
 <style>
 
-.img {
 
-  width: 10%;
-}
 
 /**EMERGENTE */
 
@@ -792,9 +789,9 @@ button:hover {
   top: 0;
 }
 
-
+/*
 2.4 Socail icons
-
+*/
 .social {
   list-style: none;
   float: none;
@@ -912,8 +909,8 @@ button:hover {
   color: #181A1C;
 }
 
-
-3.7 Contact
+/*
+3.7 Contact */
 
 .contact {
   background: #FECE1A;
