@@ -5,17 +5,10 @@
       <div class="row">
        
         <div  class="col-lg-6 col-md-6 col-sm-12 col-12 register-form">
-          
           <form >
-            <img class="img" :src="logo" />
             <md-card id="cardcont" >
               <md-card-header style="background-color: #00adb5;text-align: center;">
-                
-            
-          
-        
                 <h4 class="title">LOGEO</h4>
-                
                 <p class="category">Digite Email y Contraseña</p>
               </md-card-header>
               <md-card-content>
@@ -54,17 +47,18 @@
             </md-card>
           </form>
         </div>
-        
+        <div class="col-lg-6 col-md-6 pic-register-2">
+          <div class="md-card-avatar" id="avatar">
+            <img class="img" :src="logo" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <style>
 .img{
-  width: 1%;
-  height: 0%;
-    width: 10%;
-    padding-top: 0px;
+  width: 80%;
 }
 #avatar{
 	float: center;
@@ -162,16 +156,13 @@ export default {
           .then((data) => {
          console.log(data.data.status);
             if (data.data.status == "1") {
-         /**     this.$session.set("userid", data.data.id[0]);
-              this.$session.set("username", data.data.name[0]);
-              this.$session.set("token", data.data.access_token[0]);>*/ 
               sessionStorage.setItem("userid", data.data.id), /**con storage  */
               sessionStorage.setItem("username", data.data.name),
               sessionStorage.setItem("apellido", data.data.apellido),
               sessionStorage.setItem("email", data.data.email),
               sessionStorage.setItem("token", data.data.access_token)
-
               if(data.data.rol[0]=="Admin"){
+                
                 this.$router.push("/dashboard");
               }else{
                 this.$router.push("/UsuarioComunidad");

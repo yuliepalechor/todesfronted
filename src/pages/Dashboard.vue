@@ -11,7 +11,7 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Eventos</h4>
+            <h4 class="title">Ubicacion de incidencias</h4>
             <p class="category">
               <span class="text-success"
                 ><i class="fas fa-long-arrow-alt-up"></i> 55%
@@ -24,7 +24,11 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               updated 4 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
+            
           </template>
         </chart-card>
       </div>
@@ -39,7 +43,7 @@
           data-background-color="purple"
         >
           <template slot="content">
-            <h4 class="title">Noticias</h4>
+            <h4 class="title">Incidencias por fecha</h4>
             <p class="category">Last Campaign Performance</p>
           </template>
 
@@ -47,6 +51,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               updated 10 days ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -70,6 +77,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               campaign sent 26 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -98,6 +108,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               updated 4 minutes ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -115,7 +128,7 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Noticias</h4>
+            <h4 class="title">Publicaciones recientes</h4>
             <p class="category">Last Campaign Performance</p>
           </template>
 
@@ -123,6 +136,9 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               updated 10 days ago
+              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+        <md-icon>menu</md-icon>
+      </md-button>
             </div>
           </template>
         </chart-card>
@@ -145,9 +161,7 @@
           <template slot="footer">
             <div class="stats">
               <md-icon>access_time</md-icon>
-              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
-                <md-icon>menu</md-icon>
-              </md-button>
+              campaign sent 26 minutes ago
             </div>
           </template>
         </chart-card>
@@ -284,37 +298,6 @@
         </nav-tabs-card> -->
       </div>
     </div>
-    <div>
-    
-
-    <b-modal
-      v-model="show"
-      title="Categorias con Mayor # incidencias"
-      :header-bg-variant="headerBgVariant"
-      :header-text-variant="headerTextVariant"
-      :body-bg-variant="bodyBgVariant"
-      :body-text-variant="bodyTextVariant"
-      :footer-bg-variant="footerBgVariant"
-      :footer-text-variant="footerTextVariant"
-    >
-      <b-container fluid>
-       
-      </b-container>
-
-      <template #modal-footer>
-        <div class="w-100">
-          <b-button
-            variant="primary"
-            size="sm"
-            class="float-right"
-            @click="show=false"
-          >
-            Close
-          </b-button>
-        </div>
-      </template>
-    </b-modal>
-  </div>
   </div>
 </template>
 
@@ -337,7 +320,6 @@ export default {
   },
   data() {
     return {
-      show:false,
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],

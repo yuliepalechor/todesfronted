@@ -14,25 +14,7 @@
 
             <div>
 
-              <!-- <md-table v-model="categoria" :table-header-color="tableHeaderColor">
-                <md-table-row slot="md-table-row" slot-scope="{ item }">
-                  <md-table-cell md-label="id">{{ item.id }}</md-table-cell>
-                  <md-table-cell md-label="Nombre">{{ item.nombre }}</md-table-cell>
-                  <md-table-cell md-label="Descripcion">{{ item.descripcion }}</md-table-cell>
-                  <md-table-cell md-label="Editar">
-                    <md-button @click="editar(EditarCategoria(item.id))" class="md-just-icon md-simple md-primary">
-                      <md-icon>edit</md-icon>
-                      <md-tooltip md-direction="top">Edit</md-tooltip>
-                    </md-button>
-                  </md-table-cell>
-                  <md-table-cell md-label="Eliminar">
-                    <md-button   @click="EliminarCategoria(item.id)" class="md-just-icon md-simple md-danger">
-                      <md-icon>close</md-icon>
-                      <md-tooltip md-direction="top">Close</md-tooltip>
-                    </md-button>
-                  </md-table-cell>
-                </md-table-row>
-              </md-table> -->
+            
               <b-form-input v-model="filter" type="search" placeholder="Buscar...">
 
               </b-form-input>
@@ -54,7 +36,12 @@
                   </md-button>
                 </template>
 
-
+                <template v-slot:cell(Asignar)="row">
+                  <md-button @click="AsignarCategoria(row.item.id)" class="md-just-icon md-simple md-danger">
+                    <md-icon>+</md-icon>
+                    <md-tooltip md-direction="top">Asignar</md-tooltip>
+                  </md-button>
+                </template>
 
 
 
@@ -108,7 +95,7 @@ export default {
 
         { key: "Editar", label: "Editar" },
         { key: "Eliminar", label: "Eliminar" },
-
+        { key: "Asignar", label: "Asignar" },
 
 
       ],
@@ -136,6 +123,13 @@ export default {
       this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
         this.categoria = response.data;
       })
+    },
+
+
+    AsignarCategoria(id) {
+      console.log(id)
+      
+      
     },
 
     NuevaCategoria() {

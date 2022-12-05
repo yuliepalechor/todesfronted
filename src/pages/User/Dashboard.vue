@@ -179,18 +179,10 @@
           <b-row class="my-2">
             <!--<b-col sm="3">-->
 
-            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
-              <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>              
-            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
+            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>  
             <label for="lugar p">lugar: <p for="numero p">{{ evento.lugar }}</p> </label>
             <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
-              <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>               
-            <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
-            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
-              <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>              
-            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
-            <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
-              <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>               
+            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>                        
             <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
             <label for="desc p">descripcion: <p for="numero p">{{ evento.descripcion_publicacion }}</p></label>
 
@@ -306,12 +298,7 @@ import axios from "axios"
 export default {
 
   name: 'App',
-  props: {
-    cardUserImage: {
-      type: String,
-      default: require("@/assets/img/logotodess.png"),
-    },
-  },
+  
 
   data() {
     return {
@@ -654,7 +641,7 @@ button:hover {
 
 /*
 2.1 Animations
-**********
+**********/
 .zoom-in {
   -webkit-transform: scale(1, 1);
   -moz-transform: scale(1, 1);
@@ -676,7 +663,7 @@ button:hover {
 
 /*
 2.2 Buttons - There are buttons on a transparent background, primary and secondary color background.
-
+*/
 .button,
 .button:visited,
 .button:focus {
@@ -725,7 +712,7 @@ button:hover {
 }
 
 /*
-2.3 Thumbnails - Predefined bootstrap's thumbnail class.
+2.3 Thumbnails - Predefined bootstrap's thumbnail class. */
 
 .thumbnail {
   width: 100%;
@@ -805,7 +792,7 @@ button:hover {
   top: 0;
 }
 
-/*
+
 2.4 Socail icons
 
 .social {
@@ -925,7 +912,7 @@ button:hover {
   color: #181A1C;
 }
 
-/*
+
 3.7 Contact
 
 .contact {
@@ -1350,5 +1337,3 @@ button:hover {
   --card4-gradient-color2: #38ef7d;
 }
 </style>
-
-

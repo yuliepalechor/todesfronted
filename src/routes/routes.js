@@ -4,6 +4,7 @@ import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 import Sigin from "@/pages/Sign-in.vue";
 import SigUp from "@/pages/SigUp.vue";
 
+
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
 import TableList from "@/pages/TableList.vue";
@@ -11,6 +12,7 @@ import Eventos from "@/pages/Admin/Eventos/Eventos.vue";
 import FormEventos from "@/pages/Admin/Eventos/formEventos.vue";
 import EditarPEvento from "@/pages/Admin/Eventos/EditarPEvento.vue";
 import Categorias from "@/pages/Admin/Categoria/Categorias.vue";
+import Categoriasdetalles from "@/pages/Admin/Categoria/Categoriasdetalles.vue";
 import NuevaCategoria from  "@/pages/Admin/Categoria/NuevaCategoria.vue";
 import EditarCategoria from  "@/pages/Admin/Categoria/EditarCategoria.vue";
 import DetalleCategoria from  "@/pages/Admin/Categoria/DetalleCategoria";
@@ -21,8 +23,10 @@ import Roles from "@/pages/Admin/Roles.vue";
 import Usuarios from "@/pages/Admin/Usuarios/ListaUsuarios.vue";
 import NuevoUsuario from "@/pages/Admin/Usuarios/NuevoUsuario.vue";
 import EditarUsuario from "@/pages/Admin/Usuarios/EditarUsuario.vue";
-
+import Archivo from "@/pages/Admin/Archivo";
 import UsuarioComunidad from "@/pages/User/Dashboard.vue";
+import EventosUsuario from "@/pages/User/EventosUsuario.vue";
+import NoticiasUsuario from "@/pages/User/NoticiasUsuario.vue";
 
 
 import Icons from "@/pages/Icons.vue";
@@ -37,6 +41,18 @@ const routes = [
     name: "UsuarioComunidad",
     component: UsuarioComunidad,
   },
+    //eventos usuarios
+    {
+      path: "/EventosUsuario",
+      name: "EventosUsuario",
+      component: EventosUsuario,
+    },
+            //noticias de usuarios
+    {
+      path: "/NoticiasUsuario",
+      name: "NoticiasUsuario",
+      component: NoticiasUsuario,
+    },
 
 
 
@@ -84,6 +100,9 @@ const routes = [
         component: FormEventos,
       },
 
+    
+
+
       {
         path: "/EditarPEvento/:id",
         name: "EditarPEvento",
@@ -91,14 +110,24 @@ const routes = [
       },
       ///categorias
       {
-        path: "/Categorias",
+        path: "/Categorias/",
         name: "Categorias",
         component: Categorias,
       },
+
+  
+
+      {
+        path: "/Categoriasdetalles/:id",
+        name: "Categoriasdetalles",
+        component: Categoriasdetalles,
+      },
+
+
         //Nueva categoria
 
         {
-          path: "/NuevaCategoria",
+          path: "/NuevaCategoria/",
           name: "NuevaCategoria",
           component: NuevaCategoria,
         },  
@@ -147,9 +176,18 @@ const routes = [
           name: "EditarUsuario",
           component: EditarUsuario,
         },
+          
+
+
 
         
-        
+        // crear un nuevoarchivo 
+
+        {
+          path: "Archivo",
+          name: "Archivo",
+          component: Archivo,
+        },
 
 
         
