@@ -5,7 +5,8 @@
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
       >
       
-          <md-card>
+      <md-button class="md-info" @click="insertar(NuevaCategoria())" >Nueva Publicacion</md-button>
+        <md-card>
           <md-card-header data-background-color="blue">
             <h4 class="title">Publicaciones</h4>
             <p class="category">Lista de Publicaciones</p>
@@ -25,8 +26,6 @@
                       <md-icon>edit</md-icon>
                       <md-tooltip md-direction="top">Edit</md-tooltip>
                     </md-button>
-
-
                 </template>
                 <template v-slot:cell(Eliminar)="row">
                   <md-button @click="EliminarPublicacion(row.item.id)" class="md-just-icon md-simple md-danger">
@@ -34,19 +33,10 @@
                       <md-tooltip md-direction="top">Close</md-tooltip>
                     </md-button>
                 </template>
-          
                 <template v-slot:cell(ejemplo)="row">
-                  
-                    
                     <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
-           
-          
-                
                 </template>
-
                </b-table>              
-              
-
                   <b-pagination
                   v-model="currentPage"
                :total-rows="rows"
@@ -57,10 +47,7 @@
           </md-card-content>
         </md-card>
       </div>
-
-      
     </div>
-
     <div>
         <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
           <b-container fluid>
@@ -69,18 +56,47 @@
                 <tr>
                   <th>ID</th>
                   <th>Prioridad</th>
-                  <!--<th>Publicacion</th>-->
                   <th>Categoria</th>
                   <th>Descripcion de la Categoria</th>
-           
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id_detalle">
+                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
                   <td v-text="categoriaasig.id_detalle"></td>
+                  <td v-text="categoriaasig.Prioridad_detallle"></td>
                   <td v-text="categoriaasig.Nombresdecategorias"></td>
-                 
-            
+                  <td v-text="categoriaasig.Descripciodecategorias"></td>
+                </tr>
+              </tbody>
+            </table>
+          </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+              <b-button
+              v-b-modal="'asignacionnueva'"
+              @click="getcategorias()" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >LISTA DE CATEGORIAS
+              </b-button>
+              <b-modal size="xl" id="asignacionnueva" title="Categorias">
+          <b-container fluid>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>nombressss</th>
+                  <th>Descripcion de la Categoriassss</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for=" categoria in listaasignacion" :key=" categoria.id">
+                  <td v-text=" categoria.idcategorias"></td>
+                  <td v-text=" categoria.Nombresdecategorias"></td>
+                  <td v-text=" categoria.Nombresdecategorias"></td>
+                  <td v-text="categoria.Descripciodecategorias"></td>
+                
                 </tr>
               </tbody>
             </table>
@@ -89,143 +105,20 @@
             <div class="w-100">
               <b-button
               v-b-modal="'asignaciones'"
-              @click="listaasignacion(row.item.id)" 
+              @click="  listaasignacion(row.item.id)" 
                 variant="primary"
                 size="sm"
                 class="float-right"
-               
               >Nuevo
-                
               </b-button>
-              
-          
-                      
-
-              
             </div>
-
           </template>
         </b-modal>
 
 
-
-        <b-modal size="xl" id="asignaciones" title="Categorias">
-          <b-container fluid>
-            <table class="table table-bordered table-striped">
-              <thead>
-             
-              </thead>
-              <tbody>
-          
-                <template>
-  <div class="content">
-    <div class="md-layout">
-      <div class="md-layout-item md-medium-size-100 md-xl-size-10 md-size-100">
-        <md-button class="md-info" @click="NuevaCategoria()">Nueva Categoria </md-button>
-
-
-        <md-card>
-          <md-card-header data-background-color="blue">
-            <h4 class="title">Categorias</h4>
-            <p class="category">Lista de Categorias</p>
-          </md-card-header>
-          <md-card-content id="tabla">
-
-            <div>
-
-              <!-- <md-table v-model="categoria" :table-header-color="tableHeaderColor">
-                <md-table-row slot="md-table-row" slot-scope="{ item }">
-                  <md-table-cell md-label="id">{{ item.id }}</md-table-cell>
-                  <md-table-cell md-label="Nombre">{{ item.nombre }}</md-table-cell>
-                  <md-table-cell md-label="Descripcion">{{ item.descripcion }}</md-table-cell>
-                  <md-table-cell md-label="Editar">
-                    <md-button @click="editar(EditarCategoria(item.id))" class="md-just-icon md-simple md-primary">
-                      <md-icon>edit</md-icon>
-                      <md-tooltip md-direction="top">Edit</md-tooltip>
-                    </md-button>
-                  </md-table-cell>
-                  <md-table-cell md-label="Eliminar">
-                    <md-button   @click="EliminarCategoria(item.id)" class="md-just-icon md-simple md-danger">
-                      <md-icon>close</md-icon>
-                      <md-tooltip md-direction="top">Close</md-tooltip>
-                    </md-button>
-                  </md-table-cell>
-                </md-table-row>
-              </md-table> -->
-              <b-form-input v-model="filter" type="search" placeholder="Buscar...">
-
-              </b-form-input>
-              <b-table :filter="filter" id:="tablaCategorias" :per-page="perpage" :current-page="currentPage" striped
-                hover responsive class="mt-4" :fields="encabezado" :items="categoria">
-
-                <template v-slot:cell(Editar)="row">
-                  <md-button @click="editar(EditarCategoria(row.item.id))" class="md-just-icon md-simple md-primary">
-                    <md-icon>edit</md-icon>
-                    <md-tooltip md-direction="top">Edit</md-tooltip>
-                  </md-button>
-
-
-                </template>
-                <template v-slot:cell(Eliminar)="row">
-                  <md-button @click="EliminarCategoria(row.item.id)" class="md-just-icon md-simple md-danger">
-                    <md-icon>close</md-icon>
-                    <md-tooltip md-direction="top">Close</md-tooltip>
-                  </md-button>
-                </template>
-
-                <template v-slot:cell(Asignar)="row">
-                  <md-button @click="AsignarCategoria(row.item.id)" class="md-just-icon md-simple md-danger">
-                    <md-icon>+</md-icon>
-                    <md-tooltip md-direction="top">Asignar</md-tooltip>
-                  </md-button>
-                </template>
-
-
-
-
-              </b-table>
-              <b-pagination 
-              v-model="currentPage"
-               :total-rows="rows"
-                :per-page="perpage"
-                aria-controls="tablaCategorias">
-
-              </b-pagination>
-
             </div>
-          </md-card-content>
-        </md-card>
-      </div>
-
-
-    </div>
-  </div>
-</template>
-
-              </tbody>
-            </table>
-          </b-container>
-          <template #modal-footer>
-            <div class="w-100">
-              <b-button
-              v-b-modal="'asignaciones'"
-              @click="listaasignacion(row.item.id)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-               
-              >Cancelar
-                
-              </b-button>
-              
-          
-                      
-
-              
-            </div>
-
           </template>
-        </b-modal>
+        </b-modal>     
       </div>
   </div>
 </template>
@@ -246,9 +139,7 @@ export default {
   },
   data() {
     return {
-
-
-      state:'',
+      state: "",
       show: false,
 
       detalles: null,
@@ -257,10 +148,23 @@ export default {
       filter: null,
       perpage: 10,
       currentPage: 1,
+
+   
       encabezado: [
         { key: "id", label: "Id" },
         { key: "nombre", label: "Nombre" },
-      
+        { key: "nombre", label: "Nombre" },
+        { key: "descripcion", label: "Descripcion" },
+        { key: "fecha_y_Hora", label: "FECHA-HORA" },
+        { key: "lugar", label: "Lugar" },
+        { key: "estado", label: "Estado" },
+        { key: "urlExterna", label: "Url" },
+        { key: "responsable", label: "Responsable" },
+        { key: "fecha_caducidad", label: "fecha_caducidad" },
+        { key: "tipo", label: "Tipo" },
+        { key: "Editar", label: "Editar" },
+        { key: "Eliminar", label: "Eliminar" },
+        { key: "ejemplo", label: "Ver Categorias" },
       ],
     };
   },
@@ -283,6 +187,15 @@ export default {
           this.categoriaasig = response.data;
         });
     },
+
+
+
+    getcategorias() {
+        this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+          this.categoria = response.data;
+        })
+      },
+
     updatePagination(page, pageSize, sort, sortOrder) {
       console.log("pagination has updated", page, pageSize, sort, sortOrder);
     },
