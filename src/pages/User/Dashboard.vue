@@ -173,9 +173,8 @@
         <template #modal-header class="modal-header">
           <h5>INFORMACION</h5>
         </template>
-        <b-container fluid>
-      
-          <!--<b-img v-bind="imagen1" src="../../assets/img/lgtbf.jpg" rounded="circle"></b-img>-->
+        <b-container fluid>      
+         
           <b-row class="my-2">
             <!--<b-col sm="3">-->
 
