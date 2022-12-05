@@ -18,11 +18,11 @@
               <b-form-input v-model="filter" type="search" placeholder="Buscar...">
 
                </b-form-input>
-              <b-table  :filter="filter" id:="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="categoria">
+              <b-table  :filter="filter" id:="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="publicacion">
                 
 
                 <template v-slot:cell(Editar)="row">
-        	          <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
+                    <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
                       <md-icon>edit</md-icon>
                       <md-tooltip md-direction="top">Edit</md-tooltip>
                     </md-button>
@@ -48,6 +48,7 @@
         </md-card>
       </div>
     </div>
+    <!--      MODAL DE LAS CATEGORIAS ASIGNADAS          -->
     <div>
         <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
           <b-container fluid>
@@ -62,41 +63,54 @@
               </thead>
               <tbody>
                 <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
+                   <b-button
+               v-b-modal="'asignacionnueva'"
+               @click="getcategorias(categoriaasig.id_publicacion)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >+
+              </b-button>
                   <td v-text="categoriaasig.id_detalle"></td>
                   <td v-text="categoriaasig.Prioridad_detallle"></td>
                   <td v-text="categoriaasig.Nombresdecategorias"></td>
                   <td v-text="categoriaasig.Descripciodecategorias"></td>
+                  <td v-text="categoriaasig.id_publicacion"></td>
                 </tr>
               </tbody>
             </table>
-          </b-container>
+             </b-container>
               <template #modal-footer>
             <div class="w-100">
-              <b-button
-              v-b-modal="'asignacionnueva'"
-              @click="getcategorias()" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >LISTA DE CATEGORIAS
-              </b-button>
+
+            </div>   
+             <!--      MODAL DE LAS NUEVAS ASIGNACIONES          -->
+            <div>
               <b-modal size="xl" id="asignacionnueva" title="Categorias">
-          <b-container fluid>
-            <table class="table table-bordered table-striped">
+            <b-container fluid>
+                  
+              <b-form-input v-model="filter" type="search" placeholder="Buscar..."></b-form-input>
+             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>nombressss</th>
-                  <th>Descripcion de la Categoriassss</th>
+                  <th>Accion</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for=" categoria in listaasignacion" :key=" categoria.id">
-                  <td v-text=" categoria.idcategorias"></td>
-                  <td v-text=" categoria.Nombresdecategorias"></td>
-                  <td v-text=" categoria.Nombresdecategorias"></td>
-                  <td v-text="categoria.Descripciodecategorias"></td>
-                
+                <tr v-for=" categoria in categoria" :key=" categoria.id">
+                  
+                  <td v-text=" categoria.id"></td>
+                  <td v-text=" categoria.nombre"></td>
+                  <td >   <b-button
+                    v-b-modal="'asignaciones'"
+                   @click=" guardaraasignacionnueva(categoria.id,id_publiseleccionada)" 
+                    variant="primary"
+                    size="sm"
+                    class="float-right"
+                    >Asignar
+              </b-button></td>
                 </tr>
               </tbody>
             </table>
@@ -105,7 +119,7 @@
             <div class="w-100">
               <b-button
               v-b-modal="'asignaciones'"
-              @click="  listaasignacion(row.item.id)" 
+              @click=" getcategoria(row.item.id)" 
                 variant="primary"
                 size="sm"
                 class="float-right"
@@ -139,17 +153,21 @@ export default {
   },
   data() {
     return {
+      id_publiseleccionada: null,
       state: "",
       show: false,
-
+      publicacion: [],
       detalles: null,
       categoria: [],
       categoriaasig: [],
       filter: null,
       perpage: 10,
       currentPage: 1,
+      formularioasigna: {
+        id_publicacion: null,
+        id_categoria: null,
+      },
 
-   
       encabezado: [
         { key: "id", label: "Id" },
         { key: "nombre", label: "Nombre" },
@@ -170,7 +188,7 @@ export default {
   },
   components: {},
   mounted() {
-    this.getcategorias();
+    this.getpublicacion();
     this.EliminarPublicacion(id);
   },
 
@@ -188,22 +206,32 @@ export default {
         });
     },
 
+    guardaraasignacionnueva(idcat, idpub) {
+      let formularioasigna = new FormData();
+      formularioasigna.append("id_publicacion", idpub);
+      formularioasigna.append("id_categoria", idcat);
+      this.axios
+        .post("http://127.0.0.1:8000/api/detalle_categoria", formularioasigna)
+        .then((response) => {
+          this.$router.push("/Eventos");
+        });
+    },
 
-
-    getcategorias() {
-        this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
-          this.categoria = response.data;
-        })
-      },
+    getcategorias(idp) {
+      this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+        this.categoria = response.data;
+        this.id_publiseleccionada = idp;
+      });
+    },
 
     updatePagination(page, pageSize, sort, sortOrder) {
       console.log("pagination has updated", page, pageSize, sort, sortOrder);
     },
-    getcategorias() {
+    getpublicacion() {
       this.axios
         .get("http://127.0.0.1:8000/api/publicacion")
         .then((response) => {
-          this.categoria = response.data;
+          this.publicacion = response.data;
         });
     },
     NuevaCategoria() {
@@ -273,3 +301,4 @@ export default {
   border-color: inherit;
 }
 </style>
+
