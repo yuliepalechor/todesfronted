@@ -162,9 +162,6 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               campaign sent 26 minutes ago
-              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
-        <md-icon>menu</md-icon>
-      </md-button>
             </div>
           </template>
         </chart-card>
@@ -301,7 +298,6 @@
         </nav-tabs-card> -->
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -324,14 +320,6 @@ export default {
   },
   data() {
     return {
-      show: false,
-        variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
-        headerBgVariant: 'dark',
-        headerTextVariant: 'light',
-        bodyBgVariant: 'light',
-        bodyTextVariant: 'dark',
-        footerBgVariant: 'warning',
-        footerTextVariant: 'dark',
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],

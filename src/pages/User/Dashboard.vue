@@ -1,12 +1,6 @@
 <template>
   <div>
-
-
-    <navbarusuario>
-      {{ usuarionombre }}
-      {{ usuarioapellido }}
-    </navbarusuario>
-    <!---<div class="navbar">
+    <div class="navbar">
 
 
       <div class="navbar-inner">
@@ -15,19 +9,17 @@
         </div>
       </div>
 
-      <div>       
+      <!--<div>       
       <img class="img-circle" src="../../assets/img/todeslogoo.png"  />      
     </div>-->
-<!--
 
-  
+      {{ usuarionombre }}
+      {{ usuarioapellido }}
     </div>
--->
-    
 
     <!-- Start home section -->
 
-    <center><img src="../../assets/img/lgbtiq+.jpeg" width="40%" height="150%" length="200" alt="Logo" /> </center>
+    <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" /> </center>
 
     <!-- End home section -->
     <!-- Service section start -->
@@ -96,10 +88,10 @@
 
         <div v-for="publieventos in publieventos" :key="publieventos" class="card-wrap">
           <div class="card-header one">
-            <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"></b-img>
+            <b-img class="imgn" src="https://www.narava.es/10021-large_default/postal-bajo-la-lluvia.jpg"></b-img>
           </div>
             <b-card-text>
-              <H6> Publicacion N°: </H6> {{ publieventos.id }}
+             
               <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
               <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
 
@@ -136,7 +128,7 @@
           </div>
 
           <b-card-text>
-            <H6> Publicacion N°: </H6> {{ noticias.id }}
+           
             <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
             <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
 
@@ -182,23 +174,15 @@
           <h5>INFORMACION</h5>
         </template>
         <b-container fluid>
-          <img class="img" :src="cardUserImage" />
+      
           <!--<b-img v-bind="imagen1" src="../../assets/img/lgtbf.jpg" rounded="circle"></b-img>-->
           <b-row class="my-2">
             <!--<b-col sm="3">-->
 
-            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
-              <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>              
-            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
+            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>  
             <label for="lugar p">lugar: <p for="numero p">{{ evento.lugar }}</p> </label>
             <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
-              <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>               
-            <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
-            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
-              <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>              
-            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
-            <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
-              <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>               
+            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>                        
             <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
             <label for="desc p">descripcion: <p for="numero p">{{ evento.descripcion_publicacion }}</p></label>
 
@@ -255,7 +239,7 @@
 
         </template>
         <b-container fluid>
-          <img class="img" :src="cardUserImage" />
+        
 
           <b-row class="my-1">
             <label for="nombre_P">Nombre: <p for="nombre-P">{{ noticia.nombre_publicacion }}</p></label>
@@ -314,12 +298,7 @@ import axios from "axios"
 export default {
 
   name: 'App',
-  props: {
-    cardUserImage: {
-      type: String,
-      default: require("@/assets/img/logotodess.png"),
-    },
-  },
+  
 
   data() {
     return {
@@ -425,10 +404,7 @@ export default {
 
 <style>
 
-.img {
 
-  width: 10%;
-}
 
 /**EMERGENTE */
 
@@ -662,7 +638,7 @@ button:hover {
 
 /*
 2.1 Animations
-**********
+**********/
 .zoom-in {
   -webkit-transform: scale(1, 1);
   -moz-transform: scale(1, 1);
@@ -684,7 +660,7 @@ button:hover {
 
 /*
 2.2 Buttons - There are buttons on a transparent background, primary and secondary color background.
-
+*/
 .button,
 .button:visited,
 .button:focus {
@@ -733,7 +709,7 @@ button:hover {
 }
 
 /*
-2.3 Thumbnails - Predefined bootstrap's thumbnail class.
+2.3 Thumbnails - Predefined bootstrap's thumbnail class. */
 
 .thumbnail {
   width: 100%;
@@ -815,7 +791,7 @@ button:hover {
 
 /*
 2.4 Socail icons
-
+*/
 .social {
   list-style: none;
   float: none;
@@ -934,7 +910,7 @@ button:hover {
 }
 
 /*
-3.7 Contact
+3.7 Contact */
 
 .contact {
   background: #FECE1A;
