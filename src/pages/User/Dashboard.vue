@@ -88,10 +88,10 @@
 
         <div v-for="publieventos in publieventos" :key="publieventos" class="card-wrap">
           <div class="card-header one">
-            <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"></b-img>
+            <b-img class="imgn" src="https://www.narava.es/10021-large_default/postal-bajo-la-lluvia.jpg"></b-img>
           </div>
             <b-card-text>
-              <H6> Publicacion N°: </H6> {{ publieventos.id }}
+             
               <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
               <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
 
@@ -128,7 +128,7 @@
           </div>
 
           <b-card-text>
-            <H6> Publicacion N°: </H6> {{ noticias.id }}
+           
             <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
             <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
 
