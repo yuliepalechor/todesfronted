@@ -1,22 +1,33 @@
 <template>
-
   <div>
-    <navbarusuario></navbarusuario>
-    <!-- <div class="navbar">
+
+
+    <navbarusuario>
+      {{ usuarionombre }}
+      {{ usuarioapellido }}
+    </navbarusuario>
+    <!---<div class="navbar">
+
+
       <div class="navbar-inner">
         <div class="container">
           <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
         </div>
-        
       </div>
-    </div> -->
+
+      <div>       
+      <img class="img-circle" src="../../assets/img/todeslogoo.png"  />      
+    </div>-->
+<!--
+
+  
+    </div>
+-->
     
-      
-      
-    
+
     <!-- Start home section -->
-    
-    <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
+
+    <center><img src="../../assets/img/lgbtiq+.jpeg" width="40%" height="150%" length="200" alt="Logo" /> </center>
 
     <!-- End home section -->
     <!-- Service section start -->
@@ -24,22 +35,25 @@
 
       <div class="container">
 
-        <!-- Start title section -->
+       
         <div class="title">
-      {{usernombre}}
+ <!-- Start title section 
           <h1>
+
             <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Lo que hacemos?</font>
+              <font style="vertical-align: inherit;">Lo que hacemos? </font>
+
             </font>
           </h1>
-          <!-- Section's title goes here -->
+          
+         
           <p>
             <font style="vertical-align: inherit;">
               <font style="vertical-align: inherit;">Nuestras historias nos identifican </font>
             </font>
 
           </p>
-
+        -->
         </div>
 
         <!--Simple description for section goes here. -->
@@ -48,14 +62,18 @@
 
       <div class="a1">
         <div class="span4">
+           <!--
           <div class="centered service">
             <div class="circle-border zoom-in">
               <img class="img-circle" src="images/Service1.png" alt="service 1" />
             </div>
+           
             <h3>Actividades</h3>
             <p>Nosotros estamos orgullosos de lo que somos.</p>
           </div>
+          -->
         </div>
+        
       </div>
 
     </div>
@@ -68,62 +86,81 @@
 
 
       </div>
-
-      <!-- TRAE TODOS EN GENERAL 1 -->
-
-      <VueSlickCarousel v-bind="settings" class="carrusel">
-
-        <div v-for="publicacion in publicacion" :key="publicacion.id">
-          <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
-            style="max-width: 10rem;" class="mb-2">
-            <b-card-text>
-              <H3> {{ publicacion.nombre }}</H3>
-            </b-card-text>
-
-            <b-card-text>
-              {{ publicacion.tipo }}
-            </b-card-text>
-           
-            <button @click="showModal = true">Ir a publicacion </button>
-
-          </b-card>
-          
-
-        </div>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-
-      </VueSlickCarousel>
-
-      <h1> noticias</h1>
       <br>
-      <!-- TRAE SOLO NOTICIAS 1 -->
-      <VueSlickCarousel v-bind="propiedades" class="carrusel">
+      <center>
+        <h1> EVENTOS</h1>
+      </center>
+      <!--************************** CARRUSEL TRAE SOLO EVENTOS *******************************  -->
 
-        <div v-for="noticias in noticias" :key="noticias.id">
-          <b-card img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article"
-            style="max-width: 10rem;" class="mb-2">
+      <VueSlickCarousel v-bind="traeventos" class="carrusel">
+
+        <div v-for="publieventos in publieventos" :key="publieventos" class="card-wrap">
+          <div class="card-header one">
+            <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"></b-img>
+          </div>
             <b-card-text>
-              <H3> {{ noticias.nombre }}</H3>
-            </b-card-text>
+              <H6> Publicacion N°: </H6> {{ publieventos.id }}
+              <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
+              <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
 
-            <b-card-text>
-              {{ noticias.tipo }}
             </b-card-text>
+            
+            <md-button v-b-modal="'informacioneventos'" v-on:click="mostrareventos(publieventos)" target="_blank"
+            class="md-primary md-round">Ver mas</md-button>
+            <!-- <button @click="show = true" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button> -->
 
-            <button @click="showModal = true">Ir a publicacion </button>
-          </b-card>
         </div>
-
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
+        
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
 
       </VueSlickCarousel>
-      <!-- TRAE SOLO EVENTOS 1 -->
+      <br> <br>
+
+      <center>
+        <h1> NOTICIAS</h1>
+      </center>
+      <br>
+
+      <!-- ************************** FIN CARRUSEL QUE TRAE SOLO EVENTOS *********************** -->
+
+      <!--************************** CARRUSEL TRAE SOLO NOTICIAS *******************************  -->
+
+      <VueSlickCarousel v-bind="traenoticias" class="carrusel">
+
+        <div v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
+          <div class="card-header one">
+            <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"></b-img>
+          </div>
+
+          <b-card-text>
+            <H6> Publicacion N°: </H6> {{ noticias.id }}
+            <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
+            <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
+
+          </b-card-text>
+          <md-button v-b-modal="'informacionnoticias'" v-on:click="mostrarnoticias(noticias)" target="_blank"
+            class="md-primary md-round">Ver mas</md-button>
+            <!-- traemos  
+              en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
+              para este caso el id de la noticia -->
+
+
+              
+        </div>
+
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+
+
+      </VueSlickCarousel>
+      <!--********************** FIN CARRUSEL QUE TRAE SOLO NOTICIAS *******************************  -->
+
+     
 
     </div>
     <!-- Portfolio section end -->
@@ -134,24 +171,133 @@
       </div>
     </div>
 
-    <!-- *********************************** MODAL ********************************* -->
-    <div id="app">
+    <!-- *********************************** MODAL 1 ********************************* -->
+    
 
-    <transition name="fade">
-      <div class="modal-overlay" v-if="showModal" ></div>
+    <!-- *********************************** MODAL 2 ********************************* -->
 
-    </transition>
+    <div>
+      <b-modal v-model="show1" id="informacioneventos">
+        <template #modal-header class="modal-header">
+          <h5>INFORMACION</h5>
+        </template>
+        <b-container fluid>
+          <img class="img" :src="cardUserImage" />
+          <!--<b-img v-bind="imagen1" src="../../assets/img/lgtbf.jpg" rounded="circle"></b-img>-->
+          <b-row class="my-2">
+            <!--<b-col sm="3">-->
 
-    <transition name="fade">
-      <div class="modal1" v-if="showModal">
-        <h1>HOLA</h1>
-        <p>Contenido del modal</p>
-        <button @click="showModal = false">Cerrar el Modal </button>
-      </div>
+            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
+              <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>              
+            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
+            <label for="lugar p">lugar: <p for="numero p">{{ evento.lugar }}</p> </label>
+            <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
+              <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>               
+            <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
+            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
+              <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>              
+            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
+            <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
+              <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>               
+            <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
+            <label for="desc p">descripcion: <p for="numero p">{{ evento.descripcion_publicacion }}</p></label>
 
-    </transition>
-   
+
+            <!-- </b-col>-->
+            <!--
+
+            <b-col sm="9">
+            </b-col> -->
+
+          </b-row>
+
+
+        </b-container>
+        <!-- ******** area de comentario EVENTOS******** -->
+        <div>
+          <div>
+            <label>Sobre la publicacion selecciona:</label>
+            <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
+              <option value="Me gusta">Me gusta</option>
+              <option value="No me gusta">No me gusta </option>
+            </select>
+          </div>
+          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+          </b-form-textarea>
+
+        </div>
+
+        <b-button>Guardar Comentario</b-button>
+        <!-- ******** area de comentario EVENTOS ******** -->
+        <template #modal-footer="{ close }" style="text-align: right; ">
+          <div class="w-100">
+
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+          </div>
+
+        </template>
+
+      </b-modal>
     </div>
+
+<!-- *********************************** FIN MODAL EVENTOS ********************************* -->
+        <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
+
+    <!-- *********************************** MODAL NOTICIAS********************************* -->
+
+    <div>
+      <b-modal v-model="show2" id="informacionnoticias">
+
+        <template #modal-header class="modal-header">
+          <h5>INFORMACION</h5>
+
+
+        </template>
+        <b-container fluid>
+          <img class="img" :src="cardUserImage" />
+
+          <b-row class="my-1">
+            <label for="nombre_P">Nombre: <p for="nombre-P">{{ noticia.nombre_publicacion }}</p></label>
+            <label for="lugar">lugar: <p for="lugar">{{ noticia.lugar }}</p></label>
+            <label for="responsable">responsable: <p for="responsable">{{ noticia.responsable }}</p></label>
+            <label for="estado">estado: <p for="estado">{{ noticia.estado }}</p> </label>
+            <label for="tiop">Tipo: <p for="tipo">{{ noticia.tipo }}</p></label>
+            <label for="descripcion">descripcion: <p for="descripcion">{{ noticia.descripcion_publicacion }}</p></label>
+
+          </b-row>
+
+
+        </b-container>
+        <!-- ******** area de comentario NOTICIAS******** -->
+        <div>
+          <label>Sobre la publicacion selecciona:</label>
+          <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
+            <option value="Me gusta">Me gusta</option>
+            <option value="No me gusta">No me gusta </option>
+          </select>
+
+          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+
+          </b-form-textarea>
+
+        </div>
+
+
+        <!-- ******** area de comentario NOTICIAS ******** -->
+        <template #modal-footer="{ close }" style="text-align: right;">
+          <div class="w-100">
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+          </div>
+
+        </template>
+        <b-button class="guardar">Guardar Comentario</b-button>
+      </b-modal>
+
+    </div>
+    <!-- *********************************** FIN MODAL ********************************* -->
+
   </div>
 </template>
 
@@ -160,25 +306,53 @@ import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-
+import VueLikeDislikeButtons from "vue-like-dislike-buttons";
 
 import axios from "axios"
 /** modal */
 
 export default {
+
   name: 'App',
+  props: {
+    cardUserImage: {
+      type: String,
+      default: require("@/assets/img/logotodess.png"),
+    },
+  },
 
   data() {
     return {
-      usuarionombre:null,
-      usuarioapellido:null,
-      usuarioemail:null,
-
-      publicacion: null,
+      formulariocomentario: {
+        comentario: null,
+        clasificasion: null,
+      },
+      usuarionombre: null,
+      usuarioapellido: null,
+      id_usuario: null,
+      imagen1: {/* blankColor: '#777',*/ width: 75, height: 75, class: 'm1' },
+      imagen2: { blankColor: '#777', width: 75, height: 75, class: 'm1' },
+      text: '',
+      evento: {}, /* variablr para guardar el OBJETO Evento de publicacion seleccionada */
+      noticia: {}, /* variablr para traer nombre publicacion */
+      /*descripcionp: null, /* variablr para traer la descripcion publicacion */
+      /*direccionp: null, /* variablr para traer direccion de la publicacion */
+      /* estadop: null, /* variablr para traer el estado de publicacion */
+      /*encargadop: null, /* variablr para traer el encargado de publicacion */
+      show1: false,
+      show2: false,
+      variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+      headerBgVariant: '#9c27b0',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'warning',
+      footerTextVariant: 'dark',
+      publieventos: null,
       noticias: null,
       showModal: false,
 
-      settings: {
+      traeventos: {
         "dots": true,
         "focusOnSelect": true,
         "infinite": true,
@@ -187,7 +361,7 @@ export default {
         "slidesToScroll": 3,
         "touchThreshold": 5
       },
-      propiedades: {
+      traenoticias: {
         "dots": true,
         "focusOnSelect": true,
         "infinite": true,
@@ -205,43 +379,68 @@ export default {
   },
 
   components: {
-    VueSlickCarousel
+    VueSlickCarousel,
+    VueLikeDislikeButtons
   },
   /**/
 
   mounted() {
-    this.usuarionombre=sessionStorage.getItem("username")
-    this.usuarioapellido=sessionStorage.getItem("userapellido")
+    this.id_usuario = sessionStorage.getItem("id")
+    this.usuarionombre = sessionStorage.getItem("username")
+    this.usuarioapellido = sessionStorage.getItem("apellido")
+    axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
+      console.log(response);
+      this.publieventos = response.data;
+    });
 
     axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
+      console.log(response);
+      this.noticias = response.data;
+    });
+
+  },
+  methods: {
+    guardarcomentario(idpublic) {
+      axios.post('http://127.0.0.1:8000/api/comentarios', formulariocomentario).then((response) => {
         console.log(response);
-        this.noticias = response.data;
+
       });
-      axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
-        console.log(response);
-        this.publicacion = response.data;
-      });
-   
+    },
+    mostrareventos(objeto) {
+      return this.evento = objeto;
+    },
+
+    mostrarnoticias(objeto2) {
+      return this.noticia = objeto2;
+    },
+
+
   },
 
-  
 
 }
 </script>
+
+<!-- A CONTINUACION ESTILOS-->
+
 <style>
+
+.img {
+
+  width: 10%;
+}
+
 /**EMERGENTE */
-
-
 
 button {
   border: none;
   background: none;
   cursor: pointer;
   border-radius: 15px;
-
+  left:0%;
   display: block;
   padding: 10px 15px;
-  background-image: linear-gradient(to right rgb(145, 5, 5), #00ADB5);
+  background-image: linear-gradient(to right rgb(145, 5, 5), #9c27b0);
   color: white;
   font-size: 18px;
   font-weight: bold;
@@ -264,13 +463,13 @@ button:hover {
 }
 
 .modal1 {
-  height: 50%;
-  width: 30%;
-  position:absolute;
+  height: 40%;
+  width: 60%;
+  position: absolute;
   top: 30%;
-  left: 40%;
+  left: 20%;
   transform: translate(1%, 1%);
-  background: rgb(74, 130, 142);
+  background: #9c27b0;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
@@ -278,6 +477,13 @@ button:hover {
 }
 
 /** EMERGENTE */
+
+.my-2 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: 100%;
+}
 
 .slick-slider[data-v-3d1a4f76] {
   position: relative;
@@ -318,13 +524,7 @@ button:hover {
   padding-top: 0;
 }
 
-/* .titlevisual{
-  height: 300px;
-  width: 100vh;
-  position: flex;
-  float:none;
-  align-items: center;
-} */
+
 .title {
   height: 100%;
   width: 100%;
@@ -412,12 +612,7 @@ button:hover {
   text-align: center;
 }
 
-/* Use this class if you want ceter element with span* class */
-/* .center {
-  float: none !important;
-  margin: 0 auto !important;
-  text-align: center;
-} */
+
 
 .highlighted-box {
   background: #F4F8F9;
@@ -458,10 +653,7 @@ button:hover {
   text-align: left;
 }
 
-.error {
-  color: #CF0000;
-  display: none;
-}
+
 
 .invisible {
   display: none;
@@ -470,7 +662,7 @@ button:hover {
 
 /*
 2.1 Animations
-**********/
+**********
 .zoom-in {
   -webkit-transform: scale(1, 1);
   -moz-transform: scale(1, 1);
@@ -492,7 +684,7 @@ button:hover {
 
 /*
 2.2 Buttons - There are buttons on a transparent background, primary and secondary color background.
-**********/
+
 .button,
 .button:visited,
 .button:focus {
@@ -510,6 +702,7 @@ button:hover {
   background-color: #181A1C;
   color: #fff;
 }
+
 
 .button-sp,
 .button-sp:visited,
@@ -541,7 +734,7 @@ button:hover {
 
 /*
 2.3 Thumbnails - Predefined bootstrap's thumbnail class.
-**********/
+
 .thumbnail {
   width: 100%;
   height: 100%;
@@ -622,7 +815,7 @@ button:hover {
 
 /*
 2.4 Socail icons
-************/
+
 .social {
   list-style: none;
   float: none;
@@ -742,7 +935,7 @@ button:hover {
 
 /*
 3.7 Contact
-********************************************************************/
+
 .contact {
   background: #FECE1A;
 }
@@ -1017,5 +1210,151 @@ button:hover {
     margin-top: 30px;
   }
 }
-</style>
 
+/** card yulie******************************** */
+.imgn {
+  border-radius: 100%;
+  width: 50%;
+}
+
+.primary-section,
+.primary-section .title p,
+.primary-section h3 {
+  color: #e6e7e7;
+}
+
+.thumbnail .mask {
+  opacity: 0.85;
+  filter: alpha(opacity=85);
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #181A1C;
+  position: absolute;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2 s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+
+
+.third-section .container {
+  padding-top: 20px;
+  position: relative;
+}
+
+
+
+
+.map-wrapper {
+  position: relative;
+  height: 500px;
+}
+
+
+.contact-info {
+  text-align: center;
+  font-size: 22px;
+}
+
+
+/*
+  4 Responsible
+  ********************************************************************/
+@media (min-width: 1200px) {
+  .thumbnail .more {
+    margin-left: -41px;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    line-height: 0px;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  .info-mail {
+    width: 90%;
+    padding: 15px 0px;
+  }
+
+  .project-description {
+    padding-left: 20px;
+  }
+
+  .price-column,
+  .testimonial {
+    margin-top: 30px;
+  }
+}
+
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap&#39;);
+
+.card-wrap {
+  width: 280px;
+  background: #fff;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 20px;
+  border: 5px solid #fff;
+  overflow: hidden;
+  color: var(--color-text);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.card-wrap:hover {
+  transform: scale(1.1);
+}
+
+.card-header {
+  height: 230px;
+  width: 100%;
+  background: red;
+  border-radius: 100% 0% 100% 0% / 0% 50% 50% 100%;
+  display: grid;
+  place-items: center;
+
+}
+
+.card-header i {
+  color: #fff;
+  font-size: 72px;
+}
+
+.card-btn {
+  border: none;
+  border-radius: 100px;
+  padding: 5px 30px;
+  color: #fff;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.card-header.one {
+  background: linear-gradient(to bottom left, var(--card1-gradient-color1), var(--card1-gradient-color2));
+}
+
+.card-btn.one {
+  background: linear-gradient(to left, var(--card1-gradient-color1), var(--card1-gradient-color2));
+}
+
+:root {
+  --color-text: #616161;
+  --color-text-btn: #ffffff;
+  --card1-gradient-color1: #891A89;
+  --card1-gradient-color2: #891A89;
+  --card2-gradient-color1: #7F00FF;
+  --card2-gradient-color2: #E100FF;
+  --card3-gradient-color1: #3f2b96;
+  --card3-gradient-color2: #a8c0ff;
+  --card4-gradient-color1: #11998e;
+  --card4-gradient-color2: #38ef7d;
+}
+</style>

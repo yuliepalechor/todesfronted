@@ -23,6 +23,7 @@
     "vue-chartjs": "^4.1.2",
     "vue-clickaway": "2.2.2",
     "vue-github-buttons": "3.1.0",
+    "vue-like-dislike-buttons": "^0.2.4",
     "vue-material": "^1.0.0-beta-15",
     "vue-router": "3.5.2",
     "vue-slick-carousel": "^1.0.6",

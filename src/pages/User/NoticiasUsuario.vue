@@ -6,11 +6,26 @@
         <div>
             <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
         </div>
+        <div style="background-color:#891A89" class="section primary-section" id="service">
+      
+      
+
+      <div class="a1">
+        <div class="span4">
+          <div class="centered service">
+            
+            <h3 >Noticias</h3>
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
         <!---------------------- card ----------->
         <div class="bodycard">
             <div  v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
             <div class="card-header one">
-                <i class="fas fa-code"></i>
+                <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"   ></b-img>
             </div>
             <div class="card-content">
                 <b-card-text>
@@ -27,11 +42,25 @@
         <!-- ---------------------fincard -->
 
         <div>
+            
             <b-modal v-model="show2" id="informacion2">
+                
                 <template #modal-header class="modal-header">
                     <h5>INFORMACION</h5>
                    
                 </template>
+                <template #modal-footer="{ close }" style="text-align: right;">
+                    <div class="w-100">
+                        <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
+                        
+                        <md-button class="md-just-icon md-simple md-primary"  @click="close()">
+                            <md-icon>close</md-icon>
+                            <md-tooltip md-direction="left">Close</md-tooltip>
+                        </md-button>
+                    </div>
+                  
+                </template>
+                
                 <b-container fluid>
                    
                     <b-row class="my-1">
@@ -64,25 +93,21 @@
                 </b-container>
                 <!-- ******** area de comentario ******** -->
                 <div>
-    <b-form-textarea
-      id="textarea-state"
-      v-model="text"
-      :state="(text.length <= 250)"
-      placeholder="escriba su comentario maximo 250 caracteres"
-      rows="6"
-      maxlength = "250"
-      
-    > </b-form-textarea>
-    
-  </div>
+          <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
+            <option value="Me gusta">Me gusta</option>
+            <option value="No me gusta">No me gusta</option>
+            
+          </select>
+          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+          </b-form-textarea>
+          
+          <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left" @click="close()">Comentar</md-button>
+               
+            
+        </div>
                 <!-- ******** area de comentario ******** -->
-                <template #modal-footer="{ close }" style="text-align: right;">
-                    <div class="w-100">
-                        <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
-                        
-                    </div>
-                  
-                </template>
+                
         
             </b-modal>
         </div>
@@ -119,6 +144,11 @@ export default {
 
     data() {
         return {
+        formulariocomentario:{
+        comentario:null,
+        clasificasion:null,
+      },
+
             publicacion: null,
             noticia: {},
             noticias: {},
@@ -170,6 +200,10 @@ export default {
 }
 </script>
 <style>
+
+.imgn{
+  border-radius:100%; width:50%; 
+}
 .primary-section,
 .primary-section .title p,
 .primary-section h3 {

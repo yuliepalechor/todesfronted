@@ -8,6 +8,9 @@
           <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
         </div>
         
+
+        {{ usuarionombre }}
+      {{ usuarioapellido }}
         <b-navbar-brand href="#">TODES</b-navbar-brand >
        
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -53,6 +56,43 @@
 
    
 </template>
+<script>
+export default {
+
+name: 'App',
+
+
+data() {
+  return {
+    formulariocomentario:{
+      comentario:null,
+      clasificasion:null,
+    },
+    usuarionombre: null,
+    usuarioapellido: null,
+    id_usuario:null,
+    
+   
+  }
+
+},
+
+
+/**/
+
+mounted() {
+  this.id_usuario = sessionStorage.getItem("id")
+  this.usuarionombre = sessionStorage.getItem("username")
+  this.usuarioapellido = sessionStorage.getItem("apellido")
+ 
+
+
+}
+}
+</script>
+
+
+
 <style>
 
 .navbar {
