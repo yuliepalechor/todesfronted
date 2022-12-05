@@ -3,6 +3,7 @@
        <navbarusuario></navbarusuario>
        
        
+       
        <div>
          <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
        </div>
@@ -11,8 +12,9 @@
          <div class="a1">
            <div class="span4">
              <div class="centered service">
-         
+              <br><br>
                <h3>Eventos</h3>
+       
                
              </div>
            </div>
@@ -21,14 +23,15 @@
  </div>
        
       <!-- ---------------------card --------------->
-       <div class="card-wrap" v-for="publicacion in publicacion" :key="publicacion.id">
+      <div class="bodycard">
+        <div class="card-wrap" v-for="publicacion in publicacion" :key="publicacion.id">
          <div class="card-header one">
            <b-img class="imgev" src="https://picsum.photos/300/150/?image=41"   ></b-img>
          </div>
          <div class="card-content">
            <!-- <h1 class="card-title">Title</h1> -->
            <b-card-text>
-           <H6> Publicacion N°: </H6> {{ publicacion.id }}
+           
            <h6> Nombre:</h6>{{ publicacion.nombre_publicacion }}
            <H6> Tipo de publicacion: </H6> {{ publicacion.tipo }}
 
@@ -36,6 +39,8 @@
            <md-button v-b-modal="'informacion'" v-on:click="mostrarinformacion(publicacion)" target="_blank" class="md-primary md-round" >Ver mas</md-button>
          </div>
        </div>
+      </div>
+       
        <!-- ------------fin card ------------->
 
        <div>
@@ -81,9 +86,11 @@
          <option value="No me gusta">No me gusta</option>
          
        </select>
-       <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
+       <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
          placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
        </b-form-textarea>
+       <p for="numero p">{{evento.id}}</p>
+       <md-button   class="md-primary md-round float-left" @click="guardarcomentario(evento.id)">Comentar</md-button>
        
        
             
@@ -94,7 +101,7 @@
              
                <div class="boton">
                <md-button style="margin-right:160px ;" target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
-               <md-button  target="_blank" class="md-primary md-round float-left" @click="close()">Comentar</md-button>
+               
              </div>
             
             
@@ -118,13 +125,14 @@
 import axios from "axios"
 export default {
 
-
 data() {
  return {
    // imagenPro: {width: 100, height: 100,class: 'm1' },
    formulariocomentario:{
-     comentario:null,
-     clasificasion:null,
+    comentario:null,
+     clasificasion: null,
+     id_usuario: null,
+     id_publicacion:null,
    },
    usuarionombre: null,
    usuarioapellido: null,
@@ -144,6 +152,7 @@ data() {
    footerTextVariant: 'dark',
    
    
+   
    showModal: false,
   
 
@@ -156,7 +165,6 @@ computed() {
 
 },
 
-
 components: {
  
 },
@@ -167,22 +175,26 @@ mounted() {
  this.usuarionombre = sessionStorage.getItem("username")
  this.usuarioapellido = sessionStorage.getItem("apellido")
 
-
  axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
    console.log(response);
    this.publicacion = response.data;
  });
 
 
-
 },
 methods: {
- guardarcomentario(idpublic){
-   axios.post('http://127.0.0.1:8000/api/comentarios',formulariocomentario).then((response) => {
-   console.log(response);
-   
- });
- },
+  guardarcomentario(idpublic) {
+  
+  let formulariocomentario=new FormData()
+   formulariocomentario.append('id_publicacion',idpublic)
+   formulariocomentario.append('id_usuario', this.id_usuario)
+   formulariocomentario.append('contenido', this.contenido)
+   formulariocomentario.append('clasificacion',this.clasificacion)
+  axios.post('http://127.0.0.1:8000/api/comentarios',formulariocomentario).then((response) => {
+  console.log(response);
+  
+});
+},
  mostrarinformacion(objeto) {
    return this.evento = objeto;
  },
@@ -190,9 +202,7 @@ methods: {
 
 
 
-
 }
-
 
 </script>
 
@@ -213,8 +223,10 @@ margin: 20px;
  vertical-align: top;
 
 }
-.body{
-position: fixed;
+.bodycard{
+margin-left: 15px;
+margin-right: 50px;
+
 }
 
 .md-card {
@@ -250,7 +262,6 @@ border-bottom: 1px solid rgb(216, 212, 212);
 
 
 
-
 .thumbnail .mask {
  opacity: 0.85;
  filter: alpha(opacity=85);
@@ -268,12 +279,10 @@ border-bottom: 1px solid rgb(216, 212, 212);
 }
 
 
-
 .third-section .container {
  padding-top: 20px;
  position: relative;
 }
-
 
 
 
@@ -282,12 +291,10 @@ border-bottom: 1px solid rgb(216, 212, 212);
  height: 500px;
 }
 
-
 .contact-info {
  text-align: center;
  font-size: 22px;
 }
-
 
 /*
 4 Responsible
@@ -301,7 +308,6 @@ border-bottom: 1px solid rgb(216, 212, 212);
      line-height: 80px;
  }
 }
-
 
 
 @media (max-width: 767px) {
@@ -327,6 +333,7 @@ border-bottom: 1px solid rgb(216, 212, 212);
  background: #fff;
  border-radius: 20px;
  display: inline-block;
+align-content: center;
  margin: 20px;
  border: 5px solid #fff;
  overflow: hidden;
@@ -366,26 +373,25 @@ border-bottom: 1px solid rgb(216, 212, 212);
 }
 
 .card-header.one {
- background: linear-gradient(to bottom left, var(--card1-gradient-color1), var(--card1-gradient-color2));
+ background: linear-gradient(to bottom left, var(--card2-gradient-color1), var( --card2-gradient-color2));
 }
 
 .card-btn.one {
- background: linear-gradient(to left, var(--card1-gradient-color1), var(--card1-gradient-color2));
+ background: linear-gradient(to left, var(--card2-gradient-color1), var(--card2-gradient-color1));
 }
 
 :root {
  --color-text: #616161;
  --color-text-btn: #ffffff;
- --card1-gradient-color1: #1a6089;
- --card1-gradient-color2: #1a8929;
- --card2-gradient-color1: #7F00FF;
- --card2-gradient-color2: #E100FF;
- --card3-gradient-color1: #3f2b96;
- --card3-gradient-color2: #a8c0ff;
- --card4-gradient-color1: #11998e;
- --card4-gradient-color2: #38ef7d;
+ --card1-gradient-color1: #00ADB5;
+ --card1-gradient-color2: #00ADB5;
+ --card2-gradient-color1: #00ADB5;
+ --card2-gradient-color2: #00ADB5;
+ --card3-gradient-color1: #00ADB5;
+ --card3-gradient-color2: #00ADB5;
+ --card4-gradient-color1: #00ADB5;
+ --card4-gradient-color2: #00ADB5;
 }
-
 
 
 

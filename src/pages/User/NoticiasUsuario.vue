@@ -364,8 +364,8 @@ export default {
     --color-text-btn: #ffffff;
     --card1-gradient-color1: #891A89;
     --card1-gradient-color2: #891A89;
-    --card2-gradient-color1: #7F00FF;
-    --card2-gradient-color2: #E100FF;
+    --card2-gradient-color1: #00ADB5;
+    --card2-gradient-color2: #00ADB5;
     --card3-gradient-color1: #3f2b96;
     --card3-gradient-color2: #a8c0ff;
     --card4-gradient-color1: #11998e;
