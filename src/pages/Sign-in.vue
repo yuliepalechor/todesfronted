@@ -5,9 +5,15 @@
       <div class="row">
        
         <div  class="col-lg-6 col-md-6 col-sm-12 col-12 register-form">
+          
           <form >
+            <img class="img" :src="logo" />
             <md-card id="cardcont" >
               <md-card-header style="background-color: #00adb5;text-align: center;">
+                
+            
+          
+        
                 <h4 class="title">LOGEO</h4>
                 
                 <p class="category">Digite Email y Contraseña</p>
@@ -48,18 +54,17 @@
             </md-card>
           </form>
         </div>
-        <div class="col-lg-6 col-md-6 pic-register-2">
-          <div class="md-card-avatar" id="avatar">
-            <img class="img" :src="logo" />
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>
 </template>
 <style>
 .img{
-  width: 80%;
+  width: 1%;
+  height: 0%;
+    width: 10%;
+    padding-top: 0px;
 }
 #avatar{
 	float: center;
