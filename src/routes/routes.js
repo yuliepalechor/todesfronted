@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import Vuelidate from "vuelidate";
 import Sigin from "@/pages/Sign-in.vue";
 import SigUp from "@/pages/SigUp.vue";
 
@@ -31,6 +32,7 @@ import Notifications from "@/pages/Notifications.vue";
 import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 
 Vue.use(VueRouter);
+Vue.use(Vuelidate);
 const routes = [
   {
     path: "/UsuarioComunidad",

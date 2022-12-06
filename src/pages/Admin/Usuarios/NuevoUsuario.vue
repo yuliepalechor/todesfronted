@@ -6,18 +6,18 @@
           <p class="category">Nuevo Usuario</p>
         </md-card-header>
   
-        <md-card-content>
+        <md-card-content v-on:button.prevent="GuardarUsuario">
           <div class="md-layout">
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
                 <label>Identificacion</label>
-                <md-input v-model="form.identificacion" type="text"></md-input>
+                <md-input type="text" v-model="form.identificacion"></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
                 <label>Nombre</label>
-                <md-input v-model="form.nombre" type="text"></md-input>
+                <md-input type="text" v-model="form.nombre"></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -68,8 +68,11 @@
     </form>
   </template>
   <script>
+
+  
   import Swal from 'sweetalert2'
   import axios from "axios"
+  import {required, minLenght} from 'vuelidate/lib/validators';
   export default {
     name: "NuevoUsuario",
     props: {
@@ -105,7 +108,21 @@
                 timer: 1500
                 })
             });
+          },
+
+          validations:{
+          form:{
+            nombre: {
+                  required,
+                  minLenght: minLength(5) 
+
+            }
           }
+
+          }
+
+
+
         }
   };
   </script>

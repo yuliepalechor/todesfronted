@@ -25,7 +25,8 @@
     "vue-router": "3.5.2",
     "vue-sessionstorage": "^1.0.0",
     "vue-slick-carousel": "^1.0.6",
-    "vue-social-sharing": "3.0.9"
+    "vue-social-sharing": "3.0.9",
+    "vuelidate": "^0.7.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",

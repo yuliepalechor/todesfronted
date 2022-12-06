@@ -160,14 +160,14 @@ export default {
          /**     this.$session.set("userid", data.data.id[0]);
               this.$session.set("username", data.data.name[0]);
               this.$session.set("token", data.data.access_token[0]);>*/ 
-              sessionStorage.setItem("userid", data.data.id), /**con storage  */
+              sessionStorage.setItem("userid", data.data.id),
               sessionStorage.setItem("username", data.data.name),
               sessionStorage.setItem("apellido", data.data.apellido),
               sessionStorage.setItem("email", data.data.email),
               sessionStorage.setItem("token", data.data.access_token)
 
               if(data.data.rol[0]=="Admin"){
-                this.$router.push("/dashboard");
+                this.$router.push("/dashboard");  
               }else{
                 this.$router.push("/UsuarioComunidad");
               }
