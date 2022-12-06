@@ -9,45 +9,55 @@
         </div>
         
 
-        {{ usuarionombre }}
-      {{ usuarioapellido }}
-        <b-navbar-brand href="#">TODES</b-navbar-brand >
+       
+        <b-navbar-brand style="color:#ffff" href="">TODES</b-navbar-brand >
        
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       
         <div class="item">
           <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
+
+            
             <li class="nav-item">
-                  <router-link style="color:#ffff" class="nav-link me-2" to="/EventosUsuario"><i class="fas fa-key opacity-6 text-dark me-1"></i>
+                  <router-link style="color:#ffff" class="nav-link me-2" to="/UsuarioComunidad">
+                   Inicio</router-link>
+                 
+                </li>
+            <li class="nav-item">
+                  <router-link style="color:#ffff" class="nav-link me-2" to="/EventosUsuario">
                    Eventos</router-link>
                  
                 </li>
 
             <li class="nav-item">
-                  <router-link style="color:#ffff" class="nav-link me-2" to="/NoticiasUsuario"><i class="fas fa-key opacity-6 text-dark me-1"></i>
+                  <router-link style="color:#ffff" class="nav-link me-2" to="/NoticiasUsuario">
                     Noticias</router-link>
                  
                 </li>
+                
+                
 
-            <b-nav-item href="#">Incidencias</b-nav-item>
+            
     
           </b-navbar-nav>
     
-          <b-navbar-nav class="ml-auto">
+          <b-navbar-nav  class="ml-auto">
             <b-nav-item-dropdown right>
-              <template #button-content>
-                <em>Usuario</em>
+              <template  #button-content>
+                <em style="color:#ffff">Usuario</em>
               </template>
      
-             <b-dropdown-item href="#">Perfil</b-dropdown-item>
-              <b-dropdown-item href="#">Salir</b-dropdown-item>
+             <b-dropdown-item href="# ">Perfil</b-dropdown-item>
+              <b-dropdown-item href="../../pages/Sign-in.vue">Salir</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
         </div>
-        
+        {{ usuarionombre }}
+      {{ usuarioapellido }}
       </b-navbar>
+      
     </div>
     
     

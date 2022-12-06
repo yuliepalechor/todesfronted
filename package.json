@@ -26,6 +26,7 @@
     "vue-like-dislike-buttons": "^0.2.4",
     "vue-material": "^1.0.0-beta-15",
     "vue-router": "3.5.2",
+    "vue-sessionstorage": "^1.0.0",
     "vue-slick-carousel": "^1.0.6",
     "vue-social-sharing": "3.0.9"
   },

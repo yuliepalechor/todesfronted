@@ -141,6 +141,9 @@ export default {
   },
   data() {
     return {
+      usuarionombre:null,
+      usuarioapellido:null,
+      usuarioemail:null,
 		form:{
       email: null,
       password: null,
@@ -153,6 +156,11 @@ export default {
           .then((data) => {
          console.log(data.data.status);
             if (data.data.status == "1") {
+              sessionStorage.setItem("userid", data.data.id), /**con storage  */
+              sessionStorage.setItem("username", data.data.name),
+              sessionStorage.setItem("apellido", data.data.apellido),
+              sessionStorage.setItem("email", data.data.email),
+              sessionStorage.setItem("token", data.data.access_token)
               if(data.data.rol[0]=="Admin"){
                 this.$router.push("/dashboard");
               }else{
