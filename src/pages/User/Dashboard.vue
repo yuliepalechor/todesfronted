@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="navbar">
+    <!-- <div class="navbar">
 
 
       <div class="navbar-inner">
@@ -9,13 +9,12 @@
         </div>
       </div>
 
-      <!--<div>       
-      <img class="img-circle" src="../../assets/img/todeslogoo.png"  />      
-    </div>-->
+      
 
       {{ usuarionombre }}
       {{ usuarioapellido }}
-    </div>
+    </div> -->
+    <navbarusuario></navbarusuario>
 
     <!-- Start home section -->
 
@@ -412,7 +411,6 @@ button {
   background: none;
   cursor: pointer;
   border-radius: 15px;
-  left:0%;
   display: block;
   padding: 10px 15px;
   background-image: linear-gradient(to right rgb(145, 5, 5), #9c27b0);
