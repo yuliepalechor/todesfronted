@@ -5,7 +5,7 @@
        
        
        <div>
-         <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
+        <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" margin="" /></center>
        </div>
        <div style="background-color:#891A89" class="section primary-section" id="service">
    
@@ -82,8 +82,8 @@
            <!-- ******** area de comentario ******** -->
            <div>
        <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
-         <option value="Me gusta">Me gusta</option>
-         <option value="No me gusta">No me gusta</option>
+         <option value="Me interesa">Me gusta</option>
+         <option value="No me intresa">No me gusta</option>
          
        </select>
        <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"

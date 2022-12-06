@@ -4,7 +4,7 @@
 
         <navbarusuario></navbarusuario>
         <div>
-            <img src="../../assets/img/fondo.png" width="100%" height="60%" alt="Logo" margin="" />
+            <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" margin="" /></center>
         </div>
         <div style="background-color:#891A89" class="section primary-section" id="service">
       
@@ -13,7 +13,7 @@
       <div class="a1">
         <div class="span4">
           <div class="centered service">
-            
+            <br><br>
             <h3 >Noticias</h3>
             <p></p>
           </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="card-content">
                 <b-card-text>
-              <H6> Publicacion N°: </H6> {{ noticias.id }}
+              <!-- <H6> Publicacion N°: </H6> {{ noticias.id }} -->
               <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
               <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
 
@@ -49,17 +49,7 @@
                     <h5>INFORMACION</h5>
                    
                 </template>
-                <template #modal-footer="{ close }" style="text-align: right;">
-                    <div class="w-100">
-                        <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
-                        
-                        <md-button class="md-just-icon md-simple md-primary"  @click="close()">
-                            <md-icon>close</md-icon>
-                            <md-tooltip md-direction="left">Close</md-tooltip>
-                        </md-button>
-                    </div>
-                  
-                </template>
+                
                 
                 <b-container fluid>
                    
@@ -107,6 +97,17 @@
             
         </div>
                 <!-- ******** area de comentario ******** -->
+                <template #modal-footer="{ close }" style="text-align: right;">
+                    <div class="w-100">
+                        <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
+                        
+                        <md-button class="md-just-icon md-simple md-primary"  @click="close()">
+                            <md-icon>close</md-icon>
+                            <md-tooltip md-direction="left">Close</md-tooltip>
+                        </md-button>
+                    </div>
+                  
+                </template>
                 
         
             </b-modal>

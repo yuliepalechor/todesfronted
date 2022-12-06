@@ -54,8 +54,11 @@
           </b-navbar-nav>
         </b-collapse>
         </div>
-        {{ usuarionombre }}
+        <div style="margin-left:800px ;">
+          {{ usuarionombre }}
       {{ usuarioapellido }}
+        </div>
+        
       </b-navbar>
       
     </div>

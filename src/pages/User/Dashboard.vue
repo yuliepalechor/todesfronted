@@ -15,8 +15,7 @@
       {{ usuarioapellido }}
     </div> -->
     <navbarusuario></navbarusuario>
-    {{ usuarionombre }}
-      {{ usuarioapellido }}
+    
 
     <!-- Start home section -->
 
