@@ -11,7 +11,7 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Ubicacion de incidencias</h4>
+            <h4 class="title">Eventos por fecha</h4>
             <p class="category">
               <span class="text-success"
                 ><i class="fas fa-long-arrow-alt-up"></i> 55%
@@ -69,7 +69,7 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Denuncias</h4>
+            <h4 class="title">Noticias por fecha</h4>
             <p class="category">Last Campaign Performance</p>
           </template>
 
@@ -85,88 +85,12 @@
         </chart-card>
       </div>
 
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
-      >
-        <chart-card
-          :chart-data="dailySalesChart.data"
-          :chart-options="dailySalesChart.options"
-          :chart-type="'Line'"
-          data-background-color="purple"
-        >
-          <template slot="content">
-            <h4 class="title">Eventos</h4>
-            <p class="category">
-              <span class="text-success"
-                ><i class="fas fa-long-arrow-alt-up"></i> 55%
-              </span>
-              increase in today sales.
-            </p>
-          </template>
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>access_time</md-icon>
-              updated 4 minutes ago
-              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
-        <md-icon>menu</md-icon>
-      </md-button>
-            </div>
-          </template>
-        </chart-card>
-      </div>
+      
 
 
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
-      >
-        <chart-card
-          :chart-data="emailsSubscriptionChart.data"
-          :chart-options="emailsSubscriptionChart.options"
-          :chart-responsive-options="emailsSubscriptionChart.responsiveOptions"
-          :chart-type="'Bar'"
-          data-background-color="blue"
-        >
-          <template slot="content">
-            <h4 class="title">Publicaciones recientes</h4>
-            <p class="category">Last Campaign Performance</p>
-          </template>
+      
 
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>access_time</md-icon>
-              updated 10 days ago
-              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
-        <md-icon>menu</md-icon>
-      </md-button>
-            </div>
-          </template>
-        </chart-card>
-      </div>
-
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
-      >
-        <chart-card
-          :chart-data="dataCompletedTasksChart.data"
-          :chart-options="dataCompletedTasksChart.options"
-          :chart-type="'Line'"
-          data-background-color="purple"
-        >
-          <template slot="content">
-            <h4 class="title">Denuncias</h4>
-            <p class="category">Last Campaign Performance</p>
-          </template>
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>access_time</md-icon>
-              campaign sent 26 minutes ago
-            </div>
-          </template>
-        </chart-card>
-      </div>
-
+      
 
       
      

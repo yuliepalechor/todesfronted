@@ -28,6 +28,9 @@ import UsuarioComunidad from "@/pages/User/Dashboard.vue";
 import EventosUsuario from "@/pages/User/EventosUsuario.vue";
 import NoticiasUsuario from "@/pages/User/NoticiasUsuario.vue";
 
+import ListaIncidencias from "@/pages/Admin/Incidencias/ListaIncidencias.vue";
+
+
 
 import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
@@ -149,6 +152,12 @@ const routes = [
         path: "Reportes",
         name: "Reportes",
         component: Reportes,
+      },
+
+      {
+        path: "/ListaIncidencias",
+        name: "ListaIncidencias",
+        component: ListaIncidencias,
       },
 
       {

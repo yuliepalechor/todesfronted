@@ -36,12 +36,7 @@
                   </md-button>
                 </template>
 
-                <template v-slot:cell(Asignar)="row">
-                  <md-button @click="AsignarCategoria(row.item.id)" class="md-just-icon md-simple md-danger">
-                    <md-icon>+</md-icon>
-                    <md-tooltip md-direction="top">Asignar</md-tooltip>
-                  </md-button>
-                </template>
+                
 
 
 
@@ -95,7 +90,7 @@ export default {
 
         { key: "Editar", label: "Editar" },
         { key: "Eliminar", label: "Eliminar" },
-        { key: "Asignar", label: "Asignar" },
+        
 
 
       ],

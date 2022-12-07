@@ -45,6 +45,12 @@
         <md-icon>person</md-icon>
         <p>Roles</p>
       </sidebar-link> -->
+      <sidebar-link to="/ListaIncidencias">
+        <md-icon>person</md-icon>
+        <p>Incidencias</p>
+      </sidebar-link>
+
+
 
       <sidebar-link to="/Usuarios">
         <md-icon>person</md-icon>
