@@ -35,9 +35,12 @@
                 </template>
                 <template v-slot:cell(ejemplo)="row">
                     <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
-                </template>
+               
+               
+                    
+                  </template>
                </b-table>              
-                  <b-pagination
+               <b-pagination
                   v-model="currentPage"
                :total-rows="rows"
                 :per-page="perpage"
@@ -100,7 +103,10 @@
             <b-container fluid>
                   
               <b-form-input v-model="filter" type="search" placeholder="Buscar..."></b-form-input>
-             <table class="table table-bordered table-striped">
+            <!--- <table class="table table-bordered table-striped">-->
+              <b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
+                hover responsive class="mt-4" :fields=" categoria" :items=" categoria">
+             
               <thead>
                 <tr>
                   <th>ID</th>
@@ -109,6 +115,9 @@
                 </tr>
               </thead>
               <tbody>
+
+
+                
                 <tr v-for=" categoria in categoria" :key=" categoria.id">
                   
                   <td v-text=" categoria.id"></td>
@@ -123,7 +132,7 @@
               </b-button></td>
                 </tr>
               </tbody>
-            </table>
+            </b-table>
           </b-container>
               <template #modal-footer>
             <div class="w-100">
@@ -204,7 +213,7 @@ export default {
 
   computed: {
     rows() {
-      return this.categoria.length;
+      return this.publicacion.length;
     },
   },
   methods: {
