@@ -85,7 +85,49 @@ export default {
     return {
       usuario: [],
       filter: null,
-      perpage:10,
+      perpage:10
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      ,
       currentPage:1,
       encabezado: [
         { key: "id", label: "Id" },

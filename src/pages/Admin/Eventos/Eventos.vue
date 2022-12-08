@@ -33,9 +33,11 @@
                       <md-tooltip md-direction="top">Close</md-tooltip>
                     </md-button>
                 </template>
-                
                 <template v-slot:cell(ejemplo)="row">
                     <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
+               
+               
+                    
                   </template>
                </b-table>              
                <b-pagination
@@ -105,6 +107,7 @@
               <!---<b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
                 hover responsive class="mt-4" :fields=" categoria" :items=" categoria">
               -->
+                
               <thead>
                 <tr>
                   <th>ID</th>
@@ -112,11 +115,16 @@
                   <th>Accion</th>
                 </tr>
               </thead>
-              <tbody> 
+              <tbody>
+
+
+                
                 <tr v-for=" categoria in categoria" :key=" categoria.id">
+                  
                   <td v-text=" categoria.id"></td>
                   <td v-text=" categoria.nombre"></td>
-                  <td >   <b-button
+                  <td >
+                    <b-button
                     v-b-modal="'asignaciones'"
                    @click=" guardaraasignacionnueva(categoria.id,id_publiseleccionada)" 
                     variant="primary"
@@ -124,6 +132,9 @@
                     class="float-right"
                     >Asignar
               </b-button></td>
+              <div id="app">
+    <font-awesome-icon icon="home"/>
+  </div>
                 </tr>
               </tbody>
             </table>
@@ -138,10 +149,19 @@
                 class="float-right"
               >Nuevo
               </b-button>
+              <i class="fa-light fa-paperclip-vertical"></i>
             </div>
           </template>
+
+          <template>
+  <div id="app">
+    <font-awesome-icon icon="home"/>
+  </div>
+</template>
         </b-modal>
-        </div>
+
+
+            </div>
           </template>
         </b-modal>     
       </div>
@@ -150,6 +170,7 @@
 
 <script>
 import { OrderedTable } from "@/components";
+
 import Swal from "sweetalert2";
 import axios from "axios";
 //import { response } from "express";
@@ -218,6 +239,10 @@ export default {
     },
 
     guardaraasignacionnueva(idcat, idpub) {
+
+
+
+      
       let formularioasigna = new FormData();
       formularioasigna.append("id_publicacion", idpub);
       formularioasigna.append("id_categoria", idcat);
