@@ -33,11 +33,9 @@
                       <md-tooltip md-direction="top">Close</md-tooltip>
                     </md-button>
                 </template>
+                
                 <template v-slot:cell(ejemplo)="row">
                     <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
-               
-               
-                    
                   </template>
                </b-table>              
                <b-pagination
@@ -51,11 +49,11 @@
         </md-card>
       </div>
     </div>
-    <!--      MODAL DE LAS CATEGORIAS ASIGNADAS          -->
+    <!--      MODAL DE LAS CATEGORIAS ASIGNADAS-->
     <div>
         <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
           <b-container fluid>
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" id:="tabla">
               <thead>
                 <b-button
                v-b-modal="'asignacionnueva'"
@@ -103,10 +101,10 @@
             <b-container fluid>
                   
               <b-form-input v-model="filter" type="search" placeholder="Buscar..."></b-form-input>
-            <!--- <table class="table table-bordered table-striped">-->
-              <b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
+             <table class="table table-bordered table-striped">
+              <!---<b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
                 hover responsive class="mt-4" :fields=" categoria" :items=" categoria">
-             
+              -->
               <thead>
                 <tr>
                   <th>ID</th>
@@ -114,12 +112,8 @@
                   <th>Accion</th>
                 </tr>
               </thead>
-              <tbody>
-
-
-                
+              <tbody> 
                 <tr v-for=" categoria in categoria" :key=" categoria.id">
-                  
                   <td v-text=" categoria.id"></td>
                   <td v-text=" categoria.nombre"></td>
                   <td >   <b-button
@@ -132,7 +126,7 @@
               </b-button></td>
                 </tr>
               </tbody>
-            </b-table>
+            </table>
           </b-container>
               <template #modal-footer>
             <div class="w-100">
@@ -147,9 +141,7 @@
             </div>
           </template>
         </b-modal>
-
-
-            </div>
+        </div>
           </template>
         </b-modal>     
       </div>
@@ -298,7 +290,7 @@ export default {
                 this.axios
                   .get("http://127.0.0.1:8000/api/publicacion")
                   .then((response) => {
-                    this.categoria = response.data;
+                    this.publicacion = response.data;
                   });
                 this.publicacion = response.data;
                 console.log(data);
@@ -318,6 +310,7 @@ export default {
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
+  width:100%;
 }
 </style>
 
