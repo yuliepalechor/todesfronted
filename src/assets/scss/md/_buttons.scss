@@ -63,6 +63,9 @@
     &.md-danger{
       @include btn-styles($brand-danger);
     }
+    &.md-pink{
+      @include btn-styles($brand-pink);
+    }
     &.md-white{
         &,
         &:focus,

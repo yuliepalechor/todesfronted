@@ -36,7 +36,7 @@
            <H6> Tipo de publicacion: </H6> {{ publicacion.tipo }}
 
          </b-card-text>
-           <md-button v-b-modal="'informacion'" v-on:click="mostrarinformacion(publicacion)" target="_blank" class="md-primary md-round" >Ver mas</md-button>
+           <md-button v-b-modal="'informacion'" v-on:click="mostrarinformacion(publicacion)" target="_blank" class="md-pink md-round" >Ver mas</md-button>
          </div>
        </div>
       </div>
@@ -45,7 +45,7 @@
 
        <div>
          <b-modal v-model="show1" id="informacion">
-           <template #modal-header class="modal-header">
+           <template #modal-header class="modal-header" style="background-color:#891489 ;">
              <h5>INFORMACION</h5>
             
            </template>
@@ -80,27 +80,31 @@
          
            </b-container>
            <!-- ******** area de comentario ******** -->
-           <div>
-       <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
-         <option value="Me interesa">Me gusta</option>
-         <option value="No me intresa">No me gusta</option>
-         
-       </select>
-       <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
-         placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
-       </b-form-textarea>
-       <p for="numero p">{{evento.id}}</p>
-       <md-button   class="md-primary md-round float-left" @click="guardarcomentario(evento.id)">Comentar</md-button>
-       
-       
+          <div>
+          
+          
+            <select v-model="clasificacion" name="clasificasion" id="clasificasion">
+              <option value="Me gusta">Me gusta</option>
+              <option value="No me gusta">No me gusta</option>
+          
+            </select>
+            <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
+              placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+            </b-form-textarea>
+            <!-- <p for="numero p">{{evento.id}}</p> -->
             
-         
-     </div>
+            <md-button style="margin-left:320px;" target="_blank" class="md-pink md-round float-left"
+              @click="guardarcomentario(evento.id)">Comentar</md-button>
+              
+            
+          
+          
+          </div>
            <!-- ******** area de comentario ******** -->
            <template #modal-footer="{ close }" style="text-align: right;">
              
-               <div class="boton">
-               <md-button style="margin-right:160px ;" target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+               <div class="w-100">
+               <md-button  target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
                
              </div>
             
@@ -144,7 +148,7 @@ data() {
    text:'',
    
    variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
-   headerBgVariant: '#9c27b0',
+   headerBgVariant: '#891489',
    headerTextVariant: 'light',
    bodyBgVariant: 'light',
    bodyTextVariant: 'dark',
