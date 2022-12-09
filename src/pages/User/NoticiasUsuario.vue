@@ -4,112 +4,116 @@
 
         <navbarusuario></navbarusuario>
         <div>
-            <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" margin="" /></center>
+            <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo"
+                    margin="" /></center>
         </div>
         <div style="background-color:#891A89" class="section primary-section" id="service">
-      
-      
 
-      <div class="a1">
-        <div class="span4">
-          <div class="centered service">
-            <br><br>
-            <h3 >Noticias</h3>
-            <p></p>
-          </div>
+
+
+            <div class="a1">
+                <div class="span4">
+                    <div class="centered service">
+                        <br><br>
+                        <h3>Noticias</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
-
-    </div>
         <!---------------------- card ----------->
         <div class="bodycard">
-            <div  v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
-            <div class="card-header one">
-                <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"   ></b-img>
-            </div>
-            <div class="card-content">
-                <b-card-text>
-              <!-- <H6> Publicacion N°: </H6> {{ noticias.id }} -->
-              <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
-              <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
+            <div v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
+                <div class="card-header one">
+                    <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"></b-img>
+                </div>
+                <div class="card-content">
+                    <b-card-text>
+                        <!-- <H6> Publicacion N°: </H6> {{ noticias.id }} -->
+                        <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
+                        <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
 
-            </b-card-text>
-            <md-button v-b-modal="'informacion2'" v-on:click="mostrarinformacion2(noticias)" target="_blank" class="md-primary md-round" >Ver mas</md-button>
+                    </b-card-text>
+                    <md-button v-b-modal="'informacion2'" v-on:click="mostrarinformacion2(noticias)" target="_blank"
+                        class="md-primary md-round">Ver mas</md-button>
+                </div>
             </div>
         </div>
-        </div>
-        
+
         <!-- ---------------------fincard -->
 
         <div>
-            
+
             <b-modal v-model="show2" id="informacion2">
-                
+
                 <template #modal-header class="modal-header">
                     <h5>INFORMACION</h5>
-                   
+
                 </template>
-                
-                
+
+
                 <b-container fluid>
-                   
+
                     <b-row class="my-1">
                         <b-col sm="3">
-        
+
                             <label for="numero p">Nombre: </label>
                             <label for="numero p">lugar: </label>
                             <label for="numero p">responsable:</label>
                             <label for="numero p">estado: </label>
                             <label for="numero p">Tipo:</label>
                             <label for="numero p">descripcion:</label>
-        
+
                         </b-col>
-        
+
                         <b-col sm="9">
-        
-                            <p for="numero p">{{noticia.nombre_publicacion}}</p>
-        
-                            <p for="numero p">{{noticia.lugar}}</p>
-                            <p for="numero p">{{noticia.responsable}}</p>
-                            <p for="numero p">{{noticia.estado}}</p>
-                            <p for="numero p">{{noticia.tipo}}</p>
-                            <p for="numero p">{{noticia.descripcion_publicacion}}</p>
-        
+
+                            <p for="numero p">{{ noticia.nombre_publicacion }}</p>
+
+                            <p for="numero p">{{ noticia.lugar }}</p>
+                            <p for="numero p">{{ noticia.responsable }}</p>
+                            <p for="numero p">{{ noticia.estado }}</p>
+                            <p for="numero p">{{ noticia.tipo }}</p>
+                            <p for="numero p">{{ noticia.descripcion_publicacion }}</p>
+
                         </b-col>
-        
+
                     </b-row>
-        
-        
+
+
                 </b-container>
                 <!-- ******** area de comentario ******** -->
                 <div>
-          <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
-            <option value="Me gusta">Me gusta</option>
-            <option value="No me gusta">No me gusta</option>
-            
-          </select>
-          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
-            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
-          </b-form-textarea>
-          
-          <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left" @click="close()">Comentar</md-button>
-               
-            
-        </div>
+                    <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
+                        <option value="Me gusta">Me gusta</option>
+                        <option value="No me gusta">No me gusta</option>
+
+                    </select>
+                    <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido"
+                        :state="(text.length <= 250)" placeholder="escriba su comentario maximo 250 caracteres" rows="6"
+                        maxlength="250">
+                    </b-form-textarea>
+
+                    <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left"
+                        @click="close()">Comentar</md-button>
+
+
+                </div>
                 <!-- ******** area de comentario ******** -->
                 <template #modal-footer="{ close }" style="text-align: right;">
                     <div class="w-100">
                         <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
-                        
-                        <md-button class="md-just-icon md-simple md-primary"  @click="close()">
+
+                        <md-button class="md-just-icon md-simple md-primary" @click="close()">
                             <md-icon>close</md-icon>
                             <md-tooltip md-direction="left">Close</md-tooltip>
                         </md-button>
                     </div>
-                  
+
                 </template>
-                
-        
+
+
             </b-modal>
         </div>
 
@@ -131,7 +135,7 @@
         </div>
 
         <!-- *********************************** MODAL ********************************* -->
-        
+
     </div>
 </template>
   
@@ -141,20 +145,20 @@ import axios from "axios"
 /** modal */
 
 export default {
-   
+
 
     data() {
         return {
-        formulariocomentario:{
-        comentario:null,
-        clasificasion:null,
-      },
+            formulariocomentario: {
+                comentario: null,
+                clasificasion: null,
+            },
 
             publicacion: null,
             noticia: {},
             noticias: {},
             show2: false,
-            text:'',
+            text: '',
 
             variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
             headerBgVariant: '#9c27b0',
@@ -175,7 +179,7 @@ export default {
     },
 
     components: {
-        
+
     },
     /**/
 
@@ -184,7 +188,7 @@ export default {
             console.log(response);
             this.noticias = response.data;
         });
-       
+
 
     },
     methods: {
@@ -201,14 +205,15 @@ export default {
 }
 </script>
 <style>
-
-.imgn{
-  border-radius:100%; width:50%; 
+.imgn {
+    border-radius: 100%;
+    width: 50%;
 }
+
 .primary-section,
 .primary-section .title p,
 .primary-section h3 {
-  color: #e6e7e7;
+    color: #e6e7e7;
 }
 
 /* .bodycard{

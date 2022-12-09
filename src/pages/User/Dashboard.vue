@@ -15,7 +15,7 @@
       {{ usuarioapellido }}
     </div> -->
     <navbarusuario></navbarusuario>
-    
+
 
     <!-- Start home section -->
 
@@ -27,9 +27,9 @@
 
       <div class="container">
 
-       
+
         <div class="title">
- <!-- Start title section 
+          <!-- Start title section 
           <h1>
 
             <font style="vertical-align: inherit;">
@@ -54,7 +54,7 @@
 
       <div class="a1">
         <div class="span4">
-           <!--
+          <!--
           <div class="centered service">
             <div class="circle-border zoom-in">
               <img class="img-circle" src="images/Service1.png" alt="service 1" />
@@ -65,7 +65,7 @@
           </div>
           -->
         </div>
-        
+
       </div>
 
     </div>
@@ -85,24 +85,23 @@
       <!--************************** CARRUSEL TRAE SOLO EVENTOS *******************************  -->
 
       <VueSlickCarousel v-bind="traeventos" class="carrusel">
-
-        <div v-for="publieventos in publieventos" :key="publieventos" class="card-wrap">
+        
+        <div class="card-wrap" v-for="publieventos in publieventos" :key="publieventos.id" >
           <div class="card-header one">
             <b-img class="imgn" src="https://www.narava.es/10021-large_default/postal-bajo-la-lluvia.jpg"></b-img>
           </div>
-            <b-card-text>
-             
-              <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
-              <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
 
-            </b-card-text>
-            
-            <md-button v-b-modal="'informacioneventos'" v-on:click="mostrareventos(publieventos)" target="_blank"
+          <b-card-text>
+            <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
+            <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
+          </b-card-text>
+
+          <md-button v-b-modal="'informacioneventos'" v-on:click="mostrareventos(publieventos)" target="_blank"
             class="md-primary md-round">Ver mas</md-button>
-            <!-- <button @click="show = true" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button> -->
-
+          <!-- <button @click="show = true" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button> -->
         </div>
         
+
         <div></div>
         <div></div>
         <div></div>
@@ -128,19 +127,19 @@
           </div>
 
           <b-card-text>
-           
+
             <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
             <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
 
           </b-card-text>
           <md-button v-b-modal="'informacionnoticias'" v-on:click="mostrarnoticias(noticias)" target="_blank"
             class="md-primary md-round">Ver mas</md-button>
-            <!-- traemos  
+          <!-- traemos  
               en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
               para este caso el id de la noticia -->
 
 
-              
+
         </div>
 
         <div></div>
@@ -152,7 +151,7 @@
       </VueSlickCarousel>
       <!--********************** FIN CARRUSEL QUE TRAE SOLO NOTICIAS *******************************  -->
 
-     
+
 
     </div>
     <!-- Portfolio section end -->
@@ -164,7 +163,7 @@
     </div>
 
     <!-- *********************************** MODAL 1 ********************************* -->
-    
+
 
     <!-- *********************************** MODAL 2 ********************************* -->
 
@@ -173,15 +172,15 @@
         <template #modal-header class="modal-header">
           <h5>INFORMACION</h5>
         </template>
-        <b-container fluid>      
-         
+        <b-container fluid>
+
           <b-row class="my-2">
             <!--<b-col sm="3">-->
 
-            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>  
+            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
             <label for="lugar p">lugar: <p for="numero p">{{ evento.lugar }}</p> </label>
             <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
-            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>                        
+            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
             <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
             <label for="desc p">descripcion: <p for="numero p">{{ evento.descripcion_publicacion }}</p></label>
 
@@ -224,8 +223,8 @@
       </b-modal>
     </div>
 
-<!-- *********************************** FIN MODAL EVENTOS ********************************* -->
-        <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
+    <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
+    <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
 
     <!-- *********************************** MODAL NOTICIAS********************************* -->
 
@@ -238,7 +237,7 @@
 
         </template>
         <b-container fluid>
-        
+
 
           <b-row class="my-1">
             <label for="nombre_P">Nombre: <p for="nombre-P">{{ noticia.nombre_publicacion }}</p></label>
@@ -253,29 +252,36 @@
 
         </b-container>
         <!-- ******** area de comentario NOTICIAS******** -->
-        <div>
-          <label>Sobre la publicacion selecciona:</label>
-          <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
-            <option value="Me gusta">Me gusta</option>
-            <option value="No me gusta">No me gusta </option>
-          </select>
+         <!-- ******** area de comentario ******** -->
+         <div>
+                    <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
+                        <option value="Me gusta">Me gusta</option>
+                        <option value="No me gusta">No me gusta</option>
 
-          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
-            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+                    </select>
+                    <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido"
+                        :state="(text.length <= 250)" placeholder="escriba su comentario maximo 250 caracteres" rows="6"
+                        maxlength="250">
+                    </b-form-textarea>
 
-          </b-form-textarea>
+                    <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left"
+                        @click="close()">Comentar</md-button>
 
-        </div>
 
+                </div>
+                <!-- ******** area de comentario ******** -->
+                <template #modal-footer="{ close }" style="text-align: right;">
+                    <div class="w-100">
+                        <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
 
-        <!-- ******** area de comentario NOTICIAS ******** -->
-        <template #modal-footer="{ close }" style="text-align: right;">
-          <div class="w-100">
-            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
-          </div>
+                        <md-button class="md-just-icon md-simple md-primary" @click="close()">
+                            <md-icon>close</md-icon>
+                            <md-tooltip md-direction="left">Close</md-tooltip>
+                        </md-button>
+                    </div>
 
-        </template>
-        <b-button class="guardar">Guardar Comentario</b-button>
+                </template>
+                
       </b-modal>
 
     </div>
@@ -297,13 +303,15 @@ import axios from "axios"
 export default {
 
   name: 'App',
-  
+
 
   data() {
     return {
       formulariocomentario: {
         comentario: null,
         clasificasion: null,
+        id_usuario: null,
+        id_publicacion: null,
       },
       usuarionombre: null,
       usuarioapellido: null,
@@ -319,6 +327,8 @@ export default {
       /*encargadop: null, /* variablr para traer el encargado de publicacion */
       show1: false,
       show2: false,
+      publieventos: null,
+      noticias: null,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       headerBgVariant: '#9c27b0',
       headerTextVariant: 'light',
@@ -326,8 +336,7 @@ export default {
       bodyTextVariant: 'dark',
       footerBgVariant: 'warning',
       footerTextVariant: 'dark',
-      publieventos: null,
-      noticias: null,
+    
       showModal: false,
 
       traeventos: {
@@ -379,6 +388,11 @@ export default {
   },
   methods: {
     guardarcomentario(idpublic) {
+      let formulariocomentario = new FormData()
+      formulariocomentario.append('id_publicacion', idpublic)
+      formulariocomentario.append('id_usuario', this.id_usuario)
+      formulariocomentario.append('contenido', this.contenido)
+      formulariocomentario.append('clasificacion', this.clasificacion)
       axios.post('http://127.0.0.1:8000/api/comentarios', formulariocomentario).then((response) => {
         console.log(response);
 
@@ -402,9 +416,6 @@ export default {
 <!-- A CONTINUACION ESTILOS-->
 
 <style>
-
-
-
 /**EMERGENTE */
 
 button {
