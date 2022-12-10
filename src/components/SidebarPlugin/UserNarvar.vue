@@ -54,7 +54,7 @@
           </b-navbar-nav>
         </b-collapse>
         </div>
-        <div style="margin-left:800px ;">
+        <div style="margin-left:800px ; color: aliceblue;">
           {{ usuarionombre }}
       {{ usuarioapellido }}
         </div>
