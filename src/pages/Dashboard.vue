@@ -85,6 +85,228 @@
         </chart-card>
       </div>
 
+      <!-- primer modal -->
+        <b-modal
+      v-model="show"
+      title="Incidencias por fecha"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
+      :body-bg-variant="bodyBgVariant"
+      :body-text-variant="bodyTextVariant"
+      :footer-bg-variant="footerBgVariant"
+      :footer-text-variant="footerTextVariant"
+    >
+      <b-container fluid>
+          <input type="date">
+          <b-button
+               v-b-modal="'asignacionnueva'"
+               @click="getcategorias(categoriaasig.id_publicacion)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >listar
+              </b-button>
+          
+      </b-container>
+
+      <template #modal-footer>
+        <div class="w-100">
+          <p class="float-left">Reporte</p>
+          <b-button
+            variant="primary"
+            size="sm"
+            class="float-right"
+            @click="show=false"
+          >
+            Close
+          </b-button>
+        </div>
+
+         <!--      MODAL DE LAS NUEVAS ASIGNACIONES          -->
+            <div>
+              <b-modal size="xl" id="asignacionnueva" title="Categorias">
+            <b-container fluid>
+                  <div>
+             
+              <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="publicacion">
+                
+
+                <template v-slot:cell(Editar)="row">
+                    <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
+                      <md-icon>edit</md-icon>
+                      <md-tooltip md-direction="top">Edit</md-tooltip>
+                    </md-button>
+                </template>
+                <template v-slot:cell(Eliminar)="row">
+                  <md-button @click="EliminarPublicacion(row.item.id)" class="md-just-icon md-simple md-danger">
+                      <md-icon>close</md-icon>
+                      <md-tooltip md-direction="top">Close</md-tooltip>
+                    </md-button>
+                </template>
+                <template v-slot:cell(ejemplo)="row">
+                    <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
+               
+               
+                    
+                  </template>
+               </b-table> 
+
+               <b-pagination
+                  v-model="currentPage"
+               :total-rows="rows"
+                :per-page="perpage"
+                aria-controls="tablaEventos"
+               ></b-pagination>
+           </div>
+          </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+              <b-button
+              v-b-modal="'asignaciones'"
+              @click=" getcategoria(row.item.id)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >Nuevo
+              </b-button>
+              <i class="fa-light fa-paperclip-vertical"></i>
+            </div>
+          </template>
+
+          <template>
+  <div id="app">
+    <font-awesome-icon icon="home"/>
+  </div>
+</template>
+        </b-modal>
+
+
+            </div>
+        
+      </template>
+    </b-modal>
+
+
+      <!-- final primermodal -->
+
+
+    <!-- segundo MODAL -->
+    <div>
+        <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
+          <b-container fluid>
+            <table class="table table-bordered table-striped" id="tabla">
+              <thead>
+                <b-button
+               v-b-modal="'asignacionnueva'"
+               @click="getcategorias(categoriaasig.id_publicacion)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >+
+              </b-button>
+                <tr>
+                  <th>ID</th>
+                  <th>Prioridad</th>
+                  <th>Categoria</th>
+                  <th>Descripcion de la Categoria</th>
+                  <th>Lista de Categorias</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
+            
+                  <td v-text="categoriaasig.id_detalle"></td>
+                  <td v-text="categoriaasig.Prioridad_detallle"></td>
+                  <td v-text="categoriaasig.Nombresdecategorias"></td>
+                  <td v-text="categoriaasig.Descripciodecategorias"></td>
+                  <!--<td v-text="categoriaasig.id_publicacion"></td>-->
+                  <b-button
+               v-b-modal="'asignacionnueva'"
+               @click="getcategorias(categoriaasig.id_publicacion)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >+
+              </b-button>
+                </tr>
+              </tbody>
+            </table>
+             </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+
+            </div>   
+             <!--      MODAL DE LAS NUEVAS ASIGNACIONES          -->
+            <div>
+              <b-modal size="xl" id="asignacionnueva" title="Categorias">
+            <b-container fluid>
+                  
+              <b-form-input v-model="filter" type="search" placeholder="Buscar..."></b-form-input>
+             <table class="table table-bordered table-striped">
+              <!---<b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
+                hover responsive class="mt-4" :fields=" categoria" :items=" categoria">
+              -->
+                
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>nombre de la categoria</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+                
+                <tr v-for=" categoria in categoria" :key=" categoria.id">
+                  
+                  <td v-text=" categoria.id"></td>
+                  <td v-text=" categoria.nombre"></td>
+                  <td >
+                    <b-button
+                    v-b-modal="'asignaciones'"
+                   @click=" guardaraasignacionnueva(categoria.id,id_publiseleccionada)" 
+                    variant="primary"
+                    size="sm"
+                    class="float-right"
+                    >Asignar
+              </b-button></td>
+              <div id="app">
+    <font-awesome-icon icon="home"/>
+  </div>
+                </tr>
+              </tbody>
+            </table>
+          </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+              <b-button
+              v-b-modal="'asignaciones'"
+              @click=" getcategoria(row.item.id)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >Nuevo
+              </b-button>
+              <i class="fa-light fa-paperclip-vertical"></i>
+            </div>
+          </template>
+
+          <template>
+  <div id="app">
+    <font-awesome-icon icon="home"/>
+  </div>
+</template>
+        </b-modal>
+
+
+            </div>
+          </template>
+        </b-modal>     
+      </div>
+  
+    <!-- final segundo modal -->
+
       
 
 
@@ -244,6 +466,16 @@ export default {
   },
   data() {
     return {
+       show: false,
+       publicacion: [],
+        variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+        headerBgVariant: 'dark',
+        headerTextVariant: 'light',
+        bodyBgVariant: 'light',
+        bodyTextVariant: 'dark',
+        footerBgVariant: 'warning',
+        footerTextVariant: 'dark',
+
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],
@@ -330,7 +562,44 @@ export default {
           ],
         ],
       },
+      encabezado: [
+        { key: "id", label: "Id" },
+        { key: "nombre", label: "Nombre" },
+        { key: "nombre", label: "Nombre" },
+        { key: "descripcion", label: "Descripcion" },
+        { key: "fecha_y_Hora", label: "FECHA-HORA" },
+        { key: "lugar", label: "Lugar" },
+        { key: "estado", label: "Estado" },
+        { key: "urlExterna", label: "Url" },
+        { key: "responsable", label: "Responsable" },
+        { key: "fecha_caducidad", label: "fecha_caducidad" },
+        { key: "tipo", label: "Tipo" },
+        { key: "Editar", label: "Editar" },
+        { key: "Eliminar", label: "Eliminar" },
+        { key: "ejemplo", label: "Ver Categorias" },
+      ],
     };
   },
+
+   methods: {
+    getpublicacion() {
+      this.axios
+        .get("http://127.0.0.1:8000/api/publicacion")
+        .then((response) => {
+          this.publicacion = response.data;
+        });
+    },
+   },
+    mounted() {
+    this.getpublicacion();
+    this.EliminarPublicacion(id);
+  },
+
+  computed: {
+    rows() {
+      return this.publicacion.length;
+    },
+  },
 };
+
 </script>

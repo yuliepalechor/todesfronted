@@ -18,7 +18,7 @@
               <b-form-input v-model="filter" type="search" placeholder="Buscar...">
 
                </b-form-input>
-              <b-table  :filter="filter" id:="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="publicacion">
+              <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="publicacion">
                 
 
                 <template v-slot:cell(Editar)="row">
@@ -55,7 +55,7 @@
     <div>
         <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
           <b-container fluid>
-            <table class="table table-bordered table-striped" id:="tabla">
+            <table class="table table-bordered table-striped" id="tabla">
               <thead>
                 <b-button
                v-b-modal="'asignacionnueva'"
