@@ -1,173 +1,86 @@
 <template>
-  <div class="content">
-    <div class="md-layout">
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
+  <div>
+  <b-table :fields="encabezado" :items="publicacion">
+    <template v-slot:cell(ejemplo)="row">
+      <b-button
+        v-b-modal="'asignacion'"
+        @click="listaasignacion(row.item.id)"
+        variant="primary"
+        >Ver</b-button
       >
-      
-      <md-button class="md-info" @click="insertar(NuevaCategoria())" >Nueva Publicacion</md-button>
-        <md-card>
-          <md-card-header data-background-color="blue">
-            <h4 class="title">Publicaciones</h4>
-            <p class="category">Lista de Publicaciones</p>
-          </md-card-header>
-          <md-card-content>
-           
-            <div >
-              
-              <b-form-input v-model="filter" type="search" placeholder="Buscar...">
+    </template>
+    <template v-slot:cell(Editar)="row">
+      <md-button
+        @click="editar(editarpublicacion(row.item.id))"
+        class="md-just-icon md-simple md-primary"
+      >
+        <md-icon>edit</md-icon>
+        <md-tooltip md-direction="top">Edit</md-tooltip>
+      </md-button>
+    </template>
+    <template v-slot:cell(Eliminar)="row">
+      <md-button
+        @click="EliminarPublicacion(row.item.id)"
+        class="md-just-icon md-simple md-danger"
+      >
+        <md-icon>close</md-icon>
+        <md-tooltip md-direction="top">Close</md-tooltip>
+      </md-button>
+    </template>
+    <template v-slot:cell(example)="row">
+      <b-button
+        v-b-modal="'asignacion'"
+        @click="listaasignacion(row.item.id)"
+        variant="primary"
+        >Ver</b-button
+      >
+    </template>
 
-               </b-form-input>
-              <b-table  :filter="filter" id:="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="publicacion">
-                
+  </b-table>
+  <!--MODAL DE LAS CATEGORIAS ASIGNADAS-->
+<div>
+  <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
+    <b-table  :fields="encabezadodos" :items="categoriaasig">
 
-                <template v-slot:cell(Editar)="row">
-                    <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
-                      <md-icon>edit</md-icon>
-                      <md-tooltip md-direction="top">Edit</md-tooltip>
-                    </md-button>
-                </template>
-                <template v-slot:cell(Eliminar)="row">
-                  <md-button @click="EliminarPublicacion(row.item.id)" class="md-just-icon md-simple md-danger">
-                      <md-icon>close</md-icon>
-                      <md-tooltip md-direction="top">Close</md-tooltip>
-                    </md-button>
-                </template>
-                <template v-slot:cell(ejemplo)="row">
-                    <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
-               
-               
-                    
-                  </template>
-               </b-table>              
-               <b-pagination
-                  v-model="currentPage"
-               :total-rows="rows"
-                :per-page="perpage"
-                aria-controls="tablaEventos"
-               ></b-pagination>
-            </div>
-          </md-card-content>
-        </md-card>
-      </div>
-    </div>
-    <!--      MODAL DE LAS CATEGORIAS ASIGNADAS-->
-    <div>
-        <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
-          <b-container fluid>
-            <table class="table table-bordered table-striped" id:="tabla">
-              <thead>
-                <b-button
-               v-b-modal="'asignacionnueva'"
-               @click="getcategorias(categoriaasig.id_publicacion)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >+
-              </b-button>
-                <tr>
-                  <th>ID</th>
-                  <th>Prioridad</th>
-                  <th>Categoria</th>
-                  <th>Descripcion de la Categoria</th>
-                  <th>Lista de Categorias</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
-            
-                  <td v-text="categoriaasig.id_detalle"></td>
-                  <td v-text="categoriaasig.Prioridad_detallle"></td>
-                  <td v-text="categoriaasig.Nombresdecategorias"></td>
-                  <td v-text="categoriaasig.Descripciodecategorias"></td>
-                  <!--<td v-text="categoriaasig.id_publicacion"></td>-->
-                  <b-button
-               v-b-modal="'asignacionnueva'"
-               @click="getcategorias(categoriaasig.id_publicacion)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >+
-              </b-button>
-                </tr>
-              </tbody>
-            </table>
-             </b-container>
-              <template #modal-footer>
-            <div class="w-100">
+      <template v-slot:cell(Editar)="row">
+      <md-button @click="editar(EditarCategoria(row.item.id))" class="md-just-icon md-simple md-primary">
+      <md-icon>edit</md-icon>
+      <md-tooltip md-direction="top">Edit</md-tooltip>
+      </md-button>
+      </template>
 
-            </div>   
-             <!--      MODAL DE LAS NUEVAS ASIGNACIONES          -->
-            <div>
-              <b-modal size="xl" id="asignacionnueva" title="Categorias">
-            <b-container fluid>
-                  
-              <b-form-input v-model="filter" type="search" placeholder="Buscar..."></b-form-input>
-             <table class="table table-bordered table-striped">
-              <!---<b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
-                hover responsive class="mt-4" :fields=" categoria" :items=" categoria">
-              -->
-                
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>nombre de la categoria</th>
-                  <th>Accion</th>
-                </tr>
-              </thead>
-              <tbody>
+      <template slot="index" slot-scope="data">
+        {{ data.index + 1 }}
+      </template>
+      <template slot="nombre" slot-scope="data">
+        <b-form-input
+          type="text"
+          v-model="data.item.nombre"
+        />
+      </template>
+   
 
 
                 
-                <tr v-for=" categoria in categoria" :key=" categoria.id">
-                  
-                  <td v-text=" categoria.id"></td>
-                  <td v-text=" categoria.nombre"></td>
-                  <td >
-                    <b-button
-                    v-b-modal="'asignaciones'"
-                   @click=" guardaraasignacionnueva(categoria.id,id_publiseleccionada)" 
-                    variant="primary"
-                    size="sm"
-                    class="float-right"
-                    >Asignar
-              </b-button></td>
-              <div id="app">
-    <font-awesome-icon icon="home"/>
-  </div>
-                </tr>
-              </tbody>
-            </table>
-          </b-container>
-              <template #modal-footer>
-            <div class="w-100">
-              <b-button
-              v-b-modal="'asignaciones'"
-              @click=" getcategoria(row.item.id)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >Nuevo
-              </b-button>
-              <i class="fa-light fa-paperclip-vertical"></i>
-            </div>
-          </template>
-
-          <template>
-  <div id="app">
-    <font-awesome-icon icon="home"/>
-  </div>
-</template>
-        </b-modal>
 
 
-            </div>
-          </template>
-        </b-modal>     
-      </div>
+    
+    </b-table>
+  </b-modal>
+  
+</div>
   </div>
 </template>
 
+ <!--Paginacion-->
+
+  
+
+
+
+ <!--      MODAL DE LAS CATEGORIAS ASIGNADAS-->
+
+ 
 <script>
 import { OrderedTable } from "@/components";
 
@@ -188,10 +101,13 @@ export default {
       id_publiseleccionada: null,
       state: "",
       show: false,
+      categoriaasig: [
+     
+     ],
       publicacion: [],
       detalles: null,
       categoria: [],
-      categoriaasig: [],
+    
       filter: null,
       perpage: 10,
       currentPage: 1,
@@ -199,7 +115,12 @@ export default {
         id_publicacion: null,
         id_categoria: null,
       },
-
+      encabezadodos: [
+      { key: "id", label: "Id" },
+      { key: "nombre", label: "Nombre" },
+      {key: "prioridad", label: "Prioridad"},
+      { key: "Editar", label: "Editar" },
+      ],
       encabezado: [
         { key: "id", label: "Id" },
         { key: "nombre", label: "Nombre" },
@@ -216,6 +137,8 @@ export default {
         { key: "Eliminar", label: "Eliminar" },
         { key: "ejemplo", label: "Ver Categorias" },
       ],
+
+     
     };
   },
   components: {},
@@ -227,6 +150,8 @@ export default {
   computed: {
     rows() {
       return this.publicacion.length;
+             
+
     },
   },
   methods: {
@@ -239,10 +164,6 @@ export default {
     },
 
     guardaraasignacionnueva(idcat, idpub) {
-
-
-
-      
       let formularioasigna = new FormData();
       formularioasigna.append("id_publicacion", idpub);
       formularioasigna.append("id_categoria", idcat);
@@ -335,7 +256,7 @@ export default {
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
-  width:100%;
+  width: 100%;
 }
 </style>
 
