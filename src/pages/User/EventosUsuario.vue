@@ -26,7 +26,7 @@
       <div class="bodycard">
         <div class="card-wrap" v-for="publicacion in publicacion" :key="publicacion.id">
          <div class="card-header one">
-           <b-img class="imgev" src="https://picsum.photos/300/150/?image=41"   ></b-img>
+           <b-img class="imgev" :src="`http://127.0.0.1:8000/storage/${publicacion.imagen}`"   ></b-img>
          </div>
          <div class="card-content">
            <!-- <h1 class="card-title">Title</h1> -->
@@ -212,7 +212,7 @@ methods: {
 
 <style lang="scss" scoped>
 .imgev{
-border-radius:100%; width:50%; height: 50%;
+border-radius:100%; width:50%;
 }
 // .boton{
 //   display: inline-block;

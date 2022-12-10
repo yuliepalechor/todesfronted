@@ -25,7 +25,7 @@
         <div class="bodycard">
             <div  v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
             <div class="card-header one">
-                <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"   ></b-img>
+                <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${noticias.imagen}`"   ></b-img>
             </div>
             <div class="card-content">
                 <b-card-text>
