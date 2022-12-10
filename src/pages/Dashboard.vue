@@ -88,7 +88,7 @@
       <!-- primer modal -->
         <b-modal
       v-model="show"
-      title="Incidencias por fecha"
+      title="listado por fecha"
       :header-bg-variant="headerBgVariant"
       :header-text-variant="headerTextVariant"
       :body-bg-variant="bodyBgVariant"
@@ -130,19 +130,6 @@
              
               <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="publicacion">
                 
-
-                <template v-slot:cell(Editar)="row">
-                    <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
-                      <md-icon>edit</md-icon>
-                      <md-tooltip md-direction="top">Edit</md-tooltip>
-                    </md-button>
-                </template>
-                <template v-slot:cell(Eliminar)="row">
-                  <md-button @click="EliminarPublicacion(row.item.id)" class="md-just-icon md-simple md-danger">
-                      <md-icon>close</md-icon>
-                      <md-tooltip md-direction="top">Close</md-tooltip>
-                    </md-button>
-                </template>
                 <template v-slot:cell(ejemplo)="row">
                     <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
                
@@ -161,27 +148,16 @@
           </b-container>
               <template #modal-footer>
             <div class="w-100">
-              <b-button
-              v-b-modal="'asignaciones'"
-              @click=" getcategoria(row.item.id)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >Nuevo
-              </b-button>
-              <i class="fa-light fa-paperclip-vertical"></i>
+             
             </div>
           </template>
 
           <template>
-  <div id="app">
-    <font-awesome-icon icon="home"/>
-  </div>
-</template>
+  
+    </template>
         </b-modal>
 
-
-            </div>
+        </div>
         
       </template>
     </b-modal>
@@ -564,19 +540,15 @@ export default {
       },
       encabezado: [
         { key: "id", label: "Id" },
-        { key: "nombre", label: "Nombre" },
-        { key: "nombre", label: "Nombre" },
-        { key: "descripcion", label: "Descripcion" },
-        { key: "fecha_y_Hora", label: "FECHA-HORA" },
+        { key: "nombre_publicacion", label: "Nombre" },
+        { key: "descripcion_publicacion", label: "Descripcion" },
         { key: "lugar", label: "Lugar" },
         { key: "estado", label: "Estado" },
         { key: "urlExterna", label: "Url" },
         { key: "responsable", label: "Responsable" },
+        { key: "fecha", label: "fecha-hora" },
         { key: "fecha_caducidad", label: "fecha_caducidad" },
         { key: "tipo", label: "Tipo" },
-        { key: "Editar", label: "Editar" },
-        { key: "Eliminar", label: "Eliminar" },
-        { key: "ejemplo", label: "Ver Categorias" },
       ],
     };
   },
@@ -592,7 +564,7 @@ export default {
    },
     mounted() {
     this.getpublicacion();
-    this.EliminarPublicacion(id);
+    
   },
 
   computed: {
