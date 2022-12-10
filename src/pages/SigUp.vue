@@ -61,7 +61,7 @@
                   <div class="md-layout-item md-small-size-100 md-size-33">
                     <md-field>
                       <label>Fecha Nacimiento</label> 
-                      <md-input v-model="user.fecha_nacimiento" type="date"></md-input>
+                      <md-input v-model="user.fecha_nacimiento" type="date" placeholder="fecha"></md-input>
                     </md-field>
                   </div>
                   <div class="md-layout-item md-size-100 text-right">
