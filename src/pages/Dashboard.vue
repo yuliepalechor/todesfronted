@@ -98,14 +98,16 @@
     >
       <b-container fluid>
           <input type="date">
+
           <b-button
                v-b-modal="'asignacionnueva'"
-               @click="getcategorias(categoriaasig.id_publicacion)" 
+               @click="getevento(eventosasig.id)" 
                 variant="primary"
                 size="sm"
                 class="float-right"
               >listar
               </b-button>
+              
           
       </b-container>
 
@@ -128,7 +130,7 @@
             <b-container fluid>
                   <div>
              
-              <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="publicacion">
+              <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="eventos">
                 
                 <template v-slot:cell(ejemplo)="row">
                     <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
@@ -174,19 +176,13 @@
               <thead>
                 <b-button
                v-b-modal="'asignacionnueva'"
-               @click="getcategorias(categoriaasig.id_publicacion)" 
+               @click="getevento(eventoasig.id)" 
                 variant="primary"
                 size="sm"
                 class="float-right"
               >+
               </b-button>
-                <tr>
-                  <th>ID</th>
-                  <th>Prioridad</th>
-                  <th>Categoria</th>
-                  <th>Descripcion de la Categoria</th>
-                  <th>Lista de Categorias</th>
-                </tr>
+               
               </thead>
               <tbody>
                 <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
@@ -212,71 +208,8 @@
             <div class="w-100">
 
             </div>   
-             <!--      MODAL DE LAS NUEVAS ASIGNACIONES          -->
-            <div>
-              <b-modal size="xl" id="asignacionnueva" title="Categorias">
-            <b-container fluid>
-                  
-              <b-form-input v-model="filter" type="search" placeholder="Buscar..."></b-form-input>
-             <table class="table table-bordered table-striped">
-              <!---<b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
-                hover responsive class="mt-4" :fields=" categoria" :items=" categoria">
-              -->
-                
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>nombre de la categoria</th>
-                  <th>Accion</th>
-                </tr>
-              </thead>
-              <tbody>
-
-
-                
-                <tr v-for=" categoria in categoria" :key=" categoria.id">
-                  
-                  <td v-text=" categoria.id"></td>
-                  <td v-text=" categoria.nombre"></td>
-                  <td >
-                    <b-button
-                    v-b-modal="'asignaciones'"
-                   @click=" guardaraasignacionnueva(categoria.id,id_publiseleccionada)" 
-                    variant="primary"
-                    size="sm"
-                    class="float-right"
-                    >Asignar
-              </b-button></td>
-              <div id="app">
-    <font-awesome-icon icon="home"/>
-  </div>
-                </tr>
-              </tbody>
-            </table>
-          </b-container>
-              <template #modal-footer>
-            <div class="w-100">
-              <b-button
-              v-b-modal="'asignaciones'"
-              @click=" getcategoria(row.item.id)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >Nuevo
-              </b-button>
-              <i class="fa-light fa-paperclip-vertical"></i>
-            </div>
-          </template>
-
-          <template>
-  <div id="app">
-    <font-awesome-icon icon="home"/>
-  </div>
-</template>
-        </b-modal>
-
-
-            </div>
+             
+            
           </template>
         </b-modal>     
       </div>
@@ -554,24 +487,41 @@ export default {
   },
 
    methods: {
-    getpublicacion() {
+    getevento() {
       this.axios
-        .get("http://127.0.0.1:8000/api/publicacion")
+        .get("http://127.0.0.1:8000/api/eventos")
         .then((response) => {
-          this.publicacion = response.data;
+          this.eventos = response.data;
         });
     },
+
    },
     mounted() {
-    this.getpublicacion();
+    this.getevento();
     
   },
 
   computed: {
     rows() {
-      return this.publicacion.length;
+      return this.eventos.length;
     },
   },
+  // action:{
+  //   eventosporfecha(){
+  //     this.axios.get("http://127.0.0.1:8000/api/eventos")
+  //     .then((response)=>{
+  //     const eventosxfecha=[]
+  //     for (let i=0;i<response.data.results.length;i++){
+  //           eventosxfecha.push({
+  //             indicador:(i+1),
+  //             nombre_publicacion: response.data.results[i]
+              
+  //           })
+  //     }
+  //     })
+  //   }
+
+  // }
 };
 
 </script>
