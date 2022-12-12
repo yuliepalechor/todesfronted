@@ -2,26 +2,105 @@
   <div>
     <navbarusuario></navbarusuario>
 
+ </div>
+       
+      <!-- ---------------------card --------------->
+      <div class="bodycard">
+        <div class="card-wrap" v-for="publicacion in publicacion" :key="publicacion.id">
+         <div class="card-header one">
+           <b-img class="imgev" :src="`http://127.0.0.1:8000/storage/${publicacion.imagen}`"   ></b-img>
+         </div>
+         <div class="card-content">
+           <!-- <h1 class="card-title">Title</h1> -->
+           <b-card-text>
+           
+           <h6> Nombre:</h6>{{ publicacion.nombre_publicacion }}
+           <H6> Tipo de publicacion: </H6> {{ publicacion.tipo }}
 
-
-    <div>
-      <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" margin="" />
-      </center>
-    </div>
-    <div style="background-color:#891A89" class="section primary-section" id="service">
-
-      <div class="a1">
-        <div class="span4">
-          <div class="centered service">
-            <br><br>
-            <h3>Eventos</h3>
-
-
-          </div>
-        </div>
+         </b-card-text>
+           <md-button v-b-modal="'informacion'" v-on:click="mostrarinformacion(publicacion)" target="_blank" class="md-pink md-round" >Ver mas</md-button>
+         </div>
+       </div>
       </div>
 
-    </div>
+       <div>
+         <b-modal v-model="show1" id="informacion">
+           <template #modal-header class="modal-header" style="background-color:#891489 ;">
+             <h5>INFORMACION</h5>
+            
+           </template>
+           <b-container fluid>
+             
+             <b-row class="my-1">
+               <b-col sm="3">
+         
+                 <label for="nombre p">Nombre: </label> <br>
+                 <label for="lugar p">lugar: </label> <br>
+                 <label for="resp p">responsable:</label> <br>
+                 <label for="estado p">estado: </label> <br>
+                 <label for="tipo p">Tipo:</label> <br>
+                 <label for="desc p">descripcion:</label> <br>
+         
+               </b-col>
+         
+               <b-col sm="9">
+         
+                 <p for="numero p">{{evento.nombre_publicacion}}</p>
+         
+                 <p for="numero p">{{evento.lugar}}</p>
+                 <p for="numero p">{{evento.responsable}}</p>
+                 <p for="numero p">{{evento.estado}}</p>
+                 <p for="numero p">{{evento.tipo}}</p>
+                 <p for="numero p">{{evento.descripcion_publicacion}}</p>
+         
+               </b-col>
+         
+             </b-row>
+         
+         
+           </b-container>
+           <!-- ******** area de comentario ******** -->
+          <div>
+          
+          
+            <select v-model="clasificacion" name="clasificasion" id="clasificasion">
+              <option value="Me gusta">Me gusta</option>
+              <option value="No me gusta">No me gusta</option>
+          
+            </select>
+            <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
+              placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+            </b-form-textarea>
+            <!-- <p for="numero p">{{evento.id}}</p> -->
+            
+            <md-button style="margin-left:320px;" target="_blank" class="md-pink md-round float-left"
+              @click="guardarcomentario(evento.id)">Comentar</md-button>
+              
+            
+          
+          
+          </div>
+           <!-- ******** area de comentario ******** -->
+           <template #modal-footer="{ close }" style="text-align: right;">
+             
+               <div class="w-100">
+               <md-button  target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+               
+             </div>
+            
+            
+             
+           </template>
+         
+         </b-modal>
+       
+         
+       </div>
+       <div class="section primary-section" id="about">
+         <div class="triangle"></div>
+         <div class="container">
+         </div>
+     </div>
 
     <!-- ---------------------card --------------->
     <div class="bodycard">
@@ -121,7 +200,7 @@
       </div>
     </div>
 
-  </div>
+ 
 </template>
 
 <script>
@@ -141,10 +220,23 @@ export default {
       usuarioapellido: null,
       id_usuario: null,
 
-      publicacion: null,
-      evento: {},
-      show1: false,
-      text: '',
+   publicacion: null,
+   evento: {},
+   show1: false,
+   text:'',
+   
+   variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+   headerBgVariant: '#891489',
+   headerTextVariant: 'light',
+   bodyBgVariant: 'light',
+   bodyTextVariant: 'dark',
+   footerBgVariant: 'warning',
+   footerTextVariant: 'dark',
+   
+   
+   
+   showModal: false,
+  
 
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       headerBgVariant: '#9c27b0',
@@ -205,10 +297,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.imgev {
-  border-radius: 100%;
-  width: 50%;
-  height: 50%;
+.imgev{
+border-radius:100%; width:50%;
 }
 
 // .boton{

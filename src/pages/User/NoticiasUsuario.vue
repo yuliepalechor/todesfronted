@@ -24,15 +24,15 @@
         </div>
         <!---------------------- card ----------->
         <div class="bodycard">
-            <div v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
-                <div class="card-header one">
-                    <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"></b-img>
-                </div>
-                <div class="card-content">
-                    <b-card-text>
-                        <!-- <H6> Publicacion N°: </H6> {{ noticias.id }} -->
-                        <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
-                        <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
+            <div  v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
+            <div class="card-header one">
+                <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${noticias.imagen}`"   ></b-img>
+            </div>
+            <div class="card-content">
+                <b-card-text>
+              <!-- <H6> Publicacion N°: </H6> {{ noticias.id }} -->
+              <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
+              <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
 
                     </b-card-text>
                     <md-button v-b-modal="'informacion2'" v-on:click="mostrarinformacion2(noticias)" target="_blank"
@@ -85,30 +85,25 @@
                 </b-container>
                 <!-- ******** area de comentario ******** -->
                 <div>
-                    <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
-                        <option value="Me gusta">Me gusta</option>
-                        <option value="No me gusta">No me gusta</option>
-
-                    </select>
-                    <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido"
-                        :state="(text.length <= 250)" placeholder="escriba su comentario maximo 250 caracteres" rows="6"
-                        maxlength="250">
-                    </b-form-textarea>
-
-                    <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left"
-                        @click="close()">Comentar</md-button>
-
-
-                </div>
+          <select v-model="clasificacion" name="clasificasion" id="clasificasion">
+            <option value="Me gusta">Me gusta</option>
+            <option value="No me gusta">No me gusta</option>
+            
+          </select>
+          <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+          </b-form-textarea>
+          
+          <md-button style="margin-left:320px;" target="_blank" class="md-pink md-round float-left"
+              @click="guardarcomentario(noticia.id)">Comentar</md-button>
+               
+            
+        </div>
                 <!-- ******** area de comentario ******** -->
                 <template #modal-footer="{ close }" style="text-align: right;">
                     <div class="w-100">
-                        <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
-
-                        <md-button class="md-just-icon md-simple md-primary" @click="close()">
-                            <md-icon>close</md-icon>
-                            <md-tooltip md-direction="left">Close</md-tooltip>
-                        </md-button>
+                        <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+                    
                     </div>
 
                 </template>
@@ -152,6 +147,8 @@ export default {
             formulariocomentario: {
                 comentario: null,
                 clasificasion: null,
+                id_usuario: null,
+                id_publicacion: null,
             },
 
             publicacion: null,
@@ -184,6 +181,9 @@ export default {
     /**/
 
     mounted() {
+        this.id_usuario = sessionStorage.getItem("id")
+        this.usuarionombre = sessionStorage.getItem("username")
+        this.usuarioapellido = sessionStorage.getItem("apellido")
         axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
             console.log(response);
             this.noticias = response.data;
@@ -192,6 +192,18 @@ export default {
 
     },
     methods: {
+        guardarcomentario(idpublic) {
+
+            let formulariocomentario = new FormData()
+            formulariocomentario.append('id_publicacion', idpublic)
+            formulariocomentario.append('id_usuario', this.id_usuario)
+            formulariocomentario.append('contenido', this.contenido)
+            formulariocomentario.append('clasificacion', this.clasificacion)
+            axios.post('http://127.0.0.1:8000/api/comentarios', formulariocomentario).then((response) => {
+                console.log(response);
+
+            });
+        },
 
         mostrarinformacion2(objeto2) {
             return this.noticia = objeto2;

@@ -51,11 +51,11 @@
         </md-card>
       </div>
     </div>
-    <!--      MODAL DE LAS CATEGORIAS ASIGNADAS          -->
+    <!--      MODAL DE LAS CATEGORIAS ASIGNADAS-->
     <div>
         <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
           <b-container fluid>
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" id:="tabla">
               <thead>
                 <b-button
                v-b-modal="'asignacionnueva'"
@@ -103,10 +103,11 @@
             <b-container fluid>
                   
               <b-form-input v-model="filter" type="search" placeholder="Buscar..."></b-form-input>
-            <!--- <table class="table table-bordered table-striped">-->
-              <b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
+             <table class="table table-bordered table-striped">
+              <!---<b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
                 hover responsive class="mt-4" :fields=" categoria" :items=" categoria">
-             
+              -->
+                
               <thead>
                 <tr>
                   <th>ID</th>
@@ -122,7 +123,8 @@
                   
                   <td v-text=" categoria.id"></td>
                   <td v-text=" categoria.nombre"></td>
-                  <td >   <b-button
+                  <td >
+                    <b-button
                     v-b-modal="'asignaciones'"
                    @click=" guardaraasignacionnueva(categoria.id,id_publiseleccionada)" 
                     variant="primary"
@@ -130,9 +132,12 @@
                     class="float-right"
                     >Asignar
               </b-button></td>
+              <div id="app">
+    <font-awesome-icon icon="home"/>
+  </div>
                 </tr>
               </tbody>
-            </b-table>
+            </table>
           </b-container>
               <template #modal-footer>
             <div class="w-100">
@@ -144,8 +149,15 @@
                 class="float-right"
               >Nuevo
               </b-button>
+              <i class="fa-light fa-paperclip-vertical"></i>
             </div>
           </template>
+
+          <template>
+  <div id="app">
+    <font-awesome-icon icon="home"/>
+  </div>
+</template>
         </b-modal>
 
 
@@ -158,6 +170,7 @@
 
 <script>
 import { OrderedTable } from "@/components";
+
 import Swal from "sweetalert2";
 import axios from "axios";
 //import { response } from "express";
@@ -226,6 +239,10 @@ export default {
     },
 
     guardaraasignacionnueva(idcat, idpub) {
+
+
+
+      
       let formularioasigna = new FormData();
       formularioasigna.append("id_publicacion", idpub);
       formularioasigna.append("id_categoria", idcat);
@@ -298,7 +315,7 @@ export default {
                 this.axios
                   .get("http://127.0.0.1:8000/api/publicacion")
                   .then((response) => {
-                    this.categoria = response.data;
+                    this.publicacion = response.data;
                   });
                 this.publicacion = response.data;
                 console.log(data);
@@ -318,6 +335,7 @@ export default {
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
+  width:100%;
 }
 </style>
 

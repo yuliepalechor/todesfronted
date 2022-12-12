@@ -162,6 +162,16 @@
     },
 
     GuardarPublicacion() {
+
+
+
+      Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Publicacion Guardada",
+          showConfirmButton: false,
+          timer: 1500,
+        });
    
   let formDataDataCambiar = new FormData();
     

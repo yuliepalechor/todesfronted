@@ -1,23 +1,7 @@
 <template>
   <div>
-    <!-- <div class="navbar">
-
-
-      <div class="navbar-inner">
-        <div class="container">
-          <img src="../../assets/img/logonue.png" width="80px" height="30px" alt="Logo" />
-        </div>
-      </div>
-
-      
-
-      {{ usuarionombre }}
-      {{ usuarioapellido }}
-    </div> -->
     <navbarusuario></navbarusuario>
 
-
-    <!-- Start home section -->
 
     <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" /> </center>
 
@@ -27,9 +11,9 @@
 
       <div class="container">
 
-
+       
         <div class="title">
-          <!-- Start title section 
+ <!-- Start title section 
           <h1>
 
             <font style="vertical-align: inherit;">
@@ -54,7 +38,7 @@
 
       <div class="a1">
         <div class="span4">
-          <!--
+           <!--
           <div class="centered service">
             <div class="circle-border zoom-in">
               <img class="img-circle" src="images/Service1.png" alt="service 1" />
@@ -65,14 +49,11 @@
           </div>
           -->
         </div>
-
+        
       </div>
 
     </div>
 
-
-    <!-- Service section end -->
-    <!-- Portfolio section start -->
     <div class="section secondary-section" style="background-color:#F8F9F9">
       <div class="triangle">
 
@@ -82,40 +63,44 @@
       <center>
         <h1> EVENTOS</h1>
       </center>
+      
+          
       <!--************************** CARRUSEL TRAE SOLO EVENTOS *******************************  -->
+      
+      
+       <VueSlickCarousel v-bind="traeventos" class="carrusel">
 
-      <VueSlickCarousel v-bind="traeventos" class="carrusel">
-        
-        <div class="card-wrap" v-for="publieventos in publieventos" :key="publieventos.id" >
-          <div class="card-header one">
-            <b-img class="imgn" src="https://www.narava.es/10021-large_default/postal-bajo-la-lluvia.jpg"></b-img>
-          </div>
+<div class="card-wrap" v-for="publieventos in publieventos" :key="publieventos.id">
+  <div class="card-header one">
+    <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${publieventos.imagen}`"></b-img>
+    <!--CAMBIO EN ESTE CAMPO TRAE IMAGEN DE CADA EVENTO REALIZADO-->
+  </div>
 
-          <b-card-text>
-            <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
-            <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
-          </b-card-text>
+  <b-card-text>
+    <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
+    <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
+  </b-card-text>
 
-          <md-button v-b-modal="'informacioneventos'" v-on:click="mostrareventos(publieventos)" target="_blank"
-            class="md-primary md-round">Ver mas</md-button>
-          <!-- <button @click="show = true" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button> -->
-        </div>
-        
+  <md-button v-b-modal="'informacioneventos'" v-on:click="mostrareventos(publieventos)" target="_blank"
+    class="md-primary md-round">Ver mas</md-button>
+  <!-- <button @click="show = true" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button> -->
+</div>
 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
 
-      </VueSlickCarousel>
-      <br> <br>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
 
-      <center>
-        <h1> NOTICIAS</h1>
-      </center>
-      <br>
+</VueSlickCarousel>
+<br> <br>
 
-      <!-- ************************** FIN CARRUSEL QUE TRAE SOLO EVENTOS *********************** -->
+<center>
+<h1> NOTICIAS</h1>
+</center>
+<br>
+
+<!-- ************************** FIN CARRUSEL QUE TRAE SOLO EVENTOS *********************** -->
 
       <!--************************** CARRUSEL TRAE SOLO NOTICIAS *******************************  -->
 
@@ -123,7 +108,8 @@
 
         <div v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
           <div class="card-header one">
-            <b-img class="imgn" src="https://bgofigares.com/wp-content/uploads/2016/11/Roma-18-FB.jpg"></b-img>
+            <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${noticias.imagen}`"></b-img>
+            <!--CAMBIO EN ESTE CAMPO TRAE IMAGEN DE CADA NOTICIA REALIZADA-->
           </div>
 
           <b-card-text>
@@ -136,9 +122,7 @@
             class="md-primary md-round">Ver mas</md-button>
           <!-- traemos  
               en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
-              para este caso el id de la noticia -->
-
-
+              para este caso el NOMBRE Y TIPO de la noticia -->
 
         </div>
 
@@ -147,25 +131,19 @@
         <div></div>
         <div></div>
 
-
       </VueSlickCarousel>
-      <!--********************** FIN CARRUSEL QUE TRAE SOLO NOTICIAS *******************************  -->
-
-
 
     </div>
-    <!-- Portfolio section end -->
-    <!-- About us section start -->
+    <!--********************** FIN CARRUSEL QUE TRAE SOLO NOTICIAS *******************************  -->
+
+
     <div class="section primary-section" id="about">
       <div class="triangle"></div>
       <div class="container">
       </div>
     </div>
 
-    <!-- *********************************** MODAL 1 ********************************* -->
-
-
-    <!-- *********************************** MODAL 2 ********************************* -->
+    <!-- *********************************** MODAL 1 EVENTOS ********************************* -->
 
     <div>
       <b-modal v-model="show1" id="informacioneventos">
@@ -175,7 +153,6 @@
         <b-container fluid>
 
           <b-row class="my-2">
-            <!--<b-col sm="3">-->
 
             <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
             <label for="lugar p">lugar: <p for="numero p">{{ evento.lugar }}</p> </label>
@@ -184,18 +161,10 @@
             <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
             <label for="desc p">descripcion: <p for="numero p">{{ evento.descripcion_publicacion }}</p></label>
 
-
-            <!-- </b-col>-->
-            <!--
-
-            <b-col sm="9">
-            </b-col> -->
-
           </b-row>
-
-
         </b-container>
-        <!-- ******** area de comentario EVENTOS******** -->
+
+        <!-- **********************************  AREA DE CALIFICACION EVENTOS ************************************************* -->
         <div>
           <div>
             <label>Sobre la publicacion selecciona:</label>
@@ -204,18 +173,24 @@
               <option value="No me gusta">No me gusta </option>
             </select>
           </div>
+          <!-- **********************************  AREA DE COMENTARIO  ************************************************* -->
           <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
             placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+
           </b-form-textarea>
 
-        </div>
+          <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left"
+            @click="close()">Comentar</md-button>
 
-        <b-button>Guardar Comentario</b-button>
-        <!-- ******** area de comentario EVENTOS ******** -->
-        <template #modal-footer="{ close }" style="text-align: right; ">
+        </div>
+        <!-- **********************************  BOTON DE GUARDADO  ************************************************* -->
+        <template #modal-footer="{ close }" style="text-align: right;">
           <div class="w-100">
 
-            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+            <md-button class="md-just-icon md-simple md-primary" @click="close()">
+              <md-icon>close</md-icon>
+              <md-tooltip md-direction="left">Salir</md-tooltip>
+            </md-button>
           </div>
 
         </template>
@@ -223,7 +198,7 @@
       </b-modal>
     </div>
 
-    <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
+
     <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
 
     <!-- *********************************** MODAL NOTICIAS********************************* -->
@@ -251,37 +226,36 @@
 
 
         </b-container>
-        <!-- ******** area de comentario NOTICIAS******** -->
-         <!-- ******** area de comentario ******** -->
-         <div>
-                    <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
-                        <option value="Me gusta">Me gusta</option>
-                        <option value="No me gusta">No me gusta</option>
+          <!-- **********************************  AREA DE CALIFICACION  ************************************************* -->
+          <div>
+          <div>
+            <label>Sobre la publicacion selecciona:</label>
+            <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
+              <option value="Me gusta">Me gusta</option>
+              <option value="No me gusta">No me gusta </option>
+            </select>
+          </div>
+          <!-- **********************************  AREA DE COMENTARIO  ************************************************* -->
+          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
 
-                    </select>
-                    <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido"
-                        :state="(text.length <= 250)" placeholder="escriba su comentario maximo 250 caracteres" rows="6"
-                        maxlength="250">
-                    </b-form-textarea>
+          </b-form-textarea>
 
-                    <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left"
-                        @click="close()">Comentar</md-button>
+          <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left"
+            @click="close()">Comentar</md-button>
 
+        </div>
+        <!-- **********************************  BOTON DE GUARDADO  ************************************************* -->
+        <template #modal-footer="{ close }" style="text-align: right;">
+          <div class="w-100">
 
-                </div>
-                <!-- ******** area de comentario ******** -->
-                <template #modal-footer="{ close }" style="text-align: right;">
-                    <div class="w-100">
-                        <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
+            <md-button class="md-just-icon md-simple md-primary" @click="close()">
+              <md-icon>close</md-icon>
+              <md-tooltip md-direction="left">Salir</md-tooltip>
+            </md-button>
+          </div>
 
-                        <md-button class="md-just-icon md-simple md-primary" @click="close()">
-                            <md-icon>close</md-icon>
-                            <md-tooltip md-direction="left">Close</md-tooltip>
-                        </md-button>
-                    </div>
-
-                </template>
-                
+        </template>
       </b-modal>
 
     </div>
@@ -336,7 +310,7 @@ export default {
       bodyTextVariant: 'dark',
       footerBgVariant: 'warning',
       footerTextVariant: 'dark',
-    
+
       showModal: false,
 
       traeventos: {
@@ -1113,13 +1087,17 @@ button:hover {
     height: 80px;
     border-radius: 40px;
     line-height: 80px;
+    
   }
 }
 
-@media (max-width: 979px) {
+@media (max-width: 500px) {
   body {
     padding-left: 0;
     padding-right: 0;
+    margin-top: 50px;
+    
+    
   }
 
   .navbar-fixed-top,
