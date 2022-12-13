@@ -109,7 +109,7 @@
 
       <VueSlickCarousel v-bind="traenoticias" class="carrusel">
 
-        <div class="cardUs" v-for="noticias in noticias" :key="(noticias)">
+        <div class="cardUs" v-for="noticias in noticias" :key="noticias.id">
   <div class="headerUs">
    <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${noticias.imagen}`"></b-img>
     
@@ -137,8 +137,8 @@
       <li>
         <!-- <p>ver mas</p> -->
 
-        <h3><i class="fa fa-arrow-circle-right" v-b-modal="'informacion'"
-            v-on:click="mostrarinformacion(publicacion)">ver mas </i> </h3>
+        <h3><i class="fa fa-arrow-circle-right" v-b-modal="'informacionnoticias'"
+            v-on:click="mostrarnoticias(noticias)">ver mas </i> </h3>
 
 
       </li>
@@ -177,28 +177,16 @@
         <b-container fluid>
 
           <b-row class="my-1">
-            <b-col sm="3">
+            <b-row class="my-2">
 
-              <label for="nombre p">Nombre: </label> <br>
-              <label for="lugar p">lugar: </label> <br>
-              <label for="resp p">responsable:</label> <br>
-              <label for="estado p">estado: </label> <br>
-              <label for="tipo p">Tipo:</label> <br>
-              <label for="desc p">descripcion:</label> <br>
+<label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
+<label for="lugar p">lugar: <p for="numero p">{{ evento.lugar }}</p> </label>
+<label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
+<label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
+<label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
+<label for="desc p">descripcion: <p for="numero p">{{ evento.descripcion_publicacion }}</p></label>
 
-            </b-col>
-
-            <b-col sm="9">
-
-              <p for="numero p">{{ evento.nombre_publicacion }}</p>
-
-              <p for="numero p">{{ evento.lugar }}</p>
-              <p for="numero p">{{ evento.responsable }}</p>
-              <p for="numero p">{{ evento.estado }}</p>
-              <p for="numero p">{{ evento.tipo }}</p>
-              <p for="numero p">{{ evento.descripcion_publicacion }}</p>
-
-            </b-col>
+</b-row>
 
           </b-row>
 
@@ -242,67 +230,7 @@
 
     </div>
 
-
-
-
-
-    <!-- *********************************** MODAL 1 EVENTOS ********************************* 
-
-    <div>
-      <b-modal v-model="show1" id="informacion">
-        <template #modal-header class="modal-header">
-          <h5>INFORMACION</h5>
-        </template>
-        <b-container fluid>
-
-          <b-row class="my-2">
-
-            <label for="nombre p">Nombre: <p for="numero p">{{ evento.nombre_publicacion }}</p></label>
-            <label for="lugar p">lugar: <p for="numero p">{{ evento.lugar }}</p> </label>
-            <label for="resp p">responsable: <p for="numero p">{{ evento.responsable }}</p></label>
-            <label for="estado p">estado: <p for="numero p">{{ evento.estado }}</p></label>
-            <label for="tipo p">Tipo: <p for="numero p">{{ evento.tipo }}</p></label>
-            <label for="desc p">descripcion: <p for="numero p">{{ evento.descripcion_publicacion }}</p></label>
-
-          </b-row>
-        </b-container>
-
-        ********************************  AREA DE CALIFICACION EVENTOS ************************************************* 
-        <div>
-          <div>
-            <label>Sobre la publicacion selecciona:</label>
-            <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
-              <option value="Me gusta">Me gusta</option>
-              <option value="No me gusta">No me gusta </option>
-            </select>
-          </div>
-          **********************************  AREA DE COMENTARIO  ************************************************* 
-          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
-            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
-
-          </b-form-textarea>
-
-          <md-button style="margin-left:325px ;" target="_blank" class="md-primary md-round float-left"
-            @click="close()">Comentar</md-button>
-
-        </div>
-         **********************************  BOTON DE GUARDADO  ************************************************* 
-        <template #modal-footer="{ close }" style="text-align: right;">
-          <div class="w-100">
-
-            <md-button class="md-just-icon md-simple md-primary" @click="close()">
-              <md-icon>close</md-icon>
-              <md-tooltip md-direction="left">Salir</md-tooltip>
-            </md-button>
-          </div>
-
-        </template>
-
-      </b-modal>
-    </div>
-
-
-     *********************************** FIN MODAL EVENTOS ********************************* -->
+    <!-- *********************************** FIN MODAL EVENTOS********************************* -->
 
     <!-- *********************************** MODAL NOTICIAS********************************* -->
 
