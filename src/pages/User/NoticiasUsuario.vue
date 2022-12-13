@@ -8,37 +8,35 @@
       </center>
     </div>
     <div style="background-color:#891A89" class="section primary-section" id="service">
-
-
-
+    
+      <div class="container">
+    
+    
+        <div class="title">
+    
+          <h3> ¿Quieres conocer los hechos más relevantes de tu comunidad?</h3>
+    
+        </div>
+    
+        <!--Simple description for section goes here. -->
+    
+      </div>
+    
       <div class="a1">
         <div class="span4">
-          <div class="centered service">
-            <br><br>
-            <h3>Noticias</h3>
-            <p></p>
+    
+          <div class="noticiaimg">
+            <img src="../../assets/img/Noticia.png">
+            <h3> Noticias</h3>
+    
           </div>
+    
         </div>
+    
       </div>
-
+    
     </div>
     <!---------------------- card ----------->
-    <!-- <div class="bodycard">
-            <div  v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
-            <div class="card-header one">
-                <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${noticias.imagen}`"   ></b-img>
-            </div>
-            <div class="card-content">
-                <b-card-text>
-              
-              <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
-              <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
-
-            </b-card-text>
-            <md-button v-b-modal="'informacion2'" v-on:click="mostrarinformacion2(noticias)" target="_blank" class="md-primary md-round" >Ver mas</md-button>
-            </div>
-        </div>
-        </div> -->
     <div class="bodcard1">
       <div class="card1" v-for="noticias in noticias" :key="(noticias)">
         <div class="header">
@@ -113,9 +111,9 @@
         </b-container>
         <!-- ******** area de comentario ******** -->
         <div>
-          <select v-model="clasificacion" name="clasificasion" id="clasificasion">
-            <option value="Me gusta">Me gusta</option>
-            <option value="No me gusta">No me gusta</option>
+          <select v-model="clasificasion" name="clasificasion" id="clasificasion">
+            <option value="Me interesa">Me gusta</option>
+            <option value="No me interesa">No me gusta</option>
 
           </select>
           <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
@@ -152,7 +150,7 @@
 </template>
   
 <script>
-
+import Swal from 'sweetalert2'
 import axios from "axios"
 /** modal */
 
@@ -198,7 +196,7 @@ export default {
   /**/
 
   mounted() {
-    this.id_usuario = sessionStorage.getItem("id")
+    this.id_usuario = sessionStorage.getItem("userid")
     this.usuarionombre = sessionStorage.getItem("username")
     this.usuarioapellido = sessionStorage.getItem("apellido")
     axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
@@ -215,11 +213,18 @@ export default {
       formulariocomentario.append('id_publicacion', idpublic)
       formulariocomentario.append('id_usuario', this.id_usuario)
       formulariocomentario.append('contenido', this.contenido)
-      formulariocomentario.append('clasificacion', this.clasificacion)
+      formulariocomentario.append('clasificasion', this.clasificasion)
       axios.post('http://127.0.0.1:8000/api/comentarios', formulariocomentario).then((response) => {
         console.log(response);
 
       });
+      Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "comentario Guardado",
+          showConfirmButton: false,
+          timer: 1500,
+        });
     },
 
     mostrarinformacion2(objeto2) {
@@ -234,6 +239,24 @@ export default {
 }
 </script>
 <style>
+
+.noticiaimg img 
+{border-radius: 50%;
+  width: 10%;
+  height: 10%;
+ margin-left: 45%; 
+ margin-top: 0%; 
+}
+.noticiaimg h3
+{
+  font-family: monospace;
+ font-size: 30px;
+  width: 15%; 
+ text-align: center;
+ margin-left: 42%;
+ margin-top: 10px;
+
+}
 .bodcard1 {
   margin-top: 1%;
   padding-left: 7%;

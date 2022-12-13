@@ -8,19 +8,35 @@
       <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" margin="" />
       </center>
     </div>
+    
     <div style="background-color:#891A89" class="section primary-section" id="service">
-
+    
+      <div class="container">
+    
+    
+        <div class="title">
+         
+      <h3> ¿Qué eventos hay disponibles?</h3>
+      
+        </div>
+    
+        <!--Simple description for section goes here. -->
+    
+      </div>
+    
       <div class="a1">
         <div class="span4">
-          <div class="centered service">
-            <br><br>
-            <h3>Eventos</h3>
-
-
-          </div>
+          
+        <div class="eventosimg">
+              <img src="../../assets/img/eventos.png" >
+              <h3> considera todos los eventos disponibles, danos tu opinión</h3>
+              
+            </div>
+        
         </div>
+           
       </div>
-
+    
     </div>
 
     <!-- ---------------------card --------------->
@@ -150,6 +166,7 @@
 
 <script>
 import axios from "axios"
+import Swal from "sweetalert2";
 export default {
 
   data() {
@@ -221,6 +238,14 @@ export default {
         console.log(response);
 
       });
+      Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "comentario Guardado",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        
     },
     mostrarinformacion(objeto) {
       return this.evento = objeto;
@@ -234,9 +259,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.imgev {
-  border-radius: 100%;
-  width: 50%;
+// .eventosimg{
+//   border: 1px solid #f5f5f5;
+//   border-radius: 50px;
+//   width: 100px;
+//   height: 100px;
+//   background-color: #d8d8d8;
+
+// }
+.eventosimg img 
+{border-radius: 50%;
+  width: 10%;
+  height: 10%;
+ margin-left: 45%; 
+ margin-top: 0%; 
+}
+.eventosimg h3
+{
+  font-family: monospace;
+ font-size: 15px;
+  width: 15%; 
+ text-align: center;
+ margin-left: 42%;
+ margin-top: 10px;
+
 }
 
 // .boton{
