@@ -11,25 +11,12 @@
 
       <div class="container">
 
-       
+
         <div class="title">
- <!-- Start title section 
-          <h1>
-
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Lo que hacemos? </font>
-
-            </font>
-          </h1>
+          <center>
+        <h1> EVENTOS</h1>
+      </center>
           
-         
-          <p>
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Nuestras historias nos identifican </font>
-            </font>
-
-          </p>
-        -->
         </div>
 
         <!--Simple description for section goes here. -->
@@ -37,55 +24,128 @@
       </div>
 
       <div class="a1">
-        <div class="span4">
-           <!--
-          <div class="centered service">
-            <div class="circle-border zoom-in">
-              <img class="img-circle" src="images/Service1.png" alt="service 1" />
-            </div>
-           
-            <h3>Actividades</h3>
-            <p>Nosotros estamos orgullosos de lo que somos.</p>
-          </div>
-          -->
+        <div class="span4">         
         </div>
-        
+
       </div>
 
     </div>
 
     <div class="section secondary-section" style="background-color:#F8F9F9">
-      <div class="triangle">
-
-
-      </div>
-      <br>
-      <center>
-        <h1> EVENTOS</h1>
-      </center>
       
-          
+      <!---->
+      
+
       <!--************************** CARRUSEL TRAE SOLO EVENTOS *******************************  -->
-      
-      
+          
        <VueSlickCarousel v-bind="traeventos" class="carrusel">
 
-<div class="card-wrap" v-for="publieventos in publieventos" :key="publieventos.id">
-  <div class="card-header one">
-    <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${publieventos.imagen}`"></b-img>
-    <!--CAMBIO EN ESTE CAMPO TRAE IMAGEN DE CADA EVENTO REALIZADO-->
-  </div>
+        <div class="cardUs" v-for="publicacion in publicacion" :key="publicacion.id">
+          <div class="headerUs">
+            <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${publicacion.imagen}`"></b-img>
+            
+          </div>
+          <div class="bodyUs">
+            <ul>
+              <b-card-text>
+                <h6> Nombre:</h6> <label> {{ publicacion.nombre_publicacion }}</label> <br>
+                <h6> Lugar:</h6> <label> {{ publicacion.lugar }}</label> <br>
+                <H6> Tipo de publicacion: </H6> {{ publicacion.tipo }}
+                </b-card-text>
 
-  <b-card-text>
-    <h6> Nombre:</h6>{{ publieventos.nombre_publicacion }}
-    <H6> Tipo de publicacion: </H6> {{ publieventos.tipo }}
-  </b-card-text>
+              <b-card-text>
+               
+                </b-card-text>
+              <b-card-text>
+                
+              </b-card-text>
+              
 
-  <md-button v-b-modal="'informacioneventos'" v-on:click="mostrareventos(publieventos)" target="_blank"
-    class="md-primary md-round">Ver mas</md-button>
-  <!-- <button @click="show = true" v-on:click="mostrarinformacion(publicacion)">Ir a publicacion </button> -->
+            </ul>
+          </div>
+          <div class="footer">
+            <ul>
+              <li>
+                <!-- <p>ver mas</p> -->
+
+                <h3><i class="fa fa-arrow-circle-right" v-b-modal="'informacion'"
+                    v-on:click="mostrarinformacion(publicacion)">ver mas </i> </h3>
+
+
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+      </VueSlickCarousel>
+
+<br>
+<br>
+<br>
+
+<div style="background-color:#891A89" class="section primary-section" id="service">
+  <div>
+  <center>
+        <h1> NOTICIAS</h1>
+      </center>
+      <br>
+</div>
 </div>
 
+
+<br>
+     
+
+
+      <!-- ************************** FIN CARRUSEL QUE TRAE SOLO EVENTOS *********************** -->
+
+      <!--************************** CARRUSEL TRAE SOLO NOTICIAS *******************************  -->
+
+      <VueSlickCarousel v-bind="traenoticias" class="carrusel">
+
+        <div class="cardUs" v-for="noticias in noticias" :key="(noticias)">
+  <div class="headerUs">
+   <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${noticias.imagen}`"></b-img>
+    
+  </div>
+  <div class="bodyUs">
+    <ul>
+      <b-card-text>
+        <h6> Nombre:</h6> <label> {{ noticias.nombre_publicacion }}</label> <br>
+        <h6> Lugar:</h6> <label> {{ noticias.lugar }}</label> <br>
+        <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
+        </b-card-text>
+
+      <b-card-text>
+       
+        </b-card-text>
+      <b-card-text>
+        
+      </b-card-text>
+      
+
+    </ul>
+  </div>
+  <div class="footer">
+    <ul>
+      <li>
+        <!-- <p>ver mas</p> -->
+
+        <h3><i class="fa fa-arrow-circle-right" v-b-modal="'informacion'"
+            v-on:click="mostrarinformacion(publicacion)">ver mas </i> </h3>
+
+
+      </li>
+
+    </ul>
+  </div>
+</div>
 
 <div></div>
 <div></div>
@@ -93,45 +153,9 @@
 <div></div>
 
 </VueSlickCarousel>
-<br> <br>
 
-<center>
-<h1> NOTICIAS</h1>
-</center>
-<br>
 
-<!-- ************************** FIN CARRUSEL QUE TRAE SOLO EVENTOS *********************** -->
 
-      <!--************************** CARRUSEL TRAE SOLO NOTICIAS *******************************  -->
-
-      <VueSlickCarousel v-bind="traenoticias" class="carrusel">
-
-        <div v-for="noticias in noticias" :key="(noticias)" class="card-wrap">
-          <div class="card-header one">
-            <b-img class="imgn" :src="`http://127.0.0.1:8000/storage/${noticias.imagen}`"></b-img>
-            <!--CAMBIO EN ESTE CAMPO TRAE IMAGEN DE CADA NOTICIA REALIZADA-->
-          </div>
-
-          <b-card-text>
-
-            <h6> Nombre:</h6>{{ noticias.nombre_publicacion }}
-            <H6> Tipo de publicacion: </H6> {{ noticias.tipo }}
-
-          </b-card-text>
-          <md-button v-b-modal="'informacionnoticias'" v-on:click="mostrarnoticias(noticias)" target="_blank"
-            class="md-primary md-round">Ver mas</md-button>
-          <!-- traemos  
-              en este boton v-b-model titulo informacion v-on:click  metodo con el que se pide la informacion
-              para este caso el NOMBRE Y TIPO de la noticia -->
-
-        </div>
-
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-
-      </VueSlickCarousel>
 
     </div>
     <!--********************** FIN CARRUSEL QUE TRAE SOLO NOTICIAS *******************************  -->
@@ -143,10 +167,89 @@
       </div>
     </div>
 
-    <!-- *********************************** MODAL 1 EVENTOS ********************************* -->
+    <!-- *********************************** MODAL 1 EVENTOS EJEMPLO ********************************* -->
+    <div>
+      <b-modal v-model="show1" id="informacion">
+        <template #modal-header class="modal-header" style="background-color:#891489 ;">
+          <h5>INFORMACION</h5>
+
+        </template>
+        <b-container fluid>
+
+          <b-row class="my-1">
+            <b-col sm="3">
+
+              <label for="nombre p">Nombre: </label> <br>
+              <label for="lugar p">lugar: </label> <br>
+              <label for="resp p">responsable:</label> <br>
+              <label for="estado p">estado: </label> <br>
+              <label for="tipo p">Tipo:</label> <br>
+              <label for="desc p">descripcion:</label> <br>
+
+            </b-col>
+
+            <b-col sm="9">
+
+              <p for="numero p">{{ evento.nombre_publicacion }}</p>
+
+              <p for="numero p">{{ evento.lugar }}</p>
+              <p for="numero p">{{ evento.responsable }}</p>
+              <p for="numero p">{{ evento.estado }}</p>
+              <p for="numero p">{{ evento.tipo }}</p>
+              <p for="numero p">{{ evento.descripcion_publicacion }}</p>
+
+            </b-col>
+
+          </b-row>
+
+
+        </b-container>
+        <!-- ******** area de comentario ******** -->
+        <div>
+
+
+          <select v-model="clasificasion" name="clasificasion" id="clasificasion">
+            <option value="Me interesa">Me gusta</option>
+            <option value="No me interesa">No me gusta</option>
+
+          </select>
+          <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
+            placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
+          </b-form-textarea>
+          <!-- <p for="numero p">{{evento.id}}</p> -->
+
+          <md-button style="margin-left:320px;" target="_blank" class="md-pink md-round float-left"
+            @click="guardarcomentario(evento.id)">Comentar</md-button>
+
+
+
+
+        </div>
+        <!-- ******** area de comentario ******** -->
+        <template #modal-footer="{ close }" style="text-align: right;">
+
+          <div class="w-100">
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+
+          </div>
+
+
+
+        </template>
+
+      </b-modal>
+
+
+    </div>
+
+
+
+
+
+    <!-- *********************************** MODAL 1 EVENTOS ********************************* 
 
     <div>
-      <b-modal v-model="show1" id="informacioneventos">
+      <b-modal v-model="show1" id="informacion">
         <template #modal-header class="modal-header">
           <h5>INFORMACION</h5>
         </template>
@@ -164,7 +267,7 @@
           </b-row>
         </b-container>
 
-        <!-- **********************************  AREA DE CALIFICACION EVENTOS ************************************************* -->
+        ********************************  AREA DE CALIFICACION EVENTOS ************************************************* 
         <div>
           <div>
             <label>Sobre la publicacion selecciona:</label>
@@ -173,7 +276,7 @@
               <option value="No me gusta">No me gusta </option>
             </select>
           </div>
-          <!-- **********************************  AREA DE COMENTARIO  ************************************************* -->
+          **********************************  AREA DE COMENTARIO  ************************************************* 
           <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
             placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
 
@@ -183,7 +286,7 @@
             @click="close()">Comentar</md-button>
 
         </div>
-        <!-- **********************************  BOTON DE GUARDADO  ************************************************* -->
+         **********************************  BOTON DE GUARDADO  ************************************************* 
         <template #modal-footer="{ close }" style="text-align: right;">
           <div class="w-100">
 
@@ -199,7 +302,7 @@
     </div>
 
 
-    <!-- *********************************** FIN MODAL EVENTOS ********************************* -->
+     *********************************** FIN MODAL EVENTOS ********************************* -->
 
     <!-- *********************************** MODAL NOTICIAS********************************* -->
 
@@ -226,8 +329,8 @@
 
 
         </b-container>
-          <!-- **********************************  AREA DE CALIFICACION  ************************************************* -->
-          <div>
+        <!-- **********************************  AREA DE CALIFICACION  ************************************************* -->
+        <div>
           <div>
             <label>Sobre la publicacion selecciona:</label>
             <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
@@ -301,7 +404,7 @@ export default {
       /*encargadop: null, /* variablr para traer el encargado de publicacion */
       show1: false,
       show2: false,
-      publieventos: null,
+      publicacion: null,
       noticias: null,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       headerBgVariant: '#9c27b0',
@@ -351,7 +454,7 @@ export default {
     this.usuarioapellido = sessionStorage.getItem("apellido")
     axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
       console.log(response);
-      this.publieventos = response.data;
+      this.publicacion = response.data;
     });
 
     axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
@@ -366,13 +469,13 @@ export default {
       formulariocomentario.append('id_publicacion', idpublic)
       formulariocomentario.append('id_usuario', this.id_usuario)
       formulariocomentario.append('contenido', this.contenido)
-      formulariocomentario.append('clasificacion', this.clasificacion)
+      formulariocomentario.append('clasificasion', this.clasificasion)
       axios.post('http://127.0.0.1:8000/api/comentarios', formulariocomentario).then((response) => {
         console.log(response);
 
       });
     },
-    mostrareventos(objeto) {
+    mostrarinformacion(objeto) {
       return this.evento = objeto;
     },
 
@@ -623,10 +726,10 @@ button:hover {
 2.1 Animations
 **********/
 .zoom-in {
-  -webkit-transform: scale(1, 1);
+  /** -webkit-transform: scale(1, 1);
   -moz-transform: scale(1, 1);
   -o-transform: scale(1, 1);
-  -ms-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);*/
   -webkit-transition: all 250ms ease;
   -moz-transition: all 250ms ease;
   -o-transition: all 250ms ease;
@@ -634,12 +737,12 @@ button:hover {
   transition: all 250ms ease;
 }
 
-.zoom-in:hover {
+/* .zoom-in:hover {
   -webkit-transform: scale(1.1, 1.1);
   -moz-transform: scale(1.1, 1.1);
   -o-transform: scale(1.1, 1.1);
   -ms-transform: scale(1.1, 1.1);
-}
+}*/
 
 /*
 2.2 Buttons - There are buttons on a transparent background, primary and secondary color background.
@@ -841,7 +944,7 @@ button:hover {
 .primary-section,
 .primary-section .title p,
 .primary-section h3 {
-  color: #00ADB5;
+  color: black;
 }
 
 
@@ -890,6 +993,16 @@ button:hover {
 .newsletter .button-sp:active {
   background-color: #FFF;
   color: #181A1C;
+}
+.slick-dots {
+    position: absolute;
+    bottom: -30px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
 }
 
 /*
@@ -1087,7 +1200,7 @@ button:hover {
     height: 80px;
     border-radius: 40px;
     line-height: 80px;
-    
+
   }
 }
 
@@ -1096,8 +1209,8 @@ button:hover {
     padding-left: 0;
     padding-right: 0;
     margin-top: 50px;
-    
-    
+
+
   }
 
   .navbar-fixed-top,
@@ -1174,150 +1287,219 @@ button:hover {
   }
 }
 
-/** card yulie******************************** */
-.imgn {
-  border-radius: 100%;
-  width: 50%;
+/** ***********************************************************card yulie******************************************************************** */
+
+
+
+
+
+
+
+/* ***********************************************  NUEVA CARD*******************************************/
+.cardUs {
+  position: relative;
+  height: 420px;
+  width: 300px;
+  background-color: #fff;
+  margin: 40px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.primary-section,
-.primary-section .title p,
-.primary-section h3 {
-  color: #e6e7e7;
-}
-
-.thumbnail .mask {
-  opacity: 0.85;
-  filter: alpha(opacity=85);
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #181A1C;
+.headerUs {
   position: absolute;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2 s ease-out;
-  -ms-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
+  height: 200px;
+  width: 95%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: linear-gradient(to right, #1dd1a1, #1abc9c);
+}
+
+.headerUs img {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  left: 90px;
+  top: 22px;
+}
+
+.headerUs h3 {
+  position: absolute;
+  font-family: sans-serif;
+  color: white;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  top: 118px;
+  left: 90px;
+}
+
+.headerUs p {
+  position: absolute;
+  font-family: sans-serif;
+  color: rgb(236, 233, 233);
+  font-size: 13px;
+  top: 166px;
+  left: 90px
+}
+
+.bodyUs {
+  position: absolute;
+  height: 126px;
+  left: 10px;
+  right: 5px;
+  top: 45%;
+  border-radius: 12px;
 }
 
 
 
-.third-section .container {
-  padding-top: 20px;
-  position: relative;
+
+
+
+
+
+
+
+
+.bodyUs ul {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+
 }
 
-
-
-
-.map-wrapper {
-  position: relative;
-  height: 500px;
-}
-
-
-.contact-info {
-  text-align: center;
-  font-size: 22px;
-}
-
-
-/*
-  4 Responsible
-  ********************************************************************/
-@media (min-width: 1200px) {
-  .thumbnail .more {
-    margin-left: -41px;
-    width: 80px;
-    height: 80px;
-    border-radius: 40px;
-    line-height: 0px;
-  }
-}
-
-
-
-@media (max-width: 767px) {
-  .info-mail {
-    width: 90%;
-    padding: 15px 0px;
-  }
-
-  .project-description {
-    padding-left: 20px;
-  }
-
-  .price-column,
-  .testimonial {
-    margin-top: 30px;
-  }
-}
-
-@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap&#39;);
-
-.card-wrap {
-  width: 280px;
-  background: #fff;
-  border-radius: 20px;
-  display: inline-block;
-  margin: 20px;
-  border: 5px solid #fff;
-  overflow: hidden;
-  color: var(--color-text);
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
-    rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  cursor: pointer;
-  transition: all .2s ease-in-out;
-}
-
-.card-wrap:hover {
-  transform: scale(1.1);
-}
-
-.card-header {
-  height: 230px;
+.bodyUs ul li {
+  position: absolute;
+  list-style: none;
+  display: block;
+  height: 40px;
   width: 100%;
-  background: red;
-  border-radius: 100% 0% 100% 0% / 0% 50% 50% 100%;
-  display: grid;
-  place-items: center;
+  left: 0;
+  right: 0;
+  border-radius: 12px;
+  background-color: transparent;
+  transition: all .3s ease-in-out;
+}
+
+.bodyUs ul li p,
+h3,
+i {
+  position: absolute;
+}
+
+.bodyUs ul li h3 {
+  top: -17px;
+  left: 58px;
+  color: #16a085;
 
 }
 
-.card-header i {
+.bodyUs ul li p {
+  top: 14px;
+  left: 59px;
+  font-size: 12px;
+  font-family: sans-serif;
+  color: #16a085;
+}
+
+.bodyUs ul li i {
+  left: 8px;
+  top: 7px;
+  color: #16a085;
+  font-size: 26px;
+}
+
+.bodyUs ul li:nth-child(1) {
+  top: -16px;
+}
+
+.bodyUs ul li:nth-child(2) {
+  top: 26px;
+}
+
+.bodyUs ul li:nth-child(3) {
+  top: 68px;
+}
+
+.bodyUs ul li:nth-child(1) i {
+  left: 12px;
+}
+
+.bodyUs li:hover {
+  background-color: #16a085;
+  cursor: pointer;
+}
+
+.bodyUs li:hover i {
+  color: #fff
+}
+
+.bodyUs li:hover h3 {
+  color: #fff
+}
+
+.bodyUs li:hover p {
+  color: #fff
+}
+
+/*footer*/
+
+.footer {
+  position: absolute;
+  height: 80px;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  border-radius: 12px;
+  width: 95%;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: linear-gradient(to right, #1dd1a1, #1abc9c);
+}
+
+.footer ul {
+  position: absolute;
+  left: -60px;
+}
+
+.footer ul li {
+  display: inline-block;
+  margin-left: 60px;
+}
+
+.footer ul li i {
+  font-size: 30px;
+  color: #000;
+  transition: all .3s ease-in;
+}
+
+.footer ul li:hover i {
+  transform: scale(0.9);
   color: #fff;
-  font-size: 72px;
+  cursor: pointer;
 }
 
-.card-btn {
-  border: none;
-  border-radius: 100px;
-  padding: 5px 30px;
+.credit a {
+  text-decoration: none;
   color: #fff;
-  margin-bottom: 15px;
-  text-transform: uppercase;
+
 }
 
-.card-header.one {
-  background: linear-gradient(to bottom left, var(--card1-gradient-color1), var(--card1-gradient-color2));
-}
-
-.card-btn.one {
-  background: linear-gradient(to left, var(--card1-gradient-color1), var(--card1-gradient-color2));
-}
-
-:root {
-  --color-text: #616161;
-  --color-text-btn: #ffffff;
-  --card1-gradient-color1: #891A89;
-  --card1-gradient-color2: #891A89;
-  --card2-gradient-color1: #7F00FF;
-  --card2-gradient-color2: #E100FF;
-  --card3-gradient-color1: #3f2b96;
-  --card3-gradient-color2: #a8c0ff;
-  --card4-gradient-color1: #11998e;
-  --card4-gradient-color2: #38ef7d;
+.credit {
+  text-align: center;
 }
 </style>
+
+
+
+
+
+
