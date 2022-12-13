@@ -13,9 +13,7 @@
 
 
         <div class="title">
-          <center>
-        <h1> EVENTOS</h1>
-      </center>
+          <h3> ¿Qué eventos hay disponibles?</h3>
           
         </div>
 
@@ -24,7 +22,12 @@
       </div>
 
       <div class="a1">
-        <div class="span4">         
+        <div class="span4">
+          <div class="eventosimg">
+              <img src="../../assets/img/eventos.png" >
+              <h3> considera todos los eventos disponibles, danos tu opinión</h3>
+              
+            </div>         
         </div>
 
       </div>
@@ -301,8 +304,9 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import VueLikeDislikeButtons from "vue-like-dislike-buttons";
-
+import Swal from "sweetalert2";
 import axios from "axios"
+import { SyncWaterfallHook } from 'tapable';
 /** modal */
 
 export default {
@@ -402,6 +406,14 @@ export default {
         console.log(response);
 
       });
+
+      Swal.fire({
+        position:"center",
+        icon: "success",
+        title: "Comentario guardado",
+        showConfirmButton: false,
+        timer: 1500,
+      })
     },
     mostrarinformacion(objeto) {
       return this.evento = objeto;
@@ -1224,6 +1236,24 @@ button:hover {
 
 
 /* ***********************************************  NUEVA CARD*******************************************/
+.eventosimg img 
+{border-radius: 50%;
+  width: 10%;
+  height: 10%;
+ margin-left: 45%; 
+ margin-top: 0%; 
+}
+.eventosimg h3
+{
+  font-family: monospace;
+ font-size: 15px;
+  width: 15%; 
+ text-align: center;
+ margin-left: 42%;
+ margin-top: 10px;
+
+}
+
 .cardUs {
   position: relative;
   height: 420px;
