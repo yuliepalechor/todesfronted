@@ -124,11 +124,17 @@
           </b-button>
         </div>
 
-         <!--      MODAL DE LAS NUEVAS ASIGNACIONES          -->
+         <!--       lista de eventos segundo modal       -->
             <div>
-              <b-modal size="xl" id="asignacionnueva" title="Categorias">
+              <b-modal size="xl" id="asignacionnueva" title="eventos">
+                
             <b-container fluid>
+              <input type="date">
+
+            
                   <div>
+                    <input type="button" class="btn btn-outline-info btn-sm" @click='eventoxfecha()' value="Search">
+                    <button id="reset" class="btn btn-outline btn-sm">reset</button>
              
               <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="eventos">
                 
@@ -158,7 +164,7 @@
   
     </template>
         </b-modal>
-
+<!-- final modal dentro de modal -->
         </div>
         
       </template>
@@ -168,67 +174,7 @@
       <!-- final primermodal -->
 
 
-    <!-- segundo MODAL -->
-    <div>
-        <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
-          <b-container fluid>
-            <table class="table table-bordered table-striped" id="tabla">
-              <thead>
-                <b-button
-               v-b-modal="'asignacionnueva'"
-               @click="getevento(eventoasig.id)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >+
-              </b-button>
-               
-              </thead>
-              <tbody>
-                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
-            
-                  <td v-text="categoriaasig.id_detalle"></td>
-                  <td v-text="categoriaasig.Prioridad_detallle"></td>
-                  <td v-text="categoriaasig.Nombresdecategorias"></td>
-                  <td v-text="categoriaasig.Descripciodecategorias"></td>
-                  <!--<td v-text="categoriaasig.id_publicacion"></td>-->
-                  <b-button
-               v-b-modal="'asignacionnueva'"
-               @click="getcategorias(categoriaasig.id_publicacion)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >+
-              </b-button>
-                </tr>
-              </tbody>
-            </table>
-             </b-container>
-              <template #modal-footer>
-            <div class="w-100">
-
-            </div>   
-             
-            
-          </template>
-        </b-modal>     
-      </div>
-  
-    <!-- final segundo modal -->
-
-      
-
-
-      
-
-      
-
-      
-     
-
-
-
-
+   
       <!-- <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
@@ -382,7 +328,7 @@ export default {
         headerTextVariant: 'light',
         bodyBgVariant: 'light',
         bodyTextVariant: 'dark',
-        footerBgVariant: 'warning',
+        footerBgVariant: 'info',
         footerTextVariant: 'dark',
 
       dailySalesChart: {
@@ -477,10 +423,9 @@ export default {
         { key: "descripcion_publicacion", label: "Descripcion" },
         { key: "lugar", label: "Lugar" },
         { key: "estado", label: "Estado" },
-        { key: "urlExterna", label: "Url" },
         { key: "responsable", label: "Responsable" },
         { key: "fecha", label: "fecha-hora" },
-        { key: "fecha_caducidad", label: "fecha_caducidad" },
+        { key: "fecha_caducidad", label: "fecha-caducidad" },
         { key: "tipo", label: "Tipo" },
       ],
     };
@@ -494,6 +439,10 @@ export default {
           this.eventos = response.data;
         });
     },
+
+    eventoxfecha:function(){
+      alert('search');
+    }
 
    },
     mounted() {
