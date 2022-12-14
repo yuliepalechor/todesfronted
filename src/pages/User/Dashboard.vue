@@ -236,18 +236,15 @@
 
         <template #modal-footer="{ close }" style="text-align: right;">
 
-          <div class="w-100">
+<div class="w-100">
+  <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
 
-
-            <md-button class="md-just-icon md-simple md-primary" @click="close()">
-              <md-icon>close</md-icon>
-              <md-tooltip md-direction="left">Salir</md-tooltip>
-            </md-button>
-          </div>
+</div>
 
 
 
-        </template>
+</template>
+
 
       </b-modal>
 
@@ -285,13 +282,13 @@
         <div>
           <div>
             <label>Sobre la publicacion selecciona:</label>
-            <select v-model="formulariocomentario.clasificasion" name="clasificasion" id="clasificasion">
-              <option value="Me gusta">Me gusta</option>
-              <option value="No me gusta">No me gusta </option>
+            <select v-model="clasificasion" name="clasificasion" id="clasificasion">
+              <option value="Me interesa">Me gusta</option>
+              <option value="No me interesa">No me gusta </option>
             </select>
           </div>
           <!-- **********************************  AREA DE COMENTARIO  ************************************************* -->
-          <b-form-textarea id="textarea-state" v-model="formulariocomentario.contenido" :state="(text.length <= 250)"
+          <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
             placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
 
           </b-form-textarea>
@@ -303,11 +300,8 @@
         <!-- **********************************  BOTON DE GUARDADO  ************************************************* -->
         <template #modal-footer="{ close }" style="text-align: right;">
           <div class="w-100">
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
 
-            <md-button class="md-just-icon md-simple md-primary" @click="close()">
-              <md-icon>close</md-icon>
-              <md-tooltip md-direction="left">Salir</md-tooltip>
-            </md-button>
           </div>
 
         </template>
@@ -404,7 +398,7 @@ export default {
   /**/
 
   mounted() {
-    this.id_usuario = sessionStorage.getItem("id")
+    this.id_usuario = sessionStorage.getItem("userid")
     this.usuarionombre = sessionStorage.getItem("username")
     this.usuarioapellido = sessionStorage.getItem("apellido")
 
@@ -909,7 +903,7 @@ button:hover {
 .primary-section,
 .primary-section .title p,
 .primary-section h3 {
-  color: black;
+  color: rgb(237, 229, 229);
 }
 
 
@@ -1304,7 +1298,7 @@ button:hover {
   height: 420px;
   width: 300px;
   background-color: #fff;
-  margin: 40px auto;
+  margin: 50px;
   border-radius: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
