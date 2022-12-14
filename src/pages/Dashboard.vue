@@ -14,16 +14,16 @@
             <h4 class="title">Eventos por fecha</h4>
             <p class="category">
               <span class="text-success"
-                ><i class="fas fa-long-arrow-alt-up"></i> 55%
+                > 
               </span>
-              increase in today sales.
+              estadisticas de eventos
             </p>
           </template>
 
           <template slot="footer">
             <div class="stats">
               <md-icon>access_time</md-icon>
-              updated 4 minutes ago
+              actualizado hace 4 minutes 
               <md-button @click="show=true" class="md-icon-button md-raised md-primary">
         <md-icon>menu</md-icon>
       </md-button>
@@ -44,13 +44,13 @@
         >
           <template slot="content">
             <h4 class="title">Incidencias por fecha</h4>
-            <p class="category">Last Campaign Performance</p>
+            <p class="category">incidencias</p>
           </template>
 
           <template slot="footer">
             <div class="stats">
               <md-icon>access_time</md-icon>
-              updated 10 days ago
+              actualizado hace 4 dias
               <md-button @click="show=true" class="md-icon-button md-raised md-primary">
         <md-icon>menu</md-icon>
       </md-button>
@@ -70,14 +70,14 @@
         >
           <template slot="content">
             <h4 class="title">Noticias por fecha</h4>
-            <p class="category">Last Campaign Performance</p>
+            <p class="category">total noticias</p>
           </template>
 
           <template slot="footer">
             <div class="stats">
               <md-icon>access_time</md-icon>
-              campaign sent 26 minutes ago
-              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+              agregado hace 26 minutos
+              <md-button @click="show1=true" class="md-icon-button md-raised md-primary">
         <md-icon>menu</md-icon>
       </md-button>
             </div>
@@ -85,19 +85,201 @@
         </chart-card>
       </div>
 
-      
+      <!-- primer modal -->
+        <b-modal
+      v-model="show"
+      title="listado por fecha"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
+      :body-bg-variant="bodyBgVariant"
+      :body-text-variant="bodyTextVariant"
+      :footer-bg-variant="footerBgVariant"
+      :footer-text-variant="footerTextVariant"
+    >
+      <b-container fluid>
+          <input type="date">
+
+          <b-button
+               v-b-modal="'asignacionnueva'"
+               @click="getevento(eventosasig.id)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >listar
+              </b-button>
+
+              
+          
+      </b-container>
+
+      <template #modal-footer>
+        <div class="w-100">
+          <p class="float-left">eventos por fecha</p>
+          <b-button
+            variant="primary"
+            size="sm"
+            class="float-right"
+            @click="show=false"
+          >cerrar
+          </b-button>
+        </div>
+
+         <!--       lista de eventos segundo modal       -->
+            <div>
+              <b-modal size="xl" id="asignacionnueva" title="eventos">
+                
+            <b-container fluid>
+                  <div> 
+              <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="eventos">
+                
+               </b-table> 
+
+               <b-pagination
+                  v-model="currentPage"
+               :total-rows="rows"
+                :per-page="perpage"
+                aria-controls="tablaEventos"
+               ></b-pagination>
+           </div>
+          </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+             
+            </div>
+          </template>
+
+          <template>
+  
+    </template>
+        </b-modal>
+
+        </div>
+        <!-- final modal dentro de modal -->
+
+        <!--       lista de noticias       -->
+            <div>
+              <b-modal size="xl" id="asignacionnoticia" title="Noticias">
+                
+            <b-container fluid>
+             
+            
+                  <div>
+                   
+             
+              <b-table  :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="noticias">
+                
+                
+               </b-table> 
+
+               <b-pagination
+                  v-model="currentPage"
+               :total-rows="rows"
+                :per-page="perpage"
+                aria-controls="tablaNoticia"
+               ></b-pagination>
+           </div>
+          </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+             
+            </div>
+          </template>
+
+          <template>
+  
+    </template>
+        </b-modal>
+
+        </div>
+        <!-- final modal notcia  -->
+
+      </template>
+    </b-modal>
 
 
-      
-
-      
-
-      
-     
+      <!-- final primermodal -->
 
 
 
 
+
+      <!-- segundo modal para noticiass ____________________________________________________________________________ -->
+      <b-modal
+      v-model="show1"
+      title="listado por noticia"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
+      :body-bg-variant="bodyBgVariant"
+      :body-text-variant="bodyTextVariant"
+      :footer-bg-variant="footerBgVariant"
+      :footer-text-variant="footerTextVariant"
+    >
+      <b-container fluid>
+          <input type="date" name="fechanoticia" id="fechanoticia">
+
+              <!-- boton listar noticias -->
+               <b-button
+               v-b-modal="'asignacionnoticia'"
+               @click="getnoticiafecha()" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >listar
+              </b-button>
+              <!-- final boton noticias -->
+      </b-container>
+
+      <template #modal-footer>
+        <div class="w-100">
+          <p class="float-left">noticias por fecha</p>
+          <b-button
+            variant="primary"
+            size="sm"
+            class="float-right"
+            @click="show1=false"
+          >cerrar
+          </b-button>
+        </div>
+        <!--       lista de noticias       -->
+            <div>
+              <b-modal size="xl" id="asignacionnoticia" title="Noticias">
+            <b-container fluid>
+                  <div>                          
+              <b-table  :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="noticias">
+               </b-table> 
+
+               <b-pagination
+                  v-model="currentPage"
+               :total-rows="rows"
+                :per-page="perpage"
+                aria-controls="tablaNoticia"
+               ></b-pagination>
+           </div>
+          </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+             
+            </div>
+          </template>
+
+        
+        </b-modal>
+
+        </div>
+        <!-- final modal notcia  -->
+
+      </template>
+    </b-modal>
+
+
+      <!-- final segund modal -->
+
+
+
+
+
+
+   
       <!-- <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
@@ -244,9 +426,20 @@ export default {
   },
   data() {
     return {
+       show: false,
+        show1: false,
+       publicacion: [],
+        variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+        headerBgVariant: 'dark',
+        headerTextVariant: 'light',
+        bodyBgVariant: 'light',
+        bodyTextVariant: 'dark',
+        footerBgVariant: 'info',
+        footerTextVariant: 'dark',
+
       dailySalesChart: {
         data: {
-          labels: ["M", "T", "W", "T", "F", "S", "S"],
+          labels: ["ene", "feb", "mar", "abr", "may", "jun", "jul"],
           series: [[12, 17, 7, 17, 23, 18, 38]],
         },
         options: {
@@ -265,8 +458,8 @@ export default {
       },
       dataCompletedTasksChart: {
         data: {
-          labels: ["12am", "3pm", "6pm", "9pm", "12pm", "3am", "6am", "9am"],
-          series: [[230, 750, 450, 300, 280, 240, 200, 190]],
+          labels: ["ene", "feb", "mar", "abr", "may", "jun", "jul"],
+          series: [[12, 17, 7, 17, 23, 18, 38 ]],
         },
 
         options: {
@@ -330,7 +523,75 @@ export default {
           ],
         ],
       },
+      encabezado: [
+        { key: "id", label: "Id" },
+        { key: "nombre_publicacion", label: "Nombre" },
+        { key: "descripcion_publicacion", label: "Descripcion" },
+        { key: "lugar", label: "Lugar" },
+        { key: "estado", label: "Estado" },
+        { key: "responsable", label: "Responsable" },
+        { key: "fecha", label: "fecha-hora" },
+        { key: "fechacaducidad", label: "fecha caducidad" },
+        { key: "tipo", label: "Tipo" },
+      ],
+      
     };
   },
+
+   methods: {
+    getevento() {
+      this.axios
+        .get("http://127.0.0.1:8000/api/eventos")
+        .then((response) => {
+          this.eventos = response.data;
+        });
+    },
+    //noticias por fecha
+    getnoticia() {
+      this.axios
+        .get("http://127.0.0.1:8000/api/noticias")
+        .then((response) => {
+          this.noticias = response.data;
+        });
+    },
+  // trae noticias por fecha button
+    getnoticiafecha() {
+      this.axios
+        .get("http://127.0.0.1:8000/api/busquedanoticia")
+        .then((response) => {
+          this.noticias = response.data;
+        });
+    },
+   },
+    mounted() {
+    this.getevento();
+    this.getnoticia();
+    
+  },
+
+  computed: {
+    rows() {
+      return this.eventos.length;
+      return this.noticias.length;
+    },
+  },
+
+  // action:{
+  //   eventosporfecha(){
+  //     this.axios.get("http://127.0.0.1:8000/api/eventos")
+  //     .then((response)=>{
+  //     const eventosxfecha=[]
+  //     for (let i=0;i<response.data.results.length;i++){
+  //           eventosxfecha.push({
+  //             indicador:(i+1),
+  //             nombre_publicacion: response.data.results[i]
+              
+  //           })
+  //     }
+  //     })
+  //   }
+
+  // }
 };
+
 </script>
