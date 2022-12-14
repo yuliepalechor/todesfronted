@@ -100,6 +100,7 @@ export default {
 this.axios
 .get("http://127.0.0.1:8000/api/usuario")
 .then((data) => {
+  
 this.form.identificacion=data.data[0].identificacion;
 this.form.nombre=data.data[0].nombre;
 this.form.apellidos=data.data[0].apellidos;
@@ -115,7 +116,7 @@ this.form.fecha_nacimiento=data.data[0].fecha_nacimiento;
 methods:{
   Actualizarinformacion() {
         this.axios
-          .put("http://127.0.0.1:8000/api/usuario/"+this.$route.params.id,this.form )
+          .put("http://127.0.0.1:8000/api/usuario/"+this.$route.params.userid,this.form )
           .then((data) => {
             this.$router.push("/Usuarios")
           });

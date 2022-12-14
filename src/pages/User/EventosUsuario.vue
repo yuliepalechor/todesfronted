@@ -155,11 +155,52 @@
 
 
     </div>
+    
     <div class="section primary-section" id="about">
-      <div class="triangle"></div>
-      <div class="container">
-      </div>
-    </div>
+     
+     
+     <div class="container">
+       <center>
+       <div class="row">
+
+         <div class="col-md-3">            
+         </div>
+
+         
+         <div class="col-md-3">
+
+           <ul class="list-unstyled mt-3">
+             <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+               <i class="fab fa-facebook-f"></i>
+             </button>
+             <li><a href="https://es-la.facebook.com/MesaDiversidadPopayan/" class="text-white">Facebook</a></li>
+
+           </ul>
+         </div>
+         <div class="col-md-3">
+           <ul class="list-unstyled mt-3">
+             <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+               <i class="fab fa-instagram"></i>
+               
+             </button>
+             <li><a href="https://instagram.com/alcaldiapopayan?igshid=YmMyMTA2M2Y=" class="text-white">Instagram</a>
+             </li>
+           </ul>
+         </div>
+         <div class="col-md-3">
+           <ul class="list-unstyled mt-3">
+             <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+               <i class="fab fa-twitter"></i>
+             </button>
+             <li><a href="https://twitter.com/AlcaldiaPopayan" class="text-white">Twitter</a></li>
+           </ul>
+         </div>
+       </div>
+
+     </center>
+
+     </div>
+   </div>
 
   </div>
 </template>

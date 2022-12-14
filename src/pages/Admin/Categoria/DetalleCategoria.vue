@@ -134,7 +134,7 @@ export default {
       
     },
 
-    AsignarCategoria(id) {
+    async AsignarCategoria(id) {
 
 
     alert()
@@ -144,23 +144,27 @@ export default {
         formDatadetallecategoria.append("id_categoria",id)
      
       
-      this.axios.post("http://127.0.0.1:8000/api/detalle_categoria",formDatadetallecategoria ).then((data) => {
+      await this.axios.post("http://127.0.0.1:8000/api/detalle_categoria",formDatadetallecategoria ).then((data) => {
           console.log(data);
   
           this.$router.push('/Categorias');
+        }) .catch(error=>{
+            console.log(error)
         });
       
      
       
     },
 
-    mostrar() {
+   async mostrar() {
       alert(this.$route.params.id);
-      this.axios
+      await this.axios
         .get(
           "http://127.0.0.1:8000/api/detalle_categoria/" + this.$route.params.id
         )
-        .then((data) => { });
+        .then((data) => { }).catch(error=>{
+            console.log(error)
+        });
     },
 
 

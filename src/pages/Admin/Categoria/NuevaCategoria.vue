@@ -50,7 +50,7 @@ export default {
         }
     },
     methods:{
-      GuardarCategoria(){
+      async GuardarCategoria(){
         Swal.fire({
           position: "center",
           icon: "success",
@@ -58,8 +58,10 @@ export default {
           showConfirmButton: false,
           timer: 1500,
         });
-         this.axios.post("http://127.0.0.1:8000/api/categoria",this.form).then((data)=>
+        await this.axios.post("http://127.0.0.1:8000/api/categoria",this.form).then((data)=>
          {console.log(data);
+        }).catch(error=>{
+            console.log(error)
         });
       },
 

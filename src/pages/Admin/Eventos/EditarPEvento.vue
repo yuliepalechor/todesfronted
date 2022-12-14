@@ -132,12 +132,14 @@
 
 
         
-      ActualizarPublicacion() {
-        this.axios
+      async ActualizarPublicacion() {
+       await this.axios
           .put("http://127.0.0.1:8000/api/publicacion/"+this.$route.params.id,this.form )
           .then((data) => {
             this.$router.push("/Eventos")
-          });
+          }) .catch(error=>{
+            console.log(error)
+        });
       },
 
       
