@@ -77,7 +77,7 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               campaign sent 26 minutes ago
-              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
+              <md-button @click="show1=true" class="md-icon-button md-raised md-primary">
         <md-icon>menu</md-icon>
       </md-button>
             </div>
@@ -107,20 +107,20 @@
                 class="float-right"
               >listar
               </b-button>
+
               
           
       </b-container>
 
       <template #modal-footer>
         <div class="w-100">
-          <p class="float-left">Reporte</p>
+          <p class="float-left">eventos por fecha</p>
           <b-button
             variant="primary"
             size="sm"
             class="float-right"
             @click="show=false"
-          >
-            Close
+          >cerrar
           </b-button>
         </div>
 
@@ -129,21 +129,9 @@
               <b-modal size="xl" id="asignacionnueva" title="eventos">
                 
             <b-container fluid>
-              <input type="date">
-
-            
-                  <div>
-                    <input type="button" class="btn btn-outline-info btn-sm" @click='eventoxfecha()' value="Search">
-                    <button id="reset" class="btn btn-outline btn-sm">reset</button>
-             
+                  <div> 
               <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="eventos">
                 
-                <template v-slot:cell(ejemplo)="row">
-                    <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
-               
-               
-                    
-                  </template>
                </b-table> 
 
                <b-pagination
@@ -164,14 +152,131 @@
   
     </template>
         </b-modal>
-<!-- final modal dentro de modal -->
+
         </div>
-        
+        <!-- final modal dentro de modal -->
+
+        <!--       lista de noticias       -->
+            <div>
+              <b-modal size="xl" id="asignacionnoticia" title="Noticias">
+                
+            <b-container fluid>
+             
+            
+                  <div>
+                   
+             
+              <b-table  :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="noticias">
+                
+                
+               </b-table> 
+
+               <b-pagination
+                  v-model="currentPage"
+               :total-rows="rows"
+                :per-page="perpage"
+                aria-controls="tablaNoticia"
+               ></b-pagination>
+           </div>
+          </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+             
+            </div>
+          </template>
+
+          <template>
+  
+    </template>
+        </b-modal>
+
+        </div>
+        <!-- final modal notcia  -->
+
       </template>
     </b-modal>
 
 
       <!-- final primermodal -->
+
+
+
+
+
+      <!-- segundo modal para noticiass ____________________________________________________________________________ -->
+      <b-modal
+      v-model="show1"
+      title="listado por noticia"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
+      :body-bg-variant="bodyBgVariant"
+      :body-text-variant="bodyTextVariant"
+      :footer-bg-variant="footerBgVariant"
+      :footer-text-variant="footerTextVariant"
+    >
+      <b-container fluid>
+          <input type="date">
+
+              <!-- boton listar noticias -->
+               <b-button
+               v-b-modal="'asignacionnoticia'"
+               @click=" getnoticia(noticiasasig.id)" 
+                variant="primary"
+                size="sm"
+                class="float-right"
+              >listar
+              </b-button>
+              <!-- final boton noticias -->
+      </b-container>
+
+      <template #modal-footer>
+        <div class="w-100">
+          <p class="float-left">noticias por fecha</p>
+          <b-button
+            variant="primary"
+            size="sm"
+            class="float-right"
+            @click="show1=false"
+          >cerrar
+          </b-button>
+        </div>
+        <!--       lista de noticias       -->
+            <div>
+              <b-modal size="xl" id="asignacionnoticia" title="Noticias">
+            <b-container fluid>
+                  <div>                          
+              <b-table  :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="noticias">
+               </b-table> 
+
+               <b-pagination
+                  v-model="currentPage"
+               :total-rows="rows"
+                :per-page="perpage"
+                aria-controls="tablaNoticia"
+               ></b-pagination>
+           </div>
+          </b-container>
+              <template #modal-footer>
+            <div class="w-100">
+             
+            </div>
+          </template>
+
+        
+        </b-modal>
+
+        </div>
+        <!-- final modal notcia  -->
+
+      </template>
+    </b-modal>
+
+
+      <!-- final segund modal -->
+
+
+
+
 
 
    
@@ -322,6 +427,7 @@ export default {
   data() {
     return {
        show: false,
+        show1: false,
        publicacion: [],
         variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
         headerBgVariant: 'dark',
@@ -425,9 +531,10 @@ export default {
         { key: "estado", label: "Estado" },
         { key: "responsable", label: "Responsable" },
         { key: "fecha", label: "fecha-hora" },
-        { key: "fecha_caducidad", label: "fecha-caducidad" },
+        { key: "fechacaducidad", label: "fecha caducidad" },
         { key: "tipo", label: "Tipo" },
       ],
+      
     };
   },
 
@@ -439,22 +546,28 @@ export default {
           this.eventos = response.data;
         });
     },
-
-    eventoxfecha:function(){
-      alert('search');
-    }
-
+    //noticias por fecha
+    getnoticia() {
+      this.axios
+        .get("http://127.0.0.1:8000/api/noticias")
+        .then((response) => {
+          this.noticias = response.data;
+        });
+    },
    },
     mounted() {
     this.getevento();
+    this.getnoticia();
     
   },
 
   computed: {
     rows() {
       return this.eventos.length;
+      return this.noticias.length;
     },
   },
+
   // action:{
   //   eventosporfecha(){
   //     this.axios.get("http://127.0.0.1:8000/api/eventos")
