@@ -68,17 +68,17 @@
 
 
 
-      <!-- primer modal  -->
+      <!-- primer modal  para eventos -->
       <b-modal v-model="showEventoxfecha" title="Listado por fecha" :header-bg-variant="headerBgVariant"
         :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant"
         :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
         <b-container fluid>
 
-          <!-- fecha input inicio -->
+          <!-- fechaeventos input inicio -->
           <div>
             <label for="example-input">Seleciona fecha</label>
             <b-input-group class="mb-3">
-              <b-form-input id="fechaEvento" name="fechita" v-model="fecha.fechita" type="text" placeholder="YYYY-MM-DD" autocomplete="off"></b-form-input>
+              <b-form-input id="fechaEvento" name="fechita" v-model="value" type="text" placeholder="YYYY-MM-DD" autocomplete="off"></b-form-input>
               <b-input-group-append>
                 <b-form-datepicker v-model="value" button-only right locale="en-US" aria-controls="example-input"
                   @context="onContext"></b-form-datepicker>
@@ -92,15 +92,11 @@
 
            
           </div>
+  <!-- fecha input final -->
 
-          <b-button v-b-modal="" @click="geteventofecha(fecha.fechita)" variant="primary" size="sm"
+          <b-button v-b-modal="" @click="geteventofecha(value)" variant="primary" size="sm"
             class="float-right">Listar
           </b-button>
-
-          <!-- fecha input final -->
-
-
-
 
         </b-container>
 
@@ -111,7 +107,7 @@
             </b-button>
           </div>
 
-          <!--       lista de eventos segundo modal       -->
+          <!--       lista eventos por fecha     abre segundo modal       -->
           <div>
             <b-modal size="xl" id="asignacionnueva" title="eventos x fecha"  v-model="showTablaEventofecha">
 
@@ -138,19 +134,16 @@
             </b-modal>
 
           </div>
-          <!-- final modal dentro de modal -->
+          <!-- final modal de eventos por fecha lista -->
 
-          <!--       lista de noticias       -->
+          <!--       lista de noticias x fecha segundo modal       -->
           <div>
             <b-modal size="xl" id="asignacionnoticia" title="Noticias">
 
               <b-container fluid>
-
-
                 <div>
 
-
-                  <b-table :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped
+                 <b-table :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped
                     hover responsive class="mt-4" :fields="encabezado" :items="noticias">
 
 
@@ -172,13 +165,13 @@
             </b-modal>
 
           </div>
-          <!-- final modal notcia  -->
+          <!-- final modal de noticia por fecha lista -->
 
         </template>
       </b-modal>
 
 
-      <!-- final primermodal -->
+      <!-- final primermodal para eventos-->
 
 
 
@@ -188,7 +181,7 @@
 
 
 
-      <!-- segundo modal para noticiass -->
+      <!--  inicio segundo modal para noticiasss -->
 
       <b-modal v-model="show1" title="Listado por noticia" :header-bg-variant="headerBgVariant"
         :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant"
@@ -199,7 +192,7 @@
            <div>
             <label for="example-input">Seleciona fecha</label>
             <b-input-group class="mb-3">
-              <b-form-input id="fechaEvento" name="fechita" v-model="fecha.fechita" type="text" placeholder="YYYY-MM-DD" autocomplete="off"></b-form-input>
+              <b-form-input id="fechaEvento" name="fechita" v-model="value" type="text" placeholder="YYYY-MM-DD" autocomplete="off"></b-form-input>
               <b-input-group-append>
                 <b-form-datepicker v-model="value" button-only right locale="en-US" aria-controls="example-input"
                   @context="onContext"></b-form-datepicker>
@@ -216,7 +209,7 @@
 
           <!-- boton listar noticias -->
 
-          <b-button v-b-modal="" @click="getnoticiafecha(fecha.fechita)" variant="primary" size="sm"
+          <b-button v-b-modal="" @click="getnoticiafecha(value)" variant="primary" size="sm"
             class="float-right">Listar
           </b-button>
 
@@ -229,9 +222,10 @@
             <b-button variant="primary" size="sm" class="float-right" @click="show1 = false">Cerrar
             </b-button>
           </div>
+
           <!--       lista de noticias SEGUNDO MODAL      -->
           <div>
-            <b-modal size="xl" id="asignacionnoticia" @click="showtablanoticia = false" title="Noticias">
+            <b-modal size="xl" id="asignacionnoticia" @click="showtablanoticia = false" title="Noticias" v-model="showtablanoticia">
               <b-container fluid>
                 <div>
                   <b-table :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped
@@ -256,7 +250,7 @@
 
         </template>
       </b-modal>
-      <!-- final segund modal -->
+      <!-- final segund modal para noticias-->
 
 
 
@@ -331,7 +325,7 @@ export default {
       footerBgVariant: 'info',
       footerTextVariant: 'dark',
 
-      //datepicker
+      datepicker,
       //value: '',
       //formatted: '',
       //selected: '',
@@ -501,7 +495,7 @@ export default {
   },
 
   // action:{
-  //   eventosporfecha(){
+  //   eventosporfec ha(){
   //     this.axios.get("http://127.0.0.1:8000/api/eventos")
   //     .then((response)=>{
   //     const eventosxfecha=[]
