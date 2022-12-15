@@ -1,20 +1,13 @@
 <template>
   <div class="content">
     <div class="md-layout">
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
-      >
-        <chart-card
-          :chart-data="dailySalesChart.data"
-          :chart-options="dailySalesChart.options"
-          :chart-type="'Line'"
-          data-background-color="blue"
-        >
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33">
+        <chart-card :chart-data="dailySalesChart.data" :chart-options="dailySalesChart.options" :chart-type="'Line'"
+          data-background-color="blue">
           <template slot="content">
             <h4 class="title">Eventos por fecha</h4>
             <p class="category">
-              <span class="text-success"
-                > 
+              <span class="text-success">
               </span>
               estadisticas de eventos
             </p>
@@ -23,25 +16,19 @@
           <template slot="footer">
             <div class="stats">
               <md-icon>access_time</md-icon>
-              actualizado hace 4 minutes 
-              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
-        <md-icon>menu</md-icon>
-      </md-button>
+              actualizado hace 4 minutes
+              <md-button @click="showEventoxfecha = true" class="md-icon-button md-raised md-primary">
+                <md-icon>menu</md-icon>
+              </md-button>
             </div>
-            
+
           </template>
         </chart-card>
       </div>
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
-      >
-        <chart-card
-          :chart-data="emailsSubscriptionChart.data"
-          :chart-options="emailsSubscriptionChart.options"
-          :chart-responsive-options="emailsSubscriptionChart.responsiveOptions"
-          :chart-type="'Bar'"
-          data-background-color="purple"
-        >
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33">
+        <chart-card :chart-data="emailsSubscriptionChart.data" :chart-options="emailsSubscriptionChart.options"
+          :chart-responsive-options="emailsSubscriptionChart.responsiveOptions" :chart-type="'Bar'"
+          data-background-color="purple">
           <template slot="content">
             <h4 class="title">Incidencias por fecha</h4>
             <p class="category">incidencias</p>
@@ -51,23 +38,17 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               actualizado hace 4 dias
-              <md-button @click="show=true" class="md-icon-button md-raised md-primary">
-        <md-icon>menu</md-icon>
-      </md-button>
+              <md-button @click="show = true" class="md-icon-button md-raised md-primary">
+                <md-icon>menu</md-icon>
+              </md-button>
             </div>
           </template>
         </chart-card>
       </div>
 
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
-      >
-        <chart-card
-          :chart-data="dataCompletedTasksChart.data"
-          :chart-options="dataCompletedTasksChart.options"
-          :chart-type="'Line'"
-          data-background-color="blue"
-        >
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33">
+        <chart-card :chart-data="dataCompletedTasksChart.data" :chart-options="dataCompletedTasksChart.options"
+          :chart-type="'Line'" data-background-color="blue">
           <template slot="content">
             <h4 class="title">Noticias por fecha</h4>
             <p class="category">total noticias</p>
@@ -77,124 +58,124 @@
             <div class="stats">
               <md-icon>access_time</md-icon>
               agregado hace 26 minutos
-              <md-button @click="show1=true" class="md-icon-button md-raised md-primary">
-        <md-icon>menu</md-icon>
-      </md-button>
+              <md-button @click="show1 = true" class="md-icon-button md-raised md-primary">
+                <md-icon>menu</md-icon>
+              </md-button>
             </div>
           </template>
         </chart-card>
       </div>
 
-      <!-- primer modal -->
-        <b-modal
-      v-model="show"
-      title="listado por fecha"
-      :header-bg-variant="headerBgVariant"
-      :header-text-variant="headerTextVariant"
-      :body-bg-variant="bodyBgVariant"
-      :body-text-variant="bodyTextVariant"
-      :footer-bg-variant="footerBgVariant"
-      :footer-text-variant="footerTextVariant"
-    >
-      <b-container fluid>
-          <input type="date">
 
-          <b-button
-               v-b-modal="'asignacionnueva'"
-               @click="getevento(eventosasig.id)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >listar
-              </b-button>
 
-              
-          
-      </b-container>
+      <!-- primer modal  -->
+      <b-modal v-model="showEventoxfecha" title="Listado por fecha" :header-bg-variant="headerBgVariant"
+        :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant"
+        :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+        <b-container fluid>
 
-      <template #modal-footer>
-        <div class="w-100">
-          <p class="float-left">eventos por fecha</p>
-          <b-button
-            variant="primary"
-            size="sm"
-            class="float-right"
-            @click="show=false"
-          >cerrar
-          </b-button>
-        </div>
+          <!-- fecha input inicio -->
+          <div>
+            <label for="example-input">Seleciona fecha</label>
+            <b-input-group class="mb-3">
+              <b-form-input id="fechaEvento" name="fechita" v-model="fecha.fechita" type="text" placeholder="YYYY-MM-DD" autocomplete="off"></b-form-input>
+              <b-input-group-append>
+                <b-form-datepicker v-model="value" button-only right locale="en-US" aria-controls="example-input"
+                  @context="onContext"></b-form-datepicker>
+              </b-input-group-append>
 
-         <!--       lista de eventos segundo modal       -->
-            <div>
-              <b-modal size="xl" id="asignacionnueva" title="eventos">
-                
-            <b-container fluid>
-                  <div> 
-              <b-table  :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="eventos">
-                
-               </b-table> 
-
-               <b-pagination
-                  v-model="currentPage"
-               :total-rows="rows"
-                :per-page="perpage"
-                aria-controls="tablaEventos"
-               ></b-pagination>
-           </div>
-          </b-container>
-              <template #modal-footer>
-            <div class="w-100">
-             
-            </div>
-          </template>
-
-          <template>
-  
-    </template>
-        </b-modal>
-
-        </div>
-        <!-- final modal dentro de modal -->
-
-        <!--       lista de noticias       -->
-            <div>
-              <b-modal size="xl" id="asignacionnoticia" title="Noticias">
-                
-            <b-container fluid>
-             
+            </b-input-group>
             
-                  <div>
-                   
-             
-              <b-table  :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="noticias">
-                
-                
-               </b-table> 
+            <!-- <p class="mb-1">Value: '{{ value }}'</p>
+            <p class="mb-1">Selected: '{{ selected }}'</p>
+            <p>Formatted: '{{ formatted }}'</p> -->
 
-               <b-pagination
-                  v-model="currentPage"
-               :total-rows="rows"
-                :per-page="perpage"
-                aria-controls="tablaNoticia"
-               ></b-pagination>
-           </div>
-          </b-container>
+           
+          </div>
+
+          <b-button v-b-modal="" @click="geteventofecha(fecha.fechita)" variant="primary" size="sm"
+            class="float-right">Listar
+          </b-button>
+
+          <!-- fecha input final -->
+
+
+
+
+        </b-container>
+
+        <template #modal-footer>
+          <div class="w-100">
+            <p class="float-left"></p>
+            <b-button variant="primary" size="sm" class="float-right" @click="showEventoxfecha = false">cerrar
+            </b-button>
+          </div>
+
+          <!--       lista de eventos segundo modal       -->
+          <div>
+            <b-modal size="xl" id="asignacionnueva" title="eventos x fecha"  v-model="showTablaEventofecha">
+
+              <b-container fluid>
+                <div>
+                  <b-table :filter="filter" id="tablaEventos" :per-page="perpage" :current-page="currentPage" striped
+                    hover responsive class="mt-4" :fields="encabezado" :items="eventos">
+
+                  </b-table>
+
+                  <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perpage"
+                    aria-controls="tablaEventos"></b-pagination>
+                </div>
+              </b-container>
               <template #modal-footer>
-            <div class="w-100">
-             
-            </div>
-          </template>
+                <div class="w-100">
 
-          <template>
-  
-    </template>
-        </b-modal>
+                </div>
+              </template>
 
-        </div>
-        <!-- final modal notcia  -->
+              <template>
 
-      </template>
-    </b-modal>
+              </template>
+            </b-modal>
+
+          </div>
+          <!-- final modal dentro de modal -->
+
+          <!--       lista de noticias       -->
+          <div>
+            <b-modal size="xl" id="asignacionnoticia" title="Noticias">
+
+              <b-container fluid>
+
+
+                <div>
+
+
+                  <b-table :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped
+                    hover responsive class="mt-4" :fields="encabezado" :items="noticias">
+
+
+                  </b-table>
+
+                  <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perpage"
+                    aria-controls="tablaNoticia"></b-pagination>
+                </div>
+              </b-container>
+              <template #modal-footer>
+                <div class="w-100">
+
+                </div>
+              </template>
+
+              <template>
+
+              </template>
+            </b-modal>
+
+          </div>
+          <!-- final modal notcia  -->
+
+        </template>
+      </b-modal>
 
 
       <!-- final primermodal -->
@@ -203,174 +184,85 @@
 
 
 
-      <!-- segundo modal para noticiass ____________________________________________________________________________ -->
-      <b-modal
-      v-model="show1"
-      title="listado por noticia"
-      :header-bg-variant="headerBgVariant"
-      :header-text-variant="headerTextVariant"
-      :body-bg-variant="bodyBgVariant"
-      :body-text-variant="bodyTextVariant"
-      :footer-bg-variant="footerBgVariant"
-      :footer-text-variant="footerTextVariant"
-    >
-      <b-container fluid>
-          <input type="date" name="fechanoticia" id="fechanoticia">
 
-              <!-- boton listar noticias -->
-               <b-button
-               v-b-modal="'asignacionnoticia'"
-               @click="getnoticiafecha()" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >listar
-              </b-button>
-              <!-- final boton noticias -->
-      </b-container>
 
-      <template #modal-footer>
-        <div class="w-100">
-          <p class="float-left">noticias por fecha</p>
-          <b-button
-            variant="primary"
-            size="sm"
-            class="float-right"
-            @click="show1=false"
-          >cerrar
+
+
+      <!-- segundo modal para noticiass -->
+
+      <b-modal v-model="show1" title="Listado por noticia" :header-bg-variant="headerBgVariant"
+        :header-text-variant="headerTextVariant" :body-bg-variant="bodyBgVariant" :body-text-variant="bodyTextVariant"
+        :footer-bg-variant="footerBgVariant" :footer-text-variant="footerTextVariant">
+        <b-container fluid>
+          
+           <!-- fecha input inicio -->
+           <div>
+            <label for="example-input">Seleciona fecha</label>
+            <b-input-group class="mb-3">
+              <b-form-input id="fechaEvento" name="fechita" v-model="fecha.fechita" type="text" placeholder="YYYY-MM-DD" autocomplete="off"></b-form-input>
+              <b-input-group-append>
+                <b-form-datepicker v-model="value" button-only right locale="en-US" aria-controls="example-input"
+                  @context="onContext"></b-form-datepicker>
+              </b-input-group-append>
+
+            </b-input-group>
+            
+            <!-- <p class="mb-1">Value: '{{ value }}'</p>
+            <p class="mb-1">Selected: '{{ selected }}'</p>
+            <p>Formatted: '{{ formatted }}'</p> -->
+
+           
+          </div>
+
+          <!-- boton listar noticias -->
+
+          <b-button v-b-modal="" @click="getnoticiafecha(fecha.fechita)" variant="primary" size="sm"
+            class="float-right">Listar
           </b-button>
-        </div>
-        <!--       lista de noticias       -->
-            <div>
-              <b-modal size="xl" id="asignacionnoticia" title="Noticias">
-            <b-container fluid>
-                  <div>                          
-              <b-table  :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="noticias">
-               </b-table> 
 
-               <b-pagination
-                  v-model="currentPage"
-               :total-rows="rows"
-                :per-page="perpage"
-                aria-controls="tablaNoticia"
-               ></b-pagination>
-           </div>
-          </b-container>
+          <!-- final boton noticias -->
+        </b-container>
+
+        <template #modal-footer>
+          <div class="w-100">
+            <p class="float-left">Noticias por fecha</p>
+            <b-button variant="primary" size="sm" class="float-right" @click="show1 = false">Cerrar
+            </b-button>
+          </div>
+          <!--       lista de noticias SEGUNDO MODAL      -->
+          <div>
+            <b-modal size="xl" id="asignacionnoticia" @click="showtablanoticia = false" title="Noticias">
+              <b-container fluid>
+                <div>
+                  <b-table :filter="filter" id="tablaNoticia" :per-page="perpage" :current-page="currentPage" striped
+                    hover responsive class="mt-4" :fields="encabezado" :items="noticias">
+                  </b-table>
+
+                  <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perpage"
+                    aria-controls="tablaNoticia"></b-pagination>
+                </div>
+              </b-container>
               <template #modal-footer>
-            <div class="w-100">
-             
-            </div>
-          </template>
+                <div class="w-100">
 
-        
-        </b-modal>
-
-        </div>
-        <!-- final modal notcia  -->
-
-      </template>
-    </b-modal>
+                </div>
+              </template>
 
 
+            </b-modal>
+
+          </div>
+          <!-- final modal notcia  -->
+
+        </template>
+      </b-modal>
       <!-- final segund modal -->
 
 
 
 
-
-
-   
-      <!-- <div
-        class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
-      >
-        <stats-card data-background-color="green">
-          <template slot="header">
-            <md-icon>store</md-icon>
-          </template>
-
-          <template slot="content">
-            <p class="category">Revenue</p>
-            <h3 class="title">$34,245</h3>
-          </template>
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>date_range</md-icon>
-              Last 24 Hours
-            </div>
-          </template>
-        </stats-card>
-      </div> -->
-      <!-- <div
-        class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
-      >
-        <stats-card data-background-color="orange">
-          <template slot="header">
-            <md-icon>content_copy</md-icon>
-          </template>
-
-          <template slot="content">
-            <p class="category">Used Space</p>
-            <h3 class="title">
-              49/50
-              <small>GB</small>
-            </h3>
-          </template>
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon class="text-danger">warning</md-icon>
-              <a href="#pablo">Get More Space...</a>
-            </div>
-          </template>
-        </stats-card>
-      </div> -->
-      <!-- <div
-        class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
-      >
-        <stats-card data-background-color="red">
-          <template slot="header">
-            <md-icon>info_outline</md-icon>
-          </template>
-
-          <template slot="content">
-            <p class="category">Fixed Issues</p>
-            <h3 class="title">75</h3>
-          </template>
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>local_offer</md-icon>
-              Tracked from Github
-            </div>
-          </template>
-        </stats-card>
-      </div> -->
-      <!-- <div
-        class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
-      >
-        <stats-card data-background-color="blue">
-          <template slot="header">
-            <i class="fab fa-twitter"></i>
-          </template>
-
-          <template slot="content">
-            <p class="category">Folowers</p>
-            <h3 class="title">+245</h3>
-          </template>
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>update</md-icon>
-              Just Updated
-            </div>
-          </template>
-        </stats-card>
-      </div> -->
-       <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50"
-      >
-         <md-card>
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50">
+        <md-card>
 
           <!-- <md-card-header data-background-color="orange">
             <h4 class="title">Employees Stats</h4>
@@ -381,9 +273,7 @@
           </md-card-content> -->
         </md-card>
       </div>
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50"
-      >
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50">
         <!-- <nav-tabs-card>
           <template slot="content">
             <span class="md-nav-tabs-title">Tasks:</span>
@@ -411,31 +301,40 @@
 import {
   StatsCard,
   ChartCard,
-  
-  
- 
+
+
+
 } from "@/components";
+import { async } from "q";
 
 export default {
   components: {
     StatsCard,
     ChartCard,
-   
-    
-   
   },
   data() {
     return {
-       show: false,
-        show1: false,
-       publicacion: [],
-        variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
-        headerBgVariant: 'dark',
-        headerTextVariant: 'light',
-        bodyBgVariant: 'light',
-        bodyTextVariant: 'dark',
-        footerBgVariant: 'info',
-        footerTextVariant: 'dark',
+      showEventoxfecha: false,
+      showTablaEventofecha: false,
+      showtablanoticia:false,
+      fecha:{
+        fechita:null
+      },
+      show1: false,
+      publicacion: [],
+      
+      variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'info',
+      footerTextVariant: 'dark',
+
+      //datepicker
+      //value: '',
+      //formatted: '',
+      //selected: '',
 
       dailySalesChart: {
         data: {
@@ -455,11 +354,12 @@ export default {
             left: 0,
           },
         },
+
       },
       dataCompletedTasksChart: {
         data: {
           labels: ["ene", "feb", "mar", "abr", "may", "jun", "jul"],
-          series: [[12, 17, 7, 17, 23, 18, 38 ]],
+          series: [[12, 17, 7, 17, 23, 18, 38]],
         },
 
         options: {
@@ -525,20 +425,20 @@ export default {
       },
       encabezado: [
         { key: "id", label: "Id" },
-        { key: "nombre_publicacion", label: "Nombre" },
-        { key: "descripcion_publicacion", label: "Descripcion" },
+        { key: "nombre", label: "Nombre" },
+        { key: "descripcion", label: "Descripcion" },
         { key: "lugar", label: "Lugar" },
         { key: "estado", label: "Estado" },
         { key: "responsable", label: "Responsable" },
-        { key: "fecha", label: "fecha-hora" },
-        { key: "fechacaducidad", label: "fecha caducidad" },
+        { key: "fecha_y_Hora", label: "fecha-hora" },
+        { key: "fecha_caducidad", label: "fecha-caducidad" },
         { key: "tipo", label: "Tipo" },
       ],
-      
+
     };
   },
 
-   methods: {
+  methods: {
     getevento() {
       this.axios
         .get("http://127.0.0.1:8000/api/eventos")
@@ -546,33 +446,57 @@ export default {
           this.eventos = response.data;
         });
     },
+
     //noticias por fecha
     getnoticia() {
       this.axios
         .get("http://127.0.0.1:8000/api/noticias")
         .then((response) => {
-          this.noticias = response.data;
+         this.noticias = response.data;
         });
     },
-  // trae noticias por fecha button
-    getnoticiafecha() {
+
+    // trae noticias por fecha button
+    geteventofecha(fecha) {
       this.axios
-        .get("http://127.0.0.1:8000/api/busquedanoticia")
+        .get("http://127.0.0.1:8000/api/eventosfecha/"+fecha)
+        .then((response) => {
+          this.eventos = response.data;
+          console.log(this.eventos);
+          this.showTablaEventofecha=true;
+        });
+        
+    },
+
+    getnoticiafecha(fecha) {
+      this.axios
+        .get("http://127.0.0.1:8000/api/noticiasfecha/"+fecha)
         .then((response) => {
           this.noticias = response.data;
+          console.log(this.noticias);
+          this.showtablanoticia=true;
         });
+        
     },
-   },
-    mounted() {
-    this.getevento();
-    this.getnoticia();
-    
+
+    //datepicker
+    onContext(ctx) {
+      // The date formatted in the locale, or the `label-no-date-selected` string
+      this.formatted = ctx.selectedFormatted
+      // The following will be an empty string until a valid date is entered
+      this.selected = ctx.selectedYMD
+    }
+  },
+  mounted() {
+    //this.getevento();
+    //this.getnoticia();
+    //this.geteventofecha(fecha);
+
   },
 
   computed: {
     rows() {
-      return this.eventos.length;
-      return this.noticias.length;
+     
     },
   },
 
@@ -585,7 +509,7 @@ export default {
   //           eventosxfecha.push({
   //             indicador:(i+1),
   //             nombre_publicacion: response.data.results[i]
-              
+
   //           })
   //     }
   //     })

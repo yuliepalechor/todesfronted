@@ -260,7 +260,7 @@ export default {
     this.usuarionombre = sessionStorage.getItem("username")
     this.usuarioapellido = sessionStorage.getItem("apellido")
 
-    axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
+    axios.get('https://proyectotodes-production.up.railway.app/api/eventos').then((response) => {
       console.log(response);
       this.publicacion = response.data;
     });
@@ -275,7 +275,7 @@ export default {
       formulariocomentario.append('id_usuario', this.id_usuario)
       formulariocomentario.append('contenido', this.contenido)
       formulariocomentario.append('clasificasion', this.clasificasion)
-      axios.post('http://127.0.0.1:8000/api/comentarios', formulariocomentario).then((response) => {
+      axios.post('https://proyectotodes-production.up.railway.app/api/comentarios', formulariocomentario).then((response) => {
         console.log(response);
 
       });

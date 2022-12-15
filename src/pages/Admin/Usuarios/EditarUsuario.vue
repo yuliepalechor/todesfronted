@@ -94,7 +94,7 @@
     methods: {
         mostrar(){
             this.axios
-          .get("http://127.0.0.1:8000/api/usuario/"+this.$route.params.id)
+          .get("https://proyectotodes-production.up.railway.app/api/usuario/"+this.$route.params.id)
           .then((data) => {
             this.form.identificacion=data.data[0].identificacion;
             this.form.nombre=data.data[0].nombre;
@@ -111,7 +111,7 @@
         
       Actualizarinformacion() {
         this.axios
-          .put("http://127.0.0.1:8000/api/usuario/"+this.$route.params.id,this.form )
+          .put("https://proyectotodes-production.up.railway.app/api/usuario/"+this.$route.params.id,this.form )
           .then((data) => {
             this.$router.push("/Usuarios")
           });

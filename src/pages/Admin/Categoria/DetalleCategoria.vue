@@ -115,7 +115,7 @@ export default {
     this.idparametro=this.$route.params.id
     this.axios
       .get(
-        "http://127.0.0.1:8000/api/detalle_categoria/" + this.$route.params.id
+        "https://proyectotodes-production.up.railway.app/api/detalle_categoria/" + this.$route.params.id
       )
       .then((response) => {
 
@@ -144,7 +144,7 @@ export default {
         formDatadetallecategoria.append("id_categoria",id)
      
       
-      await this.axios.post("http://127.0.0.1:8000/api/detalle_categoria",formDatadetallecategoria ).then((data) => {
+      await this.axios.post("https://proyectotodes-production.up.railway.app/api/detalle_categoria",formDatadetallecategoria ).then((data) => {
           console.log(data);
   
           this.$router.push('/Categorias');
@@ -160,7 +160,7 @@ export default {
       alert(this.$route.params.id);
       await this.axios
         .get(
-          "http://127.0.0.1:8000/api/detalle_categoria/" + this.$route.params.id
+          "https://proyectotodes-production.up.railway.app/api/detalle_categoria/" + this.$route.params.id
         )
         .then((data) => { }).catch(error=>{
             console.log(error)

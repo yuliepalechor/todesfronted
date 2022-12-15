@@ -54,7 +54,7 @@ export default {
     methods: {
        async mostrar() {
            await this.axios
-                .get("http://127.0.0.1:8000/api/categoria/" + this.$route.params.id)
+                .get("https://proyectotodes-production.up.railway.app/api/categoria/" + this.$route.params.id)
                 .then((data) => {
                     this.form.nombre = data.data[0].nombre;
                     this.form.descripcion = data.data[0].descripcion;
@@ -67,7 +67,7 @@ export default {
 
         async ActualizarCategoria() {
             await this.axios
-                .put("http://127.0.0.1:8000/api/categoria/" + this.$route.params.id, this.form)
+                .put("https://proyectotodes-production.up.railway.app/api/categoria/" + this.$route.params.id, this.form)
                 .then((data) => {
                     this.$router.push("/Categorias")
                 }).catch(error=>{

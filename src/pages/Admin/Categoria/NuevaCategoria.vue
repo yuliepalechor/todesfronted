@@ -58,7 +58,7 @@ export default {
           showConfirmButton: false,
           timer: 1500,
         });
-        await this.axios.post("http://127.0.0.1:8000/api/categoria",this.form).then((data)=>
+        await this.axios.post("https://proyectotodes-production.up.railway.app/api/categoria",this.form).then((data)=>
          {console.log(data);
         }).catch(error=>{
             console.log(error)

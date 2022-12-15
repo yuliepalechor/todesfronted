@@ -80,7 +80,7 @@
               :fields="cat" 
               :items="categoria">
                <template v-slot:cell(Acciones)="row">
-                  <md-button class="md-pink md-round float-left" @click="guardaraasignacionnueva(row.item.id,id_publiseleccionada)" >
+                  <md-button @click="guardaraasignacionnueva(row.item.id,id_publiseleccionada)" >
                      Asignar
                     </md-button>
                 </template>
@@ -166,51 +166,46 @@ export default {
     },
   },
   methods: {
-     async listaasignacion(id) {
-      await this.axios.get("http://127.0.0.1:8000/api/detalle_categoria/" + id)
+     listaasignacion(id) {
+      this.axios
+        .get("https://proyectotodes-production.up.railway.app/api/detalle_categoria/" + id)
         .then((response) => {
           this.categoriaasig = response.data;
           this.id_publiseleccionada = id
          
-        }) .catch(error=>{
-            console.log(error)
         });
     },
 
-    async guardaraasignacionnueva(idcat, idpub) {
+     async guardaraasignacionnueva(idcat, idpub) {
    
-  alert(idpub)
+ 
       let formularioasigna = new FormData();
       formularioasigna.append("id_publicacion", idpub);
       formularioasigna.append("id_categoria", idcat);
-      await this.axios
-        .post("http://127.0.0.1:8000/api/detalle_categoria", formularioasigna)
+      await  this.axios
+       .post("https://proyectotodes-production.up.railway.app/api/detalle_categoria", formularioasigna)
         .then((response) => {
-          this.$router.push("/Eventos");
-        }) .catch(error=>{
-            console.log(error)
+          //$router.push("/Eventos");
+          this.$router.go(0)
+          //router.push(path:"/Eventos2);
         });
     },
 
-    async getcategorias(idp) {
-      await this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+    getcategorias(idp) {
+      this.axios.get("https://proyectotodes-production.up.railway.app/api/categoria").then((response) => {
         this.categoria = response.data;
         
-      }) .catch(error=>{
-            console.log(error)
-        });
+      });
     },
 
     updatePagination(page, pageSize, sort, sortOrder) {
       console.log("pagination has updated", page, pageSize, sort, sortOrder);
     },
-    async getpublicacion() {
-      await this.axios
-        .get("http://127.0.0.1:8000/api/publicacion")
+    getpublicacion() {
+      this.axios
+        .get("https://proyectotodes-production.up.railway.app/api/publicacion")
         .then((response) => {
           this.publicacion = response.data;
-        }) .catch(error=>{
-            console.log(error)
         });
     },
     NuevaCategoria() {
@@ -232,7 +227,7 @@ export default {
     DetalleCategoria(id) {
       this.$router.push({ name: "DetalleCategoria", params: { id: id } });
     },
-     EliminarPublicacion(id) {
+    EliminarPublicacion(id) {
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: "btn btn-success",
@@ -252,10 +247,11 @@ export default {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            this.axios.delete("http://127.0.0.1:8000/api/publicacion/" + id)
+            this.axios
+              .delete("https://proyectotodes-production.up.railway.app/api/publicacion/" + id)
               .then((response) => {
                 this.axios
-                  .get("http://127.0.0.1:8000/api/publicacion")
+                  .get("https://proyectotodes-production.up.railway.app/api/publicacion")
                   .then((response) => {
                     this.publicacion = response.data;
                   });

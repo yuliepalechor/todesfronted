@@ -186,7 +186,7 @@
       formDataDataCambiar.append("fecha_caducidad", this.formData.fecha_caducidad);
       formDataDataCambiar.append("tipo", this.formData.tipo);
       
-  await axios.post("http://127.0.0.1:8000/api/publicacion",formDataDataCambiar).then(response=>{
+  await axios.post("https://proyectotodes-production.up.railway.app/api/publicacion",formDataDataCambiar).then(response=>{
     console.log(response);
   }) .catch(error=>{
             console.log(error)

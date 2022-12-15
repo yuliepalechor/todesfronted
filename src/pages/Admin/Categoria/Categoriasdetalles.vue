@@ -120,7 +120,7 @@
     methods: {
   
      async  getcategorias() {
-        await this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+        await this.axios.get("https://proyectotodes-production.up.railway.app/api/categoria").then((response) => {
           this.categoria = response.data;
         }) .catch(error=>{
             console.log(error)
@@ -137,7 +137,7 @@
         alert(this.$route.params.id)
         formDatadetallecategoria.append("id_categoria",id_categoria)
         
-        await this.axios.post("http://127.0.0.1:8000/api/detalle_categoria", formDatadetallecategoria).then((data) => {
+        await this.axios.post("https://proyectotodes-production.up.railway.app/api/detalle_categoria", formDatadetallecategoria).then((data) => {
           console.log(data);
   
           this.$router.push('/Categorias');
@@ -158,7 +158,7 @@
       },
   
       async GuardarCategoria() {
-        await this.axios.post("http://127.0.0.1:8000/api/categoria", this.cate).then((data) => {
+        await this.axios.post("https://proyectotodes-production.up.railway.app/api/categoria", this.cate).then((data) => {
           console.log(data);
   
           this.$router.push('/Categorias');
@@ -185,8 +185,8 @@
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-            this.axios.delete("http://127.0.0.1:8000/api/categoria/" + id).then((data) => {
-              this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+            this.axios.delete("https://proyectotodes-production.up.railway.app/api/categoria/" + id).then((data) => {
+              this.axios.get("https://proyectotodes-production.up.railway.app/api/categoria").then((response) => {
               this.categoria = response.data;
         })
               this.categoria = response.data;
