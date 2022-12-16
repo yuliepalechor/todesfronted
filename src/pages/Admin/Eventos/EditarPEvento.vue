@@ -115,7 +115,7 @@
     methods: {
         mostrar(){
             this.axios
-          .get("http://127.0.0.1:8000/api/publicacion/"+this.$route.params.id)
+          .get("https://proyectotodes-production.up.railway.app/api/publicacion/"+this.$route.params.id)
           .then((data) => {
             this.form.nombre=data.data[0].nombre;
             this.form.descripcion=data.data[0].descripcion;
@@ -132,12 +132,14 @@
 
 
         
-      ActualizarPublicacion() {
-        this.axios
-          .put("http://127.0.0.1:8000/api/publicacion/"+this.$route.params.id,this.form )
+      async ActualizarPublicacion() {
+       await this.axios
+          .put("https://proyectotodes-production.up.railway.app/api/publicacion/"+this.$route.params.id,this.form )
           .then((data) => {
             this.$router.push("/Eventos")
-          });
+          }) .catch(error=>{
+            console.log(error)
+        });
       },
 
       

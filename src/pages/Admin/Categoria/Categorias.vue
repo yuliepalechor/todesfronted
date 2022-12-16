@@ -114,10 +114,12 @@ export default {
 
   methods: {
 
-    getcategorias() {
-      this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+   async getcategorias() {
+      await this.axios.get("https://proyectotodes-production.up.railway.app/api/categoria").then((response) => {
         this.categoria = response.data;
-      })
+      }) .catch(error=>{
+            console.log(error)
+        });
     },
 
 
@@ -137,12 +139,14 @@ export default {
       this.$router.push(`EditarCategoria/${id}`)
     },
 
-    GuardarCategoria() {
-      this.axios.post("http://127.0.0.1:8000/api/categoria", this.cate).then((data) => {
+    async GuardarCategoria() {
+      await this.axios.post("https://proyectotodes-production.up.railway.app/api/categoria", this.cate).then((data) => {
         console.log(data);
 
         this.$router.push('/Categorias');
-      });
+      }) .catch(error=>{
+            console.log(error)
+        });
     },
 
     EliminarCategoria(id) {
@@ -163,7 +167,7 @@ export default {
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
-          this.axios.delete("http://127.0.0.1:8000/api/categoria/" + id).then((data) => {
+          this.axios.delete("https://proyectotodes-production.up.railway.app/api/categoria/" + id).then((data) => {
             this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
             this.categoria = response.data;
       })

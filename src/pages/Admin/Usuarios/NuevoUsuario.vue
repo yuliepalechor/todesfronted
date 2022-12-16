@@ -94,7 +94,7 @@
         },
         methods:{
           GuardarUsuario(){
-             axios.post("http://127.0.0.1:8000/api/usuario",this.form).then((data)=>
+             axios.post("https://proyectotodes-production.up.railway.app/api/usuario",this.form).then((data)=>
              {console.log(data);
                 //CODIGO DE ALERTA
                 Swal.fire({

@@ -139,10 +139,50 @@
     </div>
 
     <div class="section primary-section" id="about">
-      <div class="triangle"></div>
-      <div class="container">
-      </div>
-    </div>
+     
+     
+     <div class="container">
+       <center>
+       <div class="row">
+
+         <div class="col-md-3">            
+         </div>
+
+         
+         <div class="col-md-3">
+
+           <ul class="list-unstyled mt-3">
+             <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+               <i class="fab fa-facebook-f"></i>
+             </button>
+             <li><a href="https://es-la.facebook.com/MesaDiversidadPopayan/" class="text-white">Facebook</a></li>
+
+           </ul>
+         </div>
+         <div class="col-md-3">
+           <ul class="list-unstyled mt-3">
+             <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+               <i class="fab fa-instagram"></i>
+               
+             </button>
+             <li><a href="https://instagram.com/alcaldiapopayan?igshid=YmMyMTA2M2Y=" class="text-white">Instagram</a>
+             </li>
+           </ul>
+         </div>
+         <div class="col-md-3">
+           <ul class="list-unstyled mt-3">
+             <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+               <i class="fab fa-twitter"></i>
+             </button>
+             <li><a href="https://twitter.com/AlcaldiaPopayan" class="text-white">Twitter</a></li>
+           </ul>
+         </div>
+       </div>
+
+     </center>
+
+     </div>
+   </div>
 
     <!-- *********************************** MODAL ********************************* -->
 
@@ -199,7 +239,7 @@ export default {
     this.id_usuario = sessionStorage.getItem("userid")
     this.usuarionombre = sessionStorage.getItem("username")
     this.usuarioapellido = sessionStorage.getItem("apellido")
-    axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
+    axios.get('https://proyectotodes-production.up.railway.app/api/noticias').then((response) => {
       console.log(response);
       this.noticias = response.data;
     });
@@ -214,7 +254,7 @@ export default {
       formulariocomentario.append('id_usuario', this.id_usuario)
       formulariocomentario.append('contenido', this.contenido)
       formulariocomentario.append('clasificasion', this.clasificasion)
-      axios.post('http://127.0.0.1:8000/api/comentarios', formulariocomentario).then((response) => {
+      axios.post('https://proyectotodes-production.up.railway.app/api/comentarios', formulariocomentario).then((response) => {
         console.log(response);
 
       });

@@ -96,7 +96,7 @@
 
       <div style="background-color:#891A89" class="section primary-section" id="service">
 
-        <div class="container">
+        <div class="container2">
 
 
           <div class="title">
@@ -178,8 +178,48 @@
 
     </div>
     <div class="section primary-section" id="about">
-      <div class="triangle"></div>
+     
+     
       <div class="container">
+        <center>
+        <div class="row">
+
+          <div class="col-md-3">            
+          </div>
+
+          
+          <div class="col-md-3">
+
+            <ul class="list-unstyled mt-3">
+              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+              <li><a href="https://es-la.facebook.com/MesaDiversidadPopayan/" class="text-white">Facebook</a></li>
+
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="list-unstyled mt-3">
+              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+                <i class="fab fa-instagram"></i>
+                
+              </button>
+              <li><a href="https://instagram.com/alcaldiapopayan?igshid=YmMyMTA2M2Y=" class="text-white">Instagram</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="list-unstyled mt-3">
+              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+                <i class="fab fa-twitter"></i>
+              </button>
+              <li><a href="https://twitter.com/AlcaldiaPopayan" class="text-white">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </center>
+
       </div>
     </div>
 
@@ -219,7 +259,7 @@
           </select>
           <b-form-textarea id="textarea-state" v-model="contenido" :state="(text.length <= 250)"
             placeholder="escriba su comentario maximo 250 caracteres" rows="6" maxlength="250">
-            
+
           </b-form-textarea>
           <!-- <p for="numero p">{{evento.id}}</p> -->
 
@@ -236,14 +276,14 @@
 
         <template #modal-footer="{ close }" style="text-align: right;">
 
-<div class="w-100">
-  <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+          <div class="w-100">
+            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
 
-</div>
+          </div>
 
 
 
-</template>
+        </template>
 
 
       </b-modal>
@@ -402,12 +442,12 @@ export default {
     this.usuarionombre = sessionStorage.getItem("username")
     this.usuarioapellido = sessionStorage.getItem("apellido")
 
-    axios.get('http://127.0.0.1:8000/api/eventos').then((response) => {
+    axios.get('https://proyectotodes-production.up.railway.app/api/eventos').then((response) => {
       console.log(response);
       this.publicacion = response.data;
     });
 
-    axios.get('http://127.0.0.1:8000/api/noticias').then((response) => {
+    axios.get('https://proyectotodes-production.up.railway.app/api/noticias').then((response) => {
       console.log(response);
       this.noticias = response.data;
     });
@@ -421,7 +461,7 @@ export default {
       formulariocomentario.append('contenido', this.contenido)
       formulariocomentario.append('clasificasion', this.clasificasion)
 
-      axios.post('http://127.0.0.1:8000/api/comentarios', formulariocomentario).then((response) => {
+      axios.post('https://proyectotodes-production.up.railway.app/api/comentarios', formulariocomentario).then((response) => {
         console.log(response);
 
       });
@@ -453,6 +493,8 @@ export default {
 
 <style>
 /**EMERGENTE */
+
+
 
 button {
   border: none;
@@ -894,6 +936,7 @@ button:hover {
 
 .primary-section .triangle {
   border-top: 40px solid #00ADB5;
+
 }
 
 .primary-section .title {
@@ -1319,8 +1362,8 @@ button:hover {
 .headerUs img {
   position: absolute;
   height: 120px;
-  width: 120px;
-  border-radius: 50%;
+  width: 220px;
+  border-radius: 25%;
   left: 90px;
   top: 22px;
 }
@@ -1494,9 +1537,3 @@ i {
   text-align: center;
 }
 </style>
-
-
-
-
-
-

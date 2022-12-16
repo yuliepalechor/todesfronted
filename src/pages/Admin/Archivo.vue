@@ -74,7 +74,7 @@ export default {
       datosacambiar.append("ruta", this.FormData.ruta);
       alert("esta guardando");
       axios
-        .post("http://127.0.0.1:8000/api/archivoevento", this.datosacambiar)
+        .post("https://proyectotodes-production.up.railway.app/api/archivoevento", this.datosacambiar)
         .then((response) => {
           console.log(response);
         });
@@ -91,7 +91,7 @@ export default {
       });
 
       this.axios
-        .post("http://127.0.0.1:8000/api/archivoevento", this.form)
+        .post("https://proyectotodes-production.up.railway.app/api/archivoevento", this.form)
 
         .then((data) => {
           console.log(data);

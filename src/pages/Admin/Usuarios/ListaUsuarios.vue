@@ -156,7 +156,7 @@ export default {
   },
   methods: {
     getusuarios() {
-      this.axios.get("http://127.0.0.1:8000/api/usuario").then((response) => {
+      this.axios.get("https://proyectotodes-production.up.railway.app/api/usuario").then((response) => {
         this.usuario = response.data;
       })
     },
@@ -188,9 +188,9 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
 
-          this.axios.delete("http://127.0.0.1:8000/api/usuario/" + id).then((response) => {
+          this.axios.delete("https://proyectotodes-production.up.railway.app/api/usuario/" + id).then((response) => {
 
-            this.axios.get("http://127.0.0.1:8000/api/usuario").then((response) => {
+            this.axios.get("https://proyectotodes-production.up.railway.app/api/usuario").then((response) => {
             this.usuario = response.data;
       })
 

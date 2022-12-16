@@ -52,23 +52,27 @@ export default {
         this.mostrar()
     },
     methods: {
-        mostrar() {
-            this.axios
-                .get("http://127.0.0.1:8000/api/categoria/" + this.$route.params.id)
+       async mostrar() {
+           await this.axios
+                .get("https://proyectotodes-production.up.railway.app/api/categoria/" + this.$route.params.id)
                 .then((data) => {
                     this.form.nombre = data.data[0].nombre;
                     this.form.descripcion = data.data[0].descripcion;
 
-                });
+                }).catch(error=>{
+            console.log(error)
+        });
         },
 
 
-        ActualizarCategoria() {
-            this.axios
-                .put("http://127.0.0.1:8000/api/categoria/" + this.$route.params.id, this.form)
+        async ActualizarCategoria() {
+            await this.axios
+                .put("https://proyectotodes-production.up.railway.app/api/categoria/" + this.$route.params.id, this.form)
                 .then((data) => {
                     this.$router.push("/Categorias")
-                });
+                }).catch(error=>{
+            console.log(error)
+        });
         },
 
 

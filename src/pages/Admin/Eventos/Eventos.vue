@@ -12,15 +12,10 @@
             <p class="category">Lista de Publicaciones</p>
           </md-card-header>
           <md-card-content>
-           
             <div >
-              
               <b-form-input v-model="filter" type="search" placeholder="Buscar...">
-
                </b-form-input>
               <b-table  :filter="filter" id:="tablaEventos" :per-page="perpage" :current-page="currentPage" striped  hover responsive  class="mt-4" :fields="encabezado" :items="publicacion">
-                
-
                 <template v-slot:cell(Editar)="row">
                     <md-button  @click="editar(editarpublicacion(row.item.id))" class="md-just-icon md-simple md-primary">
                       <md-icon>edit</md-icon>
@@ -35,9 +30,6 @@
                 </template>
                 <template v-slot:cell(ejemplo)="row">
                     <b-button v-b-modal="'asignacion'" @click="listaasignacion(row.item.id)" variant="primary">Ver</b-button>
-               
-               
-                    
                   </template>
                </b-table>              
                <b-pagination
@@ -55,6 +47,11 @@
     <div>
         <b-modal size="xl" id="asignacion" title="Categorias Asignadas">
           <b-container fluid>
+             <b-table  :filter="filter" id:="" :per-page="perpage" :current-page="currentPage" striped  
+             hover responsive  class="mt-4" 
+             :fields="asignacioncategoria" 
+             :items="categoriaasig">
+               </b-table>              
             <table class="table table-bordered table-striped" id:="tabla">
               <thead>
                 <b-button
@@ -65,105 +62,34 @@
                 class="float-right"
               >+
               </b-button>
-                <tr>
-                  <th>ID</th>
-                  <th>Prioridad</th>
-                  <th>Categoria</th>
-                  <th>Descripcion de la Categoria</th>
-                  <th>Lista de Categorias</th>
-                </tr>
               </thead>
-              <tbody>
-                <tr v-for="categoriaasig in categoriaasig" :key="categoriaasig.id">
-            
-                  <td v-text="categoriaasig.id_detalle"></td>
-                  <td v-text="categoriaasig.Prioridad_detallle"></td>
-                  <td v-text="categoriaasig.Nombresdecategorias"></td>
-                  <td v-text="categoriaasig.Descripciodecategorias"></td>
-                  <!--<td v-text="categoriaasig.id_publicacion"></td>-->
-                  <b-button
-               v-b-modal="'asignacionnueva'"
-               @click="getcategorias(categoriaasig.id_publicacion)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >+
-              </b-button>
-                </tr>
-              </tbody>
             </table>
              </b-container>
-              <template #modal-footer>
-            <div class="w-100">
-
-            </div>   
+             <template #modal-footer="{ close }">
+             <b-button class="btn btn-secondary" @click="close()"> Cerrar </b-button>
+             </template>
+        </b-modal>   
+       </div>   
              <!--      MODAL DE LAS NUEVAS ASIGNACIONES          -->
             <div>
               <b-modal size="xl" id="asignacionnueva" title="Categorias">
-            <b-container fluid>
-                  
+              <b-container fluid>
               <b-form-input v-model="filter" type="search" placeholder="Buscar..."></b-form-input>
-             <table class="table table-bordered table-striped">
-              <!---<b-table :filter="filter" id:="categoria" :per-page="perpage" :current-page="currentPage" striped
-                hover responsive class="mt-4" :fields=" categoria" :items=" categoria">
-              -->
-                
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>nombre de la categoria</th>
-                  <th>Accion</th>
-                </tr>
-              </thead>
-              <tbody>
-
-
-                
-                <tr v-for=" categoria in categoria" :key=" categoria.id">
-                  
-                  <td v-text=" categoria.id"></td>
-                  <td v-text=" categoria.nombre"></td>
-                  <td >
-                    <b-button
-                    v-b-modal="'asignaciones'"
-                   @click=" guardaraasignacionnueva(categoria.id,id_publiseleccionada)" 
-                    variant="primary"
-                    size="sm"
-                    class="float-right"
-                    >Asignar
-              </b-button></td>
-              <div id="app">
-    <font-awesome-icon icon="home"/>
-  </div>
-                </tr>
-              </tbody>
-            </table>
+              <b-table  :filter="filter" id:="" :per-page="perpage" :current-page="currentPage" striped  
+              hover responsive  class="mt-4" 
+              :fields="cat" 
+              :items="categoria">
+               <template v-slot:cell(Acciones)="row">
+                  <md-button @click="guardaraasignacionnueva(row.item.id,id_publiseleccionada)" >
+                     Asignar
+                    </md-button>
+                </template>
+              </b-table>  
           </b-container>
-              <template #modal-footer>
-            <div class="w-100">
-              <b-button
-              v-b-modal="'asignaciones'"
-              @click=" getcategoria(row.item.id)" 
-                variant="primary"
-                size="sm"
-                class="float-right"
-              >Nuevo
-              </b-button>
-              <i class="fa-light fa-paperclip-vertical"></i>
-            </div>
+          <template #modal-footer="{ close }">
+             <b-button class="btn btn-secondary" @click="close()"> Cerrar </b-button>
           </template>
-
-          <template>
-  <div id="app">
-    <font-awesome-icon icon="home"/>
-  </div>
-</template>
         </b-modal>
-
-
-            </div>
-          </template>
-        </b-modal>     
       </div>
   </div>
 </template>
@@ -199,7 +125,17 @@ export default {
         id_publicacion: null,
         id_categoria: null,
       },
-
+      cat: [
+        { key: "id", label: "Id" },
+        { key: "nombre", label: "Nombre" },
+        { key: "Acciones", label: "Acciones" },
+          ],
+      asignacioncategoria: [
+        { key: "id_detalle", label: "Id" },
+        { key: "Prioridad_detallle", label: "Prioridad" },
+        { key: "Nombresdecategorias", label: "Nombre" },
+        { key: "Descripciodecategorias", label: "Descripcion" },
+          ],
       encabezado: [
         { key: "id", label: "Id" },
         { key: "nombre", label: "Nombre" },
@@ -230,33 +166,35 @@ export default {
     },
   },
   methods: {
-    listaasignacion(id) {
+     listaasignacion(id) {
       this.axios
-        .get("http://127.0.0.1:8000/api/detalle_categoria/" + id)
+        .get("https://proyectotodes-production.up.railway.app/api/detalle_categoria/" + id)
         .then((response) => {
           this.categoriaasig = response.data;
+          this.id_publiseleccionada = id
+         
         });
     },
 
-    guardaraasignacionnueva(idcat, idpub) {
-
-
-
-      
+     async guardaraasignacionnueva(idcat, idpub) {
+   
+ 
       let formularioasigna = new FormData();
       formularioasigna.append("id_publicacion", idpub);
       formularioasigna.append("id_categoria", idcat);
-      this.axios
-        .post("http://127.0.0.1:8000/api/detalle_categoria", formularioasigna)
+      await  this.axios
+       .post("https://proyectotodes-production.up.railway.app/api/detalle_categoria", formularioasigna)
         .then((response) => {
-          this.$router.push("/Eventos");
+          //$router.push("/Eventos");
+          this.$router.go(0)
+          //router.push(path:"/Eventos2);
         });
     },
 
     getcategorias(idp) {
-      this.axios.get("http://127.0.0.1:8000/api/categoria").then((response) => {
+      this.axios.get("https://proyectotodes-production.up.railway.app/api/categoria").then((response) => {
         this.categoria = response.data;
-        this.id_publiseleccionada = idp;
+        
       });
     },
 
@@ -265,7 +203,7 @@ export default {
     },
     getpublicacion() {
       this.axios
-        .get("http://127.0.0.1:8000/api/publicacion")
+        .get("https://proyectotodes-production.up.railway.app/api/publicacion")
         .then((response) => {
           this.publicacion = response.data;
         });
@@ -310,10 +248,10 @@ export default {
         .then((result) => {
           if (result.isConfirmed) {
             this.axios
-              .delete("http://127.0.0.1:8000/api/publicacion/" + id)
+              .delete("https://proyectotodes-production.up.railway.app/api/publicacion/" + id)
               .then((response) => {
                 this.axios
-                  .get("http://127.0.0.1:8000/api/publicacion")
+                  .get("https://proyectotodes-production.up.railway.app/api/publicacion")
                   .then((response) => {
                     this.publicacion = response.data;
                   });
@@ -338,5 +276,3 @@ export default {
   width:100%;
 }
 </style>
-
-
