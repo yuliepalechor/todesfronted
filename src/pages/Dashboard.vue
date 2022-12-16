@@ -94,7 +94,7 @@
           </div>
           <!-- fecha input final -->
 
-          <b-button v-b-modal="" @click="geteventofecha(value)" variant="primary" size="sm"
+          <b-button v-b-modal="" @click="geteventosconteo()" variant="primary" size="sm"
             class="float-right">Listar
           </b-button>
 
@@ -109,7 +109,7 @@
 
           <!--       lista eventos por fecha     abre segundo modal       -->
           <div>
-            <b-modal size="xl" id="asignacionnueva" title="eventos x fecha"  v-model="showTablaEventofecha">
+            <b-modal size="xl" id="asignacionnueva" title="eventos x fecha" v-model="showTablaEventofecha">
 
               <b-container fluid>
                 <div>
@@ -288,7 +288,7 @@
           <b-button v-b-modal="" @click="getincidenciafecha(value)" variant="primary" size="sm"
             class="float-right">Listar
           </b-button>
-
+ 
         </b-container>
 
         <template #modal-footer>
@@ -453,12 +453,14 @@ export default {
       formatted: '',
       selected: '',
 
+      //chart para eventos
       dailySalesChart: {
         data: {
-          labels: ["ene", "feb", "mar", "abr", "may", "jun", "jul"],
+          labels: ["Ene", "Feb", "Mar", "Abr", "May", "jun", "jul","ago","sep","oct","nov","dec"],
           series: [[12, 17, 7, 17, 23, 18, 38]],
         },
         options: {
+          responsive:true,
           lineSmooth: this.$Chartist.Interpolation.cardinal({
             tension: 0,
           }),
@@ -568,7 +570,7 @@ export default {
     // trae noticias por fecha button
     geteventofecha(fecha) {
       this.axios
-        .get("http://127.0.0.1:8000/api/eventosfecha/"+fecha)
+        .get("http://127.0.0.1:8000/api/fechaeventos/"+fecha)
         .then((response) => {
           this.eventos = response.data;
           console.log(this.eventos);
@@ -579,7 +581,7 @@ export default {
 
     getnoticiafecha(fecha) {
       this.axios
-        .get("http://127.0.0.1:8000/api/noticiasfecha/"+fecha)
+        .get("http://127.0.0.1:8000/api/fechanoticias/"+fecha)
         .then((response) => {
           this.noticias = response.data;
           console.log(this.noticias);
@@ -622,6 +624,19 @@ export default {
             this.showTablaincidenciafecha=true;
         
     },
+
+    //consulta de cuantos eventos o noticias por fecha
+
+              geteventosconteo() {
+                this.axios
+                  .get("http://127.0.0.1:8000/api/totaleventos")
+                  .then((response) => {
+                    this.eventos = response.data;
+                    console.log(this.eventos);
+                  });
+                  
+              },
+
 
     //datepicker
     onContext(ctx) {
