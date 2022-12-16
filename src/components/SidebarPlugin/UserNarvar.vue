@@ -48,7 +48,7 @@
                 <em style="color:#ffff">Usuario</em>
               </template>
      
-             <b-dropdown-item href="# ">Perfil</b-dropdown-item>
+             <!-- <b-dropdown-item href="# ">Perfil</b-dropdown-item> -->
               <b-dropdown-item href="../../pages/Sign-in.vue">Salir</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>

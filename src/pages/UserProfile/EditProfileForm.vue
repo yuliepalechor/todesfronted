@@ -60,9 +60,9 @@
               <md-button class="md-info" @click="Actualizarinformacion()">Registrar</md-button>
             </div>
           
-          <div class="md-layout-item md-size-100 text-right">
+          <!-- <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-info" @click="Actualizarinformacion()">Registrar</md-button>
-          </div>
+          </div> -->
         </div>
       </md-card-content>
     </md-card>

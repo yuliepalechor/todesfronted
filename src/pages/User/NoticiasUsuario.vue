@@ -14,7 +14,7 @@
     
         <div class="title">
     
-          <h3> ¿Quieres conocer los hechos más relevantes de tu comunidad?</h3>
+          <h3> Noticias disponibles</h3>
     
         </div>
     
@@ -24,15 +24,31 @@
     
       <div class="a1">
         <div class="span4">
-    
-          <div class="noticiaimg">
-            <img src="../../assets/img/Noticia.png">
-            <h3> Noticias</h3>
-    
+      
+          <div class="centered1 service1">
+            <div class="circle-border zoom-in">
+              <img class="img-circle" src="../../assets/img/eventos.png" alt="service 1">
+            </div>
+      
+            <router-link style="color:#ffff" class="nav-link me-2" to="/EventosUsuario">
+              Eventos</router-link>
+      
+            <p>¿Qué publicaciones hay disponibles?</p>
           </div>
-    
+      
         </div>
-    
+      
+        <div class="span4">
+          <div class="centered1 service1">
+            <div class="circle-border zoom-in">
+              <img class="img-circle" src="../../assets/img/Noticia.png" alt="service 1">
+            </div>
+            <router-link style="color:#ffff" class="nav-link me-2" to="/NoticiasUsuario">
+              Noticias</router-link>
+            <p>¿Quieres conocer los hechos más relevantes?</p>
+          </div>
+        </div>
+      
       </div>
     
     </div>
@@ -128,7 +144,7 @@
         <!-- ******** area de comentario ******** -->
         <template #modal-footer="{ close }" style="text-align: right;">
           <div class="w-100">
-            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+            <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
 
           </div>
 
@@ -142,14 +158,12 @@
      
      
      <div class="container">
-       <center>
-       <div class="row">
-
-         <div class="col-md-3">            
-         </div>
+      <center>
+       <div class="rowfin">
 
          
-         <div class="col-md-3">
+         
+         <div class="col1-md-3">
 
            <ul class="list-unstyled mt-3">
              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
@@ -159,7 +173,7 @@
 
            </ul>
          </div>
-         <div class="col-md-3">
+         <div class="col1-md-3">
            <ul class="list-unstyled mt-3">
              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
                <i class="fab fa-instagram"></i>
@@ -169,7 +183,7 @@
              </li>
            </ul>
          </div>
-         <div class="col-md-3">
+         <div class="col1-md-3">
            <ul class="list-unstyled mt-3">
              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
                <i class="fab fa-twitter"></i>
@@ -279,6 +293,59 @@ export default {
 }
 </script>
 <style>
+/* -------------------------------------- */
+.a1{
+ display: flex;
+  
+}
+.circle-border {
+    display: inline-flex;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    border-radius: 500px;
+    -khtml-border-radius: 500px;
+    border: 3px solid #fff;
+    width: 40%;
+    
+    
+}
+.img-circle {
+  -webkit-border-radius: 500px;
+     -moz-border-radius: 500px;
+          border-radius: 500px;
+          
+}
+
+.centered1 {
+  margin-left: 220px;
+  margin-right: 20px;
+  float: none;
+  text-align: center;
+}
+.service1 p {
+    padding: 0px 10px;
+    height: 60px;
+    margin-left: 2%;
+
+}
+.span4 {
+    width: 50%;
+    
+  }
+
+  .rowfin{
+  
+  display: flex;
+ 
+}
+
+.col1-md-3{
+margin-left: 100%;
+
+
+}
+
+/* -------------------------------------- */
 
 .noticiaimg img 
 {border-radius: 50%;

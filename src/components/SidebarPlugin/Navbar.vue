@@ -43,12 +43,12 @@
                 <li class="nav-item">
                   <a style="color:#ffff" class="nav-link me-2" href="../pages/sign-up.html">
                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                    Sign Up
+                    Registrarse
                   </a>
                 </li>
                 <li class="nav-item">
                   <router-link style="color:#ffff" class="nav-link me-2" to="/Sigin"><i class="fas fa-key opacity-6 text-dark me-1"></i>
-                    Sign In</router-link>
+                    Ingresar</router-link>
                  
                 </li>
                 

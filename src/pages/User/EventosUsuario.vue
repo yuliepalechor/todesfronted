@@ -3,12 +3,13 @@
     <navbarusuario></navbarusuario>
 
 
+<center>
+  <div>
+    <img src="../../assets/img/eventoportada.jpg" width="40%" height="80%" length="" alt="Logo" />
 
-    <div>
-      <center><img src="../../assets/img/lgbtiq+.jpg" width="40%" height="150%" length="200" alt="Logo" margin="" />
-      </center>
-    </div>
-    
+  </div>
+
+</center>
     <div style="background-color:#891A89" class="section primary-section" id="service">
     
       <div class="container">
@@ -27,12 +28,28 @@
       <div class="a1">
         <div class="span4">
           
-        <div class="eventosimg">
-              <img src="../../assets/img/eventos.png" >
-              <h3> considera todos los eventos disponibles, danos tu opinión</h3>
-              
+          <div class="centered1 service1">
+            <div class="circle-border zoom-in">
+              <img class="img-circle" src="../../assets/img/eventos.png" alt="service 1" >
             </div>
+            
+              <router-link style="color:#ffff" class="nav-link me-2" to="/EventosUsuario">
+                   Eventos</router-link>
+            
+            <p>¿Qué publicaciones hay disponibles?</p>
+          </div>
         
+        </div>
+
+        <div class="span4">
+          <div class="centered1 service1">
+            <div class="circle-border zoom-in">
+              <img class="img-circle" src="../../assets/img/Noticia.png" alt="service 1">
+            </div>
+            <router-link style="color:#ffff" class="nav-link me-2" to="/NoticiasUsuario">
+                  Noticias</router-link>
+            <p>¿Quieres conocer los hechos más relevantes de tu comunidad?</p>
+          </div>
         </div>
            
       </div>
@@ -143,7 +160,7 @@
         <template #modal-footer="{ close }" style="text-align: right;">
 
           <div class="w-100">
-            <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button>
+            <!-- <md-button target="_blank" class="md-primary md-round float-left" @click="close()">Cerrar</md-button> -->
 
           </div>
 
@@ -161,13 +178,11 @@
      
      <div class="container">
        <center>
-       <div class="row">
-
-         <div class="col-md-3">            
-         </div>
+       <div class="rowfin">
 
          
-         <div class="col-md-3">
+         
+         <div class="col1-md-3">
 
            <ul class="list-unstyled mt-3">
              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
@@ -177,7 +192,7 @@
 
            </ul>
          </div>
-         <div class="col-md-3">
+         <div class="col1-md-3">
            <ul class="list-unstyled mt-3">
              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
                <i class="fab fa-instagram"></i>
@@ -187,7 +202,7 @@
              </li>
            </ul>
          </div>
-         <div class="col-md-3">
+         <div class="col1-md-3">
            <ul class="list-unstyled mt-3">
              <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
                <i class="fab fa-twitter"></i>
@@ -308,23 +323,62 @@ export default {
 //   background-color: #d8d8d8;
 
 // }
-.eventosimg img 
-{border-radius: 50%;
-  width: 10%;
-  height: 10%;
- margin-left: 45%; 
- margin-top: 0%; 
+// .eventosimg img 
+// {border-radius: 50%;
+//   width: 10%;
+//   height: 10%;
+//  margin-left: 45%; 
+//  margin-top: 0%; 
+// }
+// .eventosimg h3
+// {
+//   font-family: monospace;
+//  font-size: 15px;
+//   width: 15%; 
+//  text-align: center;
+//  margin-left: 42%;
+//  margin-top: 10px;
+
+// // }
+// -------------------------
+.a1{
+ display: flex;
+  
 }
-.eventosimg h3
-{
-  font-family: monospace;
- font-size: 15px;
-  width: 15%; 
- text-align: center;
- margin-left: 42%;
- margin-top: 10px;
+.circle-border {
+    display: inline-flex;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    border-radius: 500px;
+    -khtml-border-radius: 500px;
+    border: 3px solid #fff;
+    width: 40%;
+    
+    
+}
+.img-circle {
+  -webkit-border-radius: 500px;
+     -moz-border-radius: 500px;
+          border-radius: 500px;
+          
+}
+
+.centered1 {
+  margin-left: 220px;
+  margin-right: 20px;
+  float: none;
+  text-align: center;
+}
+.service1 p {
+    padding: 0px 10px;
+    height: 60px;
+    margin-left: 2%;
 
 }
+.span4 {
+    width: 50%;
+    
+  }
 
 // .boton{
 //   display: inline-block;
@@ -333,6 +387,26 @@ export default {
 //   text-align: center !important;
 // }
 
+
+.rowfin{
+  
+  display: flex;
+ 
+}
+
+.col1-md-3{
+margin-left: 100%;
+
+
+}
+
+.imgportada{
+  margin-left: 400px;
+  width: 100%;
+  height: auto;
+  background-color: #c7c7c7;
+ 
+}
 //dvii
 .primary-section .title {
   border-bottom: 1px solid rgb(216, 212, 212);

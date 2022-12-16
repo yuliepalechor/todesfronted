@@ -8,7 +8,7 @@
           <form >
             <md-card id="cardcont" >
               <md-card-header style="background-color: #00adb5;text-align: center;">
-                <h4 class="title">LOGEO</h4>
+                <h4 class="title">INGRESAR</h4>
                 <p class="category">Digite Email y Contraseña</p>
               </md-card-header>
               <md-card-content>
@@ -38,9 +38,9 @@
                         >Aceptar</md-button
                       >
                       <br/>
-                      <span class="forgot-pass"
+                      <!-- <span class="forgot-pass"
                         ><a href="#">¿Olvidó su nombre de usuario/contraseña?</a></span
-                      >
+                      > -->
                     </div>
                   </div>
                 </md-card-content>
